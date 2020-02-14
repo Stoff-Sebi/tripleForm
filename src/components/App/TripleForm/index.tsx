@@ -17,7 +17,7 @@ interface props {
   encode?: boolean;
 }
 
-const TripleForm: React.FC<props> = ({queryStart, parameterDelimiter = ";", parameters = [{
+const TripleForm: React.FC<props> = ({queryStart="https://gams.uni-graz.at/context:example/get?params=", parameterDelimiter = ";", parameters = [{
   label: "test01",
   value:"",
   id:"123",
