@@ -7,7 +7,7 @@ interface props {
 }
 
 //component declared as of type React Functional component with given generic props type (defined above).
-const Demo: React.FC<props> = () => {
+const TripleForm: React.FC<props> = () => {
 
   const [counter, setCounter] = React.useState<number>(0);  //React.useState() -> call it this way to be able to make useState()!
 
@@ -42,4 +42,4 @@ const Demo: React.FC<props> = () => {
   );
 };
 
-export default Demo;
+export default TripleForm;

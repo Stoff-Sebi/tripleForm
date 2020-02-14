@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme , { shallow } from "enzyme"; //import 
 import EnzymeAdapter from "enzyme-adapter-react-16";
-import Demo from "../../../components/App/Demo";
+import Demo from "../../../components/App/TripleForm";
 
 //Base Enzyme config (usually done in extra file)
 Enzyme.configure({

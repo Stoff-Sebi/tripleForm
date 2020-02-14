@@ -1,7 +1,7 @@
 import jest from "jest";
 import React from "react";
 import renderer from 'react-test-renderer';
-import App from "../../../components/App/Demo"
+import App from "../../../components/App/TripleForm"
 
 // NOT RECOMMENDED
 // Example for a simple snapshot test
