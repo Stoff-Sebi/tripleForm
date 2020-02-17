@@ -17,12 +17,12 @@ interface props {
   encode?: boolean;
 }
 
-const TripleForm: React.FC<props> = ({queryStart="https://gams.uni-graz.at/context:example/get?params=", parameterDelimiter = ";", parameters = [{
-  label: "test01",
+const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?params=", parameterDelimiter = ";", parameters = [{
+  label: "Cantus Volltextsuche",
   value:"",
-  id:"123",
-  placeHolder:"hahatest",
-  RESTParameter: "$1|"
+  id:"cantus_01_test",
+  placeHolder:"z.b. Salzburg",
+  RESTParameter: "$5|"
 },
 {
   label:"test02",
@@ -37,7 +37,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://gams.uni-graz.at/conte
   id:"1233333",
   placeHolder:"bimbiasdds",
   RESTParameter: "$3|"
-},
+}
 
 ]}) => {
 
@@ -52,7 +52,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://gams.uni-graz.at/conte
         return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
       }
     })
-    let url = queryStart + query;
+    let url = queryStart + encodeURIComponent(query);
     window.location.href = url;
   }
 
@@ -63,7 +63,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://gams.uni-graz.at/conte
     let query = "";
     inputs.forEach(input => {
       if(query==="undefined")query = "";
-      query += `${input.RESTParameter}${input.value}${parameterDelimiter}`;
+      query += `${input.RESTParameter}${input.value}${inputs.length > 1 ? parameterDelimiter : ''}`;
     });
     
     if(query==="undefined")return setQuery("");
