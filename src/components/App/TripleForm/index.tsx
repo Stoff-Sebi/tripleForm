@@ -49,6 +49,14 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   id:"1233333as",
   placeHolder:"bimbiasdds",
   RESTParameter: "$8|"
+},
+{
+  label:"test05",
+  value:[{label:"Vierzehn", value:"14", _selected:true},{label:"Hupfburg", value:"Hupfburg", _selected:false}, ],
+  type: "select",
+  id:"1233333as",
+  placeHolder:"bimbiasdds",
+  RESTParameter: "$9|"
 }
 
 ]}) => {
