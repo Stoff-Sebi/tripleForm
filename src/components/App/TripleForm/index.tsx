@@ -52,7 +52,8 @@ const TripleForm: React.FC<props> = ({queryStart="https://gams.uni-graz.at/conte
         return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
       }
     })
-    window.location.href = query;
+    let url = queryStart + query;
+    window.location.href = url;
   }
 
   React.useEffect(()=>{
@@ -60,7 +61,6 @@ const TripleForm: React.FC<props> = ({queryStart="https://gams.uni-graz.at/conte
     console.log("Inputs changed!", inputs);
 
     let query = "";
-    query += queryStart;
     inputs.forEach(input => {
       if(query==="undefined")query = "";
       query += `${input.RESTParameter}${input.value}${parameterDelimiter}`;
