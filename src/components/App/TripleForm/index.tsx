@@ -44,7 +44,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 },
 {
   label:"test04",
-  value:[{label:"firstVal", value:"1"}],
+  value:[{label:"firstVal", value:"1"},{label:"secondVal", value:"2"}, ],
   type: "select",
   id:"1233333as",
   placeHolder:"bimbiasdds",
