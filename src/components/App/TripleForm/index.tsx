@@ -7,7 +7,7 @@ interface SearchParameter {
   value: string,
   id: string;
   placeHolder?: string;
-  RESTParameter?: string
+  RESTParameter?: string;
 }
 
 interface props {
