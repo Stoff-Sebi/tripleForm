@@ -44,10 +44,11 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
             return (
               //@ts-ignore
               <SelectFormGroup options={input.value as Array} onChange={(evt)=>{
-                console.log(evt.currentTarget.value);
                 let curVal = evt.currentTarget.value;
                 let valueObjects = [...(input.value as [])];
 
+                //sets the _selected property to true from element linked to evt.currentTarget
+                //and others to false.
                 (valueObjects as []).forEach((obj: {label: string, value:string, _selected: boolean}) => {
                   if(obj.value === curVal){
                     obj._selected = true;
