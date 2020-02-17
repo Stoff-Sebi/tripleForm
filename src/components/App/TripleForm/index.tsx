@@ -77,7 +77,16 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
     let query = "";
     inputs.forEach(input => {
       if(query==="undefined")query = "";
-      query += `${input.RESTParameter}${input.value}${inputs.length > 1 ? parameterDelimiter : ''}`;
+
+      //check which type input has
+      if(input.type==="text"){
+        query += `${input.RESTParameter}${input.value}${inputs.length > 1 ? parameterDelimiter : ''}`;
+      }
+
+      if(input.type==="select"){
+        query += ``
+      }
+      
     });
     
     if(query==="undefined")return setQuery("");
