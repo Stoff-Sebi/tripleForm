@@ -25,7 +25,7 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
           if(input.type === "text"){
             if(typeof input.value !== "string")throw new TypeError(`You have to pass in a string, when the input type is set to 'text'. Error at input with label: ${input.label}`);
           return (
-            <div className="form-group">
+            <div key={`responsiveForm_formGroup_${index}`} className="form-group">
               <label>{input.label}</label>
               <input className="form-control" type="text" id={input.id} placeholder={input.placeHolder} value={input.value} onChange={(evt) => {
                 inputFields[index].value = evt.currentTarget.value;
