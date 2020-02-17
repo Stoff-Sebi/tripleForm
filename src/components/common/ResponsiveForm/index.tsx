@@ -37,13 +37,35 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
         }
 
         if(input.type === "select")
-            if(typeof input.value !== 'object')throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
+            if(typeof(input.value) !== 'object')throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             if(!input.value.length)throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             //@ts-ignore
             if(!input.value[0].label || !input.value[0].value)throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             return (
               //@ts-ignore
-              <SelectFormGroup options={input.value}/>
+              <SelectFormGroup options={input.value as Array} onChange={(evt)=>{
+                console.log(evt.currentTarget.value);
+                let curVal = evt.currentTarget.value;
+                let valueObjects = [...(input.value as [])];
+
+                (valueObjects as []).forEach((obj: {label: string, value:string, _selected: boolean}) => {
+                  if(obj.value === curVal){
+                    obj._selected = true;
+                  } else {
+                    obj._selected = false;
+                  };
+                });
+
+                //@ts-ignore
+                let newInpVal = [...input.value];
+                //@ts-ignore
+                let inputs = [...inputFields];
+                //@ts-ignore
+                inputs[index].value = newInpVal;
+                //console.log(inputs);
+                
+                return setInputFields ? setInputFields(()=>inputs) : null
+              }}/>
             )
       })}
       <button className="btn btn-secondary" onClick={(evt) => handleSearch(evt)}>Search</button>
