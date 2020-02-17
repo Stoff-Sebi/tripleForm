@@ -95,7 +95,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
       //check if type is input
       if(input.type==="select"){
         //if array
-        if(input.value.length){ 
+        if(Array.isArray(input.value)){ 
           (input.value as {label:string, value: string, _selected?: boolean}[]).forEach((inputObj) => {
             //if _selected property set to true
             if(inputObj._selected === true)query += `${input.RESTParameter}${inputObj.value}${inputs.length > 1 ? parameterDelimiter : ''}`;

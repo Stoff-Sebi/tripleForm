@@ -38,8 +38,7 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
 
         if(input.type === "select")
             if(typeof(input.value) !== 'object')throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
-            if(!input.value.length)throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
-            //@ts-ignore
+            if(!Array.isArray(input.value))throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             if(!input.value[0].label || !input.value[0].value)throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             return (
               //@ts-ignore
