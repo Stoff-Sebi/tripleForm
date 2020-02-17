@@ -9,8 +9,8 @@ const SelectFormGroup:React.FC<props> = ({options}) => {
     <div className="form-group">
       <label>Example multiple select</label>
       <select className="form-control">
-        {options.map(option => (
-            <option value={option.value}>{ option.label }</option>
+        {options.map((option, index) => (
+            <option key={`SelectFormGroup_option_${index}`} value={option.value}>{ option.label }</option>
         ))}
       </select>
     </div>
