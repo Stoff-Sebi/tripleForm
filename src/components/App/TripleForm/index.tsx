@@ -47,11 +47,13 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   const handleSearch = (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     btnClickEvent.preventDefault(); //prevents default submit action on form.
     if(!query)return alert("wählen Sie einen gültigen Wert für die Suche aus.");
+    let inputErrFlag: boolean = false;
     inputs.forEach(input=>{
       if(!input.value){
-        return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
+        inputErrFlag = true;
       }
     })
+    if(inputErrFlag)return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
     let url = queryStart + encodeURIComponent(query);
     window.location.href = url;
   }
