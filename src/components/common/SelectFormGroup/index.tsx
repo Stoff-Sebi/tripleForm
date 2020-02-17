@@ -21,7 +21,7 @@ const SelectFormGroup:React.FC<props> = ({options, handleGetSelection, onChange}
         <label>Example multiple select - Selected value = {selectedVal}</label>
       <select className="form-control" value={selectedVal} onChange={(evt)=>handleSelection(evt)}>
         {options.map((option, index) => (
-            <option key={`SelectFormGroup_option_${index}`} value={option.value} data-index={index}>{ option.label }</option>
+            <option key={`SelectFormGroup_option_${index}`} value={option.value}>{ option.label }</option>
         ))}
       </select>
     </div>
