@@ -41,8 +41,7 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
             if(!Array.isArray(input.value))throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             if(!input.value[0].label || !input.value[0].value)throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             return (
-              //@ts-ignore
-              <SelectFormGroup options={input.value as Array} onChange={(evt)=>{
+              <SelectFormGroup options={input.value} onChange={(evt)=>{
                 let curVal = evt.currentTarget.value;
                 let valueObjects = [...(input.value as [])];
 
