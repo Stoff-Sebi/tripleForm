@@ -84,9 +84,17 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
         query += `${input.RESTParameter}${input.value}${inputs.length > 1 ? parameterDelimiter : ''}`;
       }
 
+      //check if type is input
       if(input.type==="select"){
-        //@ts-ignore
-        //query += `${input.RESTParameter}${input.value[0].value}`
+        //if array
+        if(input.value.length){ 
+          (input.value as {label:string, value: string, _selected?: boolean}[]).forEach((inputObj) => {
+            //if _selected property set to true
+            if(inputObj._selected === true)query += `${input.RESTParameter}${inputObj.value}${inputs.length > 1 ? parameterDelimiter : ''}`;
+          })
+        } else {
+          throw new TypeError(`Encountered a not array type inside an input marked as 'select'. Input's label is: ${input.label}`);
+        }
       }
       
     });
