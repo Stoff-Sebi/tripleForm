@@ -11,9 +11,10 @@ interface inputField {
 interface Props {
   inputFields: inputField[];
   setInputFields?: Function;
+  handleSearch: (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields }) => {
+const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSearch }) => {
   return (
     <form id="responsiveForm">
       {inputFields.map((input, index) => {
@@ -28,6 +29,7 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields }) => {
           </div>
         );
       })}
+      <button className="btn btn-secondary" onClick={(evt) => handleSearch(evt)}>Search</button>
     </form>
   );
 };
