@@ -4,7 +4,7 @@ import ResponsiveForm from "../../common/ResponsiveForm"
 
 interface SearchParameter {
   label: string,
-  value: string,
+  value: string | {label:string, value: string}[],
   type: "text" | "select" | "autocomplete",
   id: string;
   placeHolder?: string;
@@ -44,8 +44,8 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 },
 {
   label:"test04",
-  value:"blasdas",
-  type: "text",
+  value:[{label:"firstVal", value:"1"}],
+  type: "select",
   id:"1233333as",
   placeHolder:"bimbiasdds",
   RESTParameter: "$8|"
