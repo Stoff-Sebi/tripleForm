@@ -15,17 +15,17 @@ interface Props {
 
 const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields }) => {
   return (
-    <form>
+    <form id="responsiveForm">
       {inputFields.map((input, index) => {
         return (
-          <>
+          <div className="form-group">
             <label>{input.label}</label>
-            <input type="text" id={input.id} placeholder={input.placeHolder} value={input.value} onChange={(evt) => {
+            <input className="form-control" type="text" id={input.id} placeholder={input.placeHolder} value={input.value} onChange={(evt) => {
               inputFields[index].value = evt.currentTarget.value;
               let newInput = [...inputFields]
               return setInputFields ? setInputFields(() => newInput) : null
             }}/>
-          </>
+          </div>
         );
       })}
     </form>
