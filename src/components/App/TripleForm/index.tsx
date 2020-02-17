@@ -5,6 +5,7 @@ import ResponsiveForm from "../../common/ResponsiveForm"
 interface SearchParameter {
   label: string,
   value: string,
+  type: "text" | "select" | "autocomplete",
   id: string;
   placeHolder?: string;
   RESTParameter?: string;
@@ -20,6 +21,7 @@ interface props {
 const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?params=", parameterDelimiter = ";", parameters = [{
   label: "Cantus Volltextsuche",
   value:"",
+  type: "text",
   id:"cantus_01_test",
   placeHolder:"z.b. Salzburg",
   RESTParameter: "$5|"
@@ -27,6 +29,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 {
   label:"test02",
   value:"bla",
+  type: "text",
   id:"123",
   placeHolder:"bimbi",
   RESTParameter: "$2|"
@@ -34,9 +37,18 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 {
   label:"test03",
   value:"blasdas",
-  id:"1233333",
+  type: "text",
+  id:"1233333sssss",
   placeHolder:"bimbiasdds",
   RESTParameter: "$3|"
+},
+{
+  label:"test04",
+  value:"blasdas",
+  type: "text",
+  id:"1233333as",
+  placeHolder:"bimbiasdds",
+  RESTParameter: "$8|"
 }
 
 ]}) => {
