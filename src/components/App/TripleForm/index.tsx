@@ -4,7 +4,7 @@ import ResponsiveForm from "../../common/ResponsiveForm"
 
 interface SearchParameter {
   label: string,
-  value: string | {label:string, value: string}[],
+  value: string | {label:string, value: string, _selected?: boolean}[],
   type: "text" | "select" | "autocomplete",
   id: string;
   placeHolder?: string;
@@ -44,7 +44,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 },
 {
   label:"test04",
-  value:[{label:"firstVal", value:"1"},{label:"secondVal", value:"2"}, ],
+  value:[{label:"firstVal", value:"1", _selected:true},{label:"secondVal", value:"2", _selected:false}, ],
   type: "select",
   id:"1233333as",
   placeHolder:"bimbiasdds",
@@ -71,6 +71,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   }
 
   React.useEffect(()=>{
+    console.log(inputs);
     if(!inputs) return;
     console.log("Inputs changed!", inputs);
 
@@ -84,7 +85,8 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
       }
 
       if(input.type==="select"){
-        query += ``
+        //@ts-ignore
+        //query += `${input.RESTParameter}${input.value[0].value}`
       }
       
     });
