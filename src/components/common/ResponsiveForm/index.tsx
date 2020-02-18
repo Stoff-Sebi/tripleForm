@@ -7,7 +7,6 @@ interface inputField {
   type: "text" | "select" | "autocomplete";
   id: string;
   placeHolder?: string;
-  
 }
 
 interface Props {
