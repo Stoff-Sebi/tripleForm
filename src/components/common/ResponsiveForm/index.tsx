@@ -98,8 +98,8 @@ const ResponsiveForm: React.FC<Props> = ({
     return <Autocomplete
     id="test"
     autoCompleteOption={selectInput as AutcompleteInput}
-    onchange={(linkedObj)=>{
-      let curVal = linkedObj.value;
+    onchange={(value)=>{
+      let curVal = value;
           let valueObjects = [...(selectInput.value as [])];
 
           //sets the _selected property to true from element linked to evt.currentTarget

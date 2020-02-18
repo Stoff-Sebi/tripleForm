@@ -53,7 +53,7 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption, onchange=undefin
         let obj = autoCompleteOption.value.filter(val => val.label===value);
         if(!obj[0])return;
         setLinkedObject(obj[0]);
-        if(onchange)onchange(obj[0]);
+        if(onchange)onchange(obj[0].value);
     }, [value]);
 
     
