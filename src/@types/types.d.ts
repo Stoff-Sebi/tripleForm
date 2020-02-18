@@ -13,11 +13,19 @@ interface QueryInput extends Input {
 
 interface QueryTextInput extends QueryInput {
     type: "text",
+    value: string
 }
 
 interface QuerySelectInput extends QueryInput {
-    chosenValue: string,
-    type: "select",
+    chosenValue: string;
+    type: "select";
+    value: SelectValue
+}
+
+interface SelectValue {
+    label: string;
+    value: string;
+    _selected: boolean;
 }
 
 interface Form {
