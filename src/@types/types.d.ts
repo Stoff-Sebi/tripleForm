@@ -1,5 +1,5 @@
 
-interface InputField {
+interface QueryInputField {
   label: string,
   chosenValue: any,
   type: string,
@@ -9,17 +9,17 @@ interface InputField {
 }
 
 interface Form {
-    inputFields: inputField[];
+    inputFields: QueryInputField[];
     setInputFields?: Function;
     handleSearch: (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-interface TextInput extends InputField {
+interface QueryTextInput extends QueryInputField {
     chosenValue: string,
     type: "text",
 }
 
-interface SelectInput extends InputField {
+interface QuerySelectInput extends QueryInputField {
     chosenValue: string,
     type: "select",
 }
