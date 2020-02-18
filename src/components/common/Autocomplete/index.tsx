@@ -17,15 +17,15 @@ const languages = [
       },
       {
         name: 'Pez',
-        year: 1932
+        year: 1931
       },
       {
         name: 'Peanut',
-        year: 1932
+        year: 19
       },
       {
         name: 'PETA',
-        year: 1932
+        year: 132
       },  
   ];
 
@@ -60,12 +60,21 @@ const AutoComplete: React.FC = () => {
 
     const [value, setValue] = React.useState<string>("");
 
+    const [linkedObject, setLinkedObject] = React.useState<Object | undefined>(undefined);
+
     //needs to be let because getter has to be set!
     let [suggestions, setSuggestions] = React.useState<string[]>([]);
 
     const onChange = (event: any, { newValue }: any) => {
         setValue(newValue);
     };
+
+    React.useEffect(()=>{
+        if(!value)return;
+        let x = languages.filter(val => val.name===value);
+        if(!x[0])return;
+        setLinkedObject(x[0]);
+    }, [value]);
 
     
     // Autosuggest will call this function every time you need to update suggestions.
@@ -95,6 +104,9 @@ const AutoComplete: React.FC = () => {
     //TODO need to pass in id via prop -> when multiple autocompletes!
 
     return (
+        <>
+        
+        
         <Autosuggest
             suggestions={suggestions}
             onSuggestionsFetchRequested={onSuggestionsFetchRequested}
@@ -103,6 +115,11 @@ const AutoComplete: React.FC = () => {
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
       />
+      <span>Gewählt: { 
+        //@ts-ignore
+        (linkedObject && linkedObject.year) ? `Name: ${linkedObject.name} | Jahr: ${linkedObject.year}` : null}</span>
+        <br></br>
+      </>
     )
 
 }
