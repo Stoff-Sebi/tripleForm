@@ -1,5 +1,5 @@
 
-interface Input {
+export interface Input {
     label: string;
     value?: string;
     id?: string;
@@ -7,28 +7,28 @@ interface Input {
     type?: "text" | "select" | "autocomplete";
 }
 
-interface QueryInput extends Input {
+export interface QueryInput extends Input {
   subParameter?: string;
 }
 
-interface QueryTextInput extends QueryInput {
+export interface QueryTextInput extends QueryInput {
     type: "text",
     value: string
 }
 
-interface QuerySelectInput extends QueryInput {
+export interface QuerySelectInput extends QueryInput {
     chosenValue: string;
     type: "select";
     value: SelectValue
 }
 
-interface SelectValue {
+export interface SelectValue {
     label: string;
     value: string;
     _selected: boolean;
 }
 
-interface Form {
+export interface Form {
     inputFields: QueryInput[];
     setInputFields?: Function;
     handleSearch: (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
