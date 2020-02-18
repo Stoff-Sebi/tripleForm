@@ -30,6 +30,13 @@ export interface SelectValue {
 export interface QuerySelectInput extends SelectInput, QueryInput {}
 
 
+export interface AutcompleteInput extends Input {
+    type: "autocomplete";
+    value: SelectValue[];
+}
+
+export interface QueryAutocompleteInput extends AutcompleteInput, QueryBuildAble {}
+
 export interface QueryBuildAble {
     parameter?: string;
 }
