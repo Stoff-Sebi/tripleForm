@@ -14,7 +14,7 @@ const SelectFormGroup:React.FC<props> = ({options, handleGetSelection, onChange}
     const handleSelection = (evt: React.ChangeEvent<HTMLSelectElement>) => {
             setSelectedVal(evt.currentTarget.value);
             if(handleGetSelection)handleGetSelection(selectedVal as string);
-            if(onChange)onChange(evt);
+            if(onChange)onChange(evt.currentTarget.value);
     } 
 
   return (
