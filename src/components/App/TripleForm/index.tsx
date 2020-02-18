@@ -62,13 +62,13 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 ]}) => {
 
   const [query, setQuery] = React.useState<""| string>("");
-  const [inputs, setInputs] = React.useState<QueryInputField[]>(parameters);
+  const [queryInputFields, setInputs] = React.useState<QueryInputField[]>(parameters);
 
   const handleSearch = (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     btnClickEvent.preventDefault(); //prevents default submit action on form.
     if(!query)return alert("wählen Sie einen gültigen Wert für die Suche aus.");
     let inputErrFlag: boolean = false;
-    inputs.forEach(input=>{
+    queryInputFields.forEach(input=>{
       if(!input.value){
         inputErrFlag = true;
       }
@@ -79,17 +79,17 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   }
 
   React.useEffect(()=>{
-    console.log(inputs);
-    if(!inputs) return;
-    console.log("Inputs changed!", inputs);
+    console.log(queryInputFields);
+    if(!queryInputFields) return;
+    console.log("Inputs changed!", queryInputFields);
 
     let query = "";
-    inputs.forEach(input => {
+    queryInputFields.forEach(input => {
       if(query==="undefined")query = "";
 
       //check which type input has
       if(input.type==="text"){
-        query += `${input.RESTParameter}${input.value}${inputs.length > 1 ? parameterDelimiter : ''}`;
+        query += `${input.RESTParameter}${input.value}${queryInputFields.length > 1 ? parameterDelimiter : ''}`;
       }
 
       //check if type is input
@@ -98,7 +98,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
         if(Array.isArray(input.value)){ 
           (input.value as {label:string, value: string, _selected?: boolean}[]).forEach((inputObj) => {
             //if _selected property set to true
-            if(inputObj._selected === true)query += `${input.RESTParameter}${inputObj.value}${inputs.length > 1 ? parameterDelimiter : ''}`;
+            if(inputObj._selected === true)query += `${input.RESTParameter}${inputObj.value}${queryInputFields.length > 1 ? parameterDelimiter : ''}`;
           })
         } else {
           throw new TypeError(`Encountered a not array type inside an input marked as 'select'. Input's label is: ${input.label}`);
@@ -109,13 +109,13 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
     
     if(query==="undefined")return setQuery("");
     setQuery(query)
-  }, [inputs]);
+  }, [queryInputFields]);
 
   return (
     <>
     <p>{query}</p>
     <ResponsiveForm
-      inputFields={inputs}
+      inputFields={queryInputFields}
       setInputFields={setInputs}
       handleSearch={handleSearch}
     ></ResponsiveForm>
