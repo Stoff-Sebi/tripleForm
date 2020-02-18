@@ -36,21 +36,6 @@ const TripleForm: React.FC<props> = ({
     setInputs(gamsConfig.tripleForm.formGroups);
   }, [gamsConfig]);
 
-  const handleSearch = (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    btnClickEvent.preventDefault(); //prevents default submit action on form.
-    if(!query)return alert("wählen Sie einen gültigen Wert für die Suche aus.");
-    if(!queryInputs)throw new TypeError("Cannot start a search without any formGroups defined for the tripleForm!");
-    let inputErrFlag: boolean = false;
-    queryInputs.forEach(queryInput=>{
-      if(!queryInput.value){
-        inputErrFlag = true;
-      }
-    })
-    if(inputErrFlag)return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
-    let url = (queryStart ? queryStart : tripleFormConfig.queryStart) + encodeURIComponent(query);
-    window.location.href = url;
-  }
-
   //
   React.useEffect(()=>{
     if(!queryInputs) return;
@@ -80,6 +65,21 @@ const TripleForm: React.FC<props> = ({
     if(query==="undefined")return setQuery("");
     setQuery(query)
   }, [queryInputs]);
+
+  const handleSearch = (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    btnClickEvent.preventDefault(); //prevents default submit action on form.
+    if(!query)return alert("wählen Sie einen gültigen Wert für die Suche aus.");
+    if(!queryInputs)throw new TypeError("Cannot start a search without any formGroups defined for the tripleForm!");
+    let inputErrFlag: boolean = false;
+    queryInputs.forEach(queryInput=>{
+      if(!queryInput.value){
+        inputErrFlag = true;
+      }
+    })
+    if(inputErrFlag)return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
+    let url = (queryStart ? queryStart : tripleFormConfig.queryStart) + encodeURIComponent(query);
+    window.location.href = url;
+  }
 
   return (
     <>
