@@ -94,6 +94,35 @@ const ResponsiveForm: React.FC<Props> = ({
     );
   };
 
+  const generateAutoCompleteFormGroup = (selectInput: AutcompleteInput, inputFields: Input[], index: number) => {
+    return <Autocomplete
+    id="test"
+    autoCompleteOption={selectInput as AutcompleteInput}
+    onchange={(linkedObj)=>{
+      let curVal = linkedObj.value;
+          let valueObjects = [...(selectInput.value as [])];
+
+          //sets the _selected property to true from element linked to evt.currentTarget
+          //and others to false.
+          (valueObjects as []).forEach(
+            (obj: { label: string; value: string; _selected: boolean }) => {
+              if (obj.value === curVal) {
+                obj._selected = true;
+              } else {
+                obj._selected = false;
+              }
+            }
+          );
+
+          //state copying procedure
+          let newInpVal = [...selectInput.value];
+          let inputs = [...inputFields];
+          inputs[index].value = newInpVal;
+          return setInputFields ? setInputFields(() => inputs) : null;
+    }}
+    ></Autocomplete>
+  }
+
   return (
     //generate form with adequate defined form-groups.
     <form id="responsiveForm">
@@ -105,10 +134,7 @@ const ResponsiveForm: React.FC<Props> = ({
           return generateSelectFormGroup( input as SelectInput, inputFields,index);
         }
         if (input.type === "autocomplete") {
-          return <Autocomplete
-                    id="test"
-                    autoCompleteOption={input as AutcompleteInput}
-                    ></Autocomplete>
+          return generateAutoCompleteFormGroup(input as AutcompleteInput, inputFields,index);
         }
       })}
       <button className="btn btn-secondary" onClick={evt => handleSearch(evt)}>
