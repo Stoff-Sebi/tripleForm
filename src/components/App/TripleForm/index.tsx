@@ -53,7 +53,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 },
 {
   label:"test05",
-  value:[{label:"Peter", value:"Peter_Hinkelstein"},{label:"Peer", value:"Peer_Liebrecht"}],
+  value:[{label:"Salzburg", value:"salzburg"}, {label:"Peter", value:"Peter_Hinkelstein"},{label:"Peer", value:"Peer_Liebrecht"}],
   type: "autocomplete",
   id:"1233333as",
   placeHolder:"bimbiasdds", 
