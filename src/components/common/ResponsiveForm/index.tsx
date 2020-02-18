@@ -85,14 +85,10 @@ const ResponsiveForm: React.FC<Props> = ({
             }
           );
 
-          //@ts-ignore
-          let newInpVal = [...input.value];
-          //@ts-ignore
+          //state copying procedure
+          let newInpVal = [...selectInput.value];
           let inputs = [...inputFields];
-          //@ts-ignore
           inputs[index].value = newInpVal;
-          //console.log(inputs);
-
           return setInputFields ? setInputFields(() => inputs) : null;
         }}
       />
