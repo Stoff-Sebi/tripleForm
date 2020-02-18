@@ -1,7 +1,7 @@
 
 export interface Input {
     label: string;
-    value?: string;
+    value?: string | Object;
     id?: string;
     placeHolder?: string;
     type?: "text" | "select" | "autocomplete";
@@ -17,7 +17,6 @@ export interface QueryTextInput extends QueryInput {
 }
 
 export interface QuerySelectInput extends QueryInput {
-    chosenValue: string;
     type: "select";
     value: SelectValue
 }
