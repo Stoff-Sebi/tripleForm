@@ -38,32 +38,7 @@ const languages: AutcompleteInput = {
       },  
   ]}; 
 
-const getSuggestions = (value: string) => {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-    return inputLength === 0 ? [] : languages.value.filter(lang =>
-      lang.label.toLowerCase().slice(0, inputLength) === inputValue
-    );
-  };
 
-// When suggestion is clicked, Autosuggest needs to populate the input
-// based on the clicked suggestion. Teach Autosuggest how to calculate the
-// input value for every given suggestion.
-const getSuggestionValue = (suggestion: any) => {
-    console.log("getSuggestionValue: ",suggestion);
-    return suggestion.label
-};
-
-// Use your imagination to render suggestions.
-const renderSuggestion = (suggestion: any) => { 
-    console.log("RenderSuggestion: ", suggestion)
-    return (
-    <div>
-      <span style={{color:"red"}}>{suggestion.label[0]}</span>
-      <span>{suggestion.label.substring(1,suggestion.label.length)}</span>
-    </div>
-    )
-}
 
 const AutoComplete: React.FC<Props> = ({id}) => {
 
@@ -73,6 +48,33 @@ const AutoComplete: React.FC<Props> = ({id}) => {
 
     //needs to be let because getter has to be set!
     let [suggestions, setSuggestions] = React.useState<string[]>([]);
+
+    const getSuggestions = (value: string) => {
+      const inputValue = value.trim().toLowerCase();
+      const inputLength = inputValue.length;
+      return inputLength === 0 ? [] : languages.value.filter(lang =>
+        lang.label.toLowerCase().slice(0, inputLength) === inputValue
+      );
+    };
+  
+  // When suggestion is clicked, Autosuggest needs to populate the input
+  // based on the clicked suggestion. Teach Autosuggest how to calculate the
+  // input value for every given suggestion.
+  const getSuggestionValue = (suggestion: any) => {
+      console.log("getSuggestionValue: ",suggestion);
+      return suggestion.label
+  };
+  
+  // Use your imagination to render suggestions.
+  const renderSuggestion = (suggestion: any) => { 
+      console.log("RenderSuggestion: ", suggestion)
+      return (
+      <div>
+        <span style={{color:"red"}}>{suggestion.label[0]}</span>
+        <span>{suggestion.label.substring(1,suggestion.label.length)}</span>
+      </div>
+      )
+  }
 
     const onChange = (event: any, { newValue }: any) => {
         setValue(newValue);
