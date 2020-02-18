@@ -68,7 +68,7 @@ const ResponsiveForm: React.FC<Props> = ({
     return (
       <SelectFormGroup
         options={selectInput}
-        onChange={value => {
+        onChange={value => {  //TODO AutocompleteForm's and SelectForm's onChange function could one and the same!
           let curVal = value;
           let valueObjects = [...(selectInput.value as [])];
 
@@ -98,7 +98,7 @@ const ResponsiveForm: React.FC<Props> = ({
     return <Autocomplete
     id="test"
     autoCompleteOption={selectInput as AutcompleteInput}
-    onchange={(value)=>{
+    onchange={(value)=>{ //TODO AutocompleteForm's and SelectForm's onChange function could one and the same!
       let curVal = value;
           let valueObjects = [...(selectInput.value as [])];
 
