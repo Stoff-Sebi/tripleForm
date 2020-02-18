@@ -4,10 +4,11 @@ import { AutcompleteInput } from "../../../@types/types"
 
 interface Props {
   id: string,
-  autoCompleteOption: AutcompleteInput 
+  autoCompleteOption: AutcompleteInput,
+  onchange?: (evt:any) => void
 }
 
-const AutoComplete: React.FC<Props> = ({id, autoCompleteOption}) => {
+const AutoComplete: React.FC<Props> = ({id, autoCompleteOption, onchange=undefined}) => {
 
     const [value, setValue] = React.useState<string>("");
 
@@ -49,9 +50,10 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption}) => {
 
     React.useEffect(()=>{
         if(!value)return;
-        let x = autoCompleteOption.value.filter(val => val.label===value);
-        if(!x[0])return;
-        setLinkedObject(x[0]);
+        let obj = autoCompleteOption.value.filter(val => val.label===value);
+        if(!obj[0])return;
+        setLinkedObject(obj[0]);
+        if(onchange)onchange(obj[0]);
     }, [value]);
 
     
