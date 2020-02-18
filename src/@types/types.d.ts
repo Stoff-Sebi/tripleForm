@@ -23,8 +23,8 @@ export interface SelectInput extends Input {
 
 export interface SelectValue {
     label: string;
-    value: string;
-    _selected: boolean;
+    value: string | number;
+    _selected?: boolean;
 }
 
 export interface QuerySelectInput extends SelectInput, QueryInput {}
