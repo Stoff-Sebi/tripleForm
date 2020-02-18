@@ -68,8 +68,8 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
     btnClickEvent.preventDefault(); //prevents default submit action on form.
     if(!query)return alert("wählen Sie einen gültigen Wert für die Suche aus.");
     let inputErrFlag: boolean = false;
-    queryInputFields.forEach(input=>{
-      if(!input.value){
+    queryInputFields.forEach(queryInput=>{
+      if(!queryInput.value){
         inputErrFlag = true;
       }
     })
@@ -84,24 +84,24 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
     console.log("Inputs changed!", queryInputFields);
 
     let query = "";
-    queryInputFields.forEach(input => {
+    queryInputFields.forEach(queryInput => {
       if(query==="undefined")query = "";
 
-      //check which type input has
-      if(input.type==="text"){
-        query += `${input.RESTParameter}${input.value}${queryInputFields.length > 1 ? parameterDelimiter : ''}`;
+      //check which type queryInput has
+      if(queryInput.type==="text"){
+        query += `${queryInput.RESTParameter}${queryInput.value}${queryInputFields.length > 1 ? parameterDelimiter : ''}`;
       }
 
-      //check if type is input
-      if(input.type==="select"){
+      //check if type is queryInput
+      if(queryInput.type==="select"){
         //if array
-        if(Array.isArray(input.value)){ 
-          (input.value as {label:string, value: string, _selected?: boolean}[]).forEach((inputObj) => {
+        if(Array.isArray(queryInput.value)){ 
+          (queryInput.value as {label:string, value: string, _selected?: boolean}[]).forEach((inputObj) => {
             //if _selected property set to true
-            if(inputObj._selected === true)query += `${input.RESTParameter}${inputObj.value}${queryInputFields.length > 1 ? parameterDelimiter : ''}`;
+            if(inputObj._selected === true)query += `${queryInput.RESTParameter}${inputObj.value}${queryInputFields.length > 1 ? parameterDelimiter : ''}`;
           })
         } else {
-          throw new TypeError(`Encountered a not array type inside an input marked as 'select'. Input's label is: ${input.label}`);
+          throw new TypeError(`Encountered a not array type inside an queryInput marked as 'select'. Input's label is: ${queryInput.label}`);
         }
       }
       
