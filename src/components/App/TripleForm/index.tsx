@@ -37,7 +37,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 },
 {
   label:"test04",
-  value:[{label:"firstVal", value:"1", _selected:true},{label:"secondVal", value:"2", _selected:false}],
+  value:[{label:"firstVal", value:"1"},{label:"secondVal", value:"2"}],
   type: "select",
   id:"1233333as",
   placeHolder:"bimbiasdds",
@@ -45,7 +45,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 },
 {
   label:"test05",
-  value:[{label:"Vierzehn", value:"14", _selected:true},{label:"Hupfburg", value:"Hupfburg", _selected:false}],
+  value:[{label:"Vierzehn", value:"14"},{label:"Hupfburg", value:"Hupfburg"}],
   type: "select",
   id:"1233333as",
   placeHolder:"bimbiasdds", 
@@ -53,7 +53,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 },
 {
   label:"test05",
-  value:[{label:"Vierzehn", value:"14", _selected:true},{label:"Hupfburg", value:"Hupfburg", _selected:false}],
+  value:[{label:"Peter", value:"Peter_Hinkelstein"},{label:"Peer", value:"Peer_Liebrecht"}],
   type: "autocomplete",
   id:"1233333as",
   placeHolder:"bimbiasdds", 
