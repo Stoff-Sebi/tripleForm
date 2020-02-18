@@ -18,6 +18,14 @@ const languages = [
       {
         name: 'Pez',
         year: 1932
+      },
+      {
+        name: 'Peanut',
+        year: 1932
+      },
+      {
+        name: 'PETA',
+        year: 1932
       },  
   ];
 
@@ -50,6 +58,8 @@ const renderSuggestion = (suggestion: any) => {
 const AutoComplete: React.FC = () => {
 
     const [value, setValue] = React.useState<string>("");
+
+    //needs to be let because getter has to be set!
     let [suggestions, setSuggestions] = React.useState<string[]>([]);
 
     const onChange = (event: any, { newValue }: any) => {
@@ -61,6 +71,7 @@ const AutoComplete: React.FC = () => {
     // You already implemented this logic above, so just use it.
     const onSuggestionsFetchRequested = ({ value }: any) => {
         console.log("onSuggestionsFetchRequested:", value);
+        //setting getter method to be handled inside the autosuggest
         //@ts-ignore
         suggestions = getSuggestions(value);
         let newSugs = Array.from(suggestions);
