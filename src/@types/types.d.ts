@@ -1,18 +1,17 @@
 
 interface Input {
     label: string;
-    value: string;
-    id: string;
-    placeHolder: string;
-    type: "text" | "select" | "autocomplete";
+    value?: string;
+    id?: string;
+    placeHolder?: string;
+    type?: "text" | "select" | "autocomplete";
 }
 
 interface QueryInput extends Input {
-  subParameter: string;
+  subParameter?: string;
 }
 
 interface QueryTextInput extends QueryInput {
-    chosenValue: string,
     type: "text",
 }
 
@@ -25,5 +24,6 @@ interface Form {
     inputFields: QueryInput[];
     setInputFields?: Function;
     handleSearch: (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-    RESTParameter?: string
+    RESTParameter?: string;
+    displayQuery?: boolean;
 }
