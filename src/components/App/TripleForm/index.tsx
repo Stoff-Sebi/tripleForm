@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css"; //import css module here -> this variable can then be used in classname.
-import ResponsiveForm from "../../common/ResponsiveForm"
+import ResponsiveForm from "../../common/ResponsiveForm";
+import ConfigProvier from "../../common/ConfigProvider";
 import {QueryInput, QuerySelectInput, SelectValue} from "../../../@types/types";
 
 interface props {
@@ -10,72 +11,35 @@ interface props {
   encode?: boolean;
 }
 
-const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?params=", parameterDelimiter = ";", parameters = [
-{
-  label: "Cantus Volltextsuche",
-  value:"",
-  type: "text",
-  id:"cantus_01_test",
-  placeHolder:"z.b. Salzburg",
-  parameter: "$5|"
-},
-{
-  label:"test02",
-  value:"bla",
-  type: "text",
-  id:"123",
-  placeHolder:"bimbi",
-  parameter: "$2|"
-},
-{
-  label:"test03",
-  value:"blasdas",
-  type: "text",
-  id:"1233333sssss",
-  placeHolder:"bimbiasdds",
-  parameter: "$3|"
-},
-{
-  label:"test04",
-  value:[{label:"firstVal", value:"1"},{label:"secondVal", value:"2"}],
-  type: "select",
-  id:"1233333as",
-  placeHolder:"bimbiasdds",
-  parameter: "$8|"
-},
-{
-  label:"test05",
-  value:[{label:"Vierzehn", value:"14"},{label:"Hupfburg", value:"Hupfburg"}],
-  type: "select",
-  id:"1233333as",
-  placeHolder:"bimbiasdds", 
-  parameter: "$9|"
-},
-{
-  label:"test05",
-  value:[{label:"Salzburg", value:"salzburg"}, {label:"Peter", value:"Peter_Hinkelstein"},{label:"Peer", value:"Peer_Liebrecht"}],
-  type: "autocomplete",
-  id:"1233333as",
-  placeHolder:"bimbiasdds", 
-  parameter: "$10|"
-},
-{
-  label:"test06",
-  value:[{label:"Friedrich", value:"Schiller"}, {label:"Fritzi", value:"Knuff"},{label:"Franz", value:"Hauser"}],
-  type: "autocomplete",
-  id:"1233333as",
-  placeHolder:"bimbiasdds", 
-  parameter: "$11|"
-}
+const TripleForm: React.FC<props> = ({
+  queryStart="https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?params=", 
+  parameterDelimiter = ";", 
+  parameters = undefined
+}) => {
 
-]}) => {
+  //for config linked with ConfigProvider
+  const [gamsConfig, setGamsConfig] = React.useState<undefined | any>(undefined);
+  //assigned in useEffect -> tripleFormConfig variable.
+  const [tripleFormConfig, setTripleFormConfig] = React.useState<undefined | any>(undefined);
 
   const [query, setQuery] = React.useState<""| string>("");
-  const [queryInputs, setInputs] = React.useState<QueryInput[]>(parameters);
+  const [queryInputs, setInputs] = React.useState<QueryInput[] | undefined>(undefined);
+
+  // initial useEffect to configure component 
+  React.useEffect(() => {
+    if (!gamsConfig) return;
+    if (!gamsConfig.tripleForm){
+        console.error("No tripleForm property could've been detected. Make sure to apply configuration inside window._gamsComponentConfig.tripleForm");
+        return;
+    }
+    setTripleFormConfig(gamsConfig.tripleForm);
+    setInputs(gamsConfig.tripleForm.formGroups);
+  }, [gamsConfig]);
 
   const handleSearch = (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     btnClickEvent.preventDefault(); //prevents default submit action on form.
     if(!query)return alert("wählen Sie einen gültigen Wert für die Suche aus.");
+    if(!queryInputs)throw new TypeError("Cannot start a search without any formGroups defined for the tripleForm!");
     let inputErrFlag: boolean = false;
     queryInputs.forEach(queryInput=>{
       if(!queryInput.value){
@@ -87,11 +51,9 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
     window.location.href = url;
   }
 
+  //
   React.useEffect(()=>{
-    console.log(queryInputs);
     if(!queryInputs) return;
-    console.log("Inputs changed!", queryInputs);
-
     let query = "";
     queryInputs.forEach(queryInput => {
       if(query==="undefined")query = "";
@@ -101,7 +63,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
         query += `${queryInput.parameter}${queryInput.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
       }
 
-      //check if type is queryInput
+      //check if type is queryInput or autocomplete
       if((queryInput.type==="select") || (queryInput.type==="autocomplete")) {
         //if array
         if(Array.isArray(queryInput.value)){
@@ -113,8 +75,6 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
           throw new TypeError(`Encountered a not array type inside an queryInput marked as 'select'. Input's label is: ${queryInput.label}`);
         }
       }
-
-       
     });
     
     if(query==="undefined")return setQuery("");
@@ -123,12 +83,16 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 
   return (
     <>
-    <p>{query}</p>
+    <ConfigProvier
+      windowConfigPropName={"_gamsComponentConfig"}
+      setConfig={setGamsConfig}
+    ></ConfigProvier>
+    { queryInputs ? (<><p>{query}</p>
     <ResponsiveForm
       inputFields={queryInputs}
       setInputFields={setInputs}
       handleSearch={handleSearch}
-    ></ResponsiveForm>
+    ></ResponsiveForm></>) : null}
     </>
   );
 };
