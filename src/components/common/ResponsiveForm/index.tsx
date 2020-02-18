@@ -8,27 +8,36 @@ interface Props {
   handleSearch: (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
+//TODO do typed generation of inputFields in own Functions
+
+
+
 const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSearch }) => {
+
+  const generateTextFormGroup = (textInput: TextInput, inputFields: Input[], index: number): JSX.Element => {
+    if(textInput.type !== "text")throw new TypeError(`Tried to generate a textInputFormGroup, which type is not set to 'text'. Input with label: ${textInput.label}`);
+    if(typeof textInput.value !== "string")throw new TypeError(`You have to pass in a string, when the input type is set to 'text'. Error at input with label: ${textInput.label}`);
+    return (
+      <div key={`responsiveForm_formGroup_${index}`} className="form-group">
+        <label>{textInput.label}</label>
+        <input className="form-control" type="text" id={textInput.id} placeholder={textInput.placeHolder} value={textInput.value} onChange={(evt) => {
+          inputFields[index].value = evt.currentTarget.value;
+          let newInput = [...inputFields]
+          return setInputFields ? setInputFields(() => newInput) : null
+        }}/>
+      </div>
+    );
+  }
+
   return (
     <form id="responsiveForm">
       {inputFields.map((input, index) => {
-
-        //case input field is plain input type == when the value is a plain string. //TODO add type casting
+        //Type casted to TextInput
           if(input.type === "text"){
-            if(typeof input.value !== "string")throw new TypeError(`You have to pass in a string, when the input type is set to 'text'. Error at input with label: ${input.label}`);
-          return (
-            <div key={`responsiveForm_formGroup_${index}`} className="form-group">
-              <label>{input.label}</label>
-              <input className="form-control" type="text" id={input.id} placeholder={input.placeHolder} value={input.value} onChange={(evt) => {
-                inputFields[index].value = evt.currentTarget.value;
-                let newInput = [...inputFields]
-                return setInputFields ? setInputFields(() => newInput) : null
-              }}/>
-            </div>
-          );
-        }
+            return generateTextFormGroup(input as TextInput, inputFields, index);
+          }
 
-        if(input.type === "select") //TODO add type casting
+        if(input.type === "select"){ //TODO add type casting
             if(typeof(input.value) !== 'object')throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             if(!Array.isArray(input.value))throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             if(!input.value[0].label || !input.value[0].value)throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
@@ -57,7 +66,7 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
                 
                 return setInputFields ? setInputFields(()=>inputs) : null
               }}/>
-            )
+            )}
       })}
       <button className="btn btn-secondary" onClick={(evt) => handleSearch(evt)}>Search</button>
     </form>
