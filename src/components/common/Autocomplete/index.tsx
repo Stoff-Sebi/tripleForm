@@ -4,28 +4,28 @@ import Autosuggest from 'react-autosuggest';
 // Imagine you have a list of languages that you'd like to autosuggest.
 const languages = [
     {
-      name: 'C',
-      year: 1972
+      label: 'C',
+      value: 1972
     },
     {
-      name: 'Elm',
-      year: 2012
+      label: 'Elm',
+      value: 2012
     },
     {
-        name: 'Peter',
-        year: 1932
+        label: 'Peter',
+        value: 1932
       },
       {
-        name: 'Pez',
-        year: 1931
+        label: 'Pez',
+        value: 1931
       },
       {
-        name: 'Peanut',
-        year: 19
+        label: 'Peanut',
+        value: 19
       },
       {
-        name: 'PETA',
-        year: 132
+        label: 'PETA',
+        value: 132
       },  
   ];
 
@@ -33,7 +33,7 @@ const getSuggestions = (value: string) => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
     return inputLength === 0 ? [] : languages.filter(lang =>
-      lang.name.toLowerCase().slice(0, inputLength) === inputValue
+      lang.label.toLowerCase().slice(0, inputLength) === inputValue
     );
   };
 
@@ -42,7 +42,7 @@ const getSuggestions = (value: string) => {
 // input value for every given suggestion.
 const getSuggestionValue = (suggestion: any) => {
     console.log("getSuggestionValue: ",suggestion);
-    return suggestion.name
+    return suggestion.label
 };
 
 // Use your imagination to render suggestions.
@@ -50,8 +50,8 @@ const renderSuggestion = (suggestion: any) => {
     console.log("RenderSuggestion: ", suggestion)
     return (
     <div>
-      <span style={{color:"red"}}>{suggestion.name[0]}</span>
-      <span>{suggestion.name.substring(1,suggestion.name.length)}</span>
+      <span style={{color:"red"}}>{suggestion.label[0]}</span>
+      <span>{suggestion.label.substring(1,suggestion.label.length)}</span>
     </div>
     )
 }
@@ -71,7 +71,7 @@ const AutoComplete: React.FC = () => {
 
     React.useEffect(()=>{
         if(!value)return;
-        let x = languages.filter(val => val.name===value);
+        let x = languages.filter(val => val.label===value);
         if(!x[0])return;
         setLinkedObject(x[0]);
     }, [value]);
@@ -117,7 +117,7 @@ const AutoComplete: React.FC = () => {
       />
       <span>Gewählt: { 
         //@ts-ignore
-        (linkedObject && linkedObject.year) ? `Name: ${linkedObject.name} | Jahr: ${linkedObject.year}` : null}</span>
+        (linkedObject && linkedObject.value) ? `Name: ${linkedObject.label} | Jahr: ${linkedObject.value}` : null}</span>
         <br></br>
       </>
     )
