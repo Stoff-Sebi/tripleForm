@@ -94,7 +94,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
       }
 
       //check if type is queryInput
-      if(queryInput.type==="select"){
+      if((queryInput.type==="select") || (queryInput.type==="autocomplete")) {
         //if array
         if(Array.isArray(queryInput.value)){
           (queryInput.value as SelectValue[]).forEach((inputObj) => {
@@ -105,6 +105,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
           throw new TypeError(`Encountered a not array type inside an queryInput marked as 'select'. Input's label is: ${queryInput.label}`);
         }
       }
+
        
     });
     
