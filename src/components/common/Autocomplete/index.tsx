@@ -1,8 +1,10 @@
 import React from "react";
 import Autosuggest from 'react-autosuggest';
+import { AutcompleteInput } from "../../../@types/types"
 
 interface Props {
-  id: string
+  id: string,
+  options: AutcompleteInput 
 }
 
 // Imagine you have a list of languages that you'd like to autosuggest.
