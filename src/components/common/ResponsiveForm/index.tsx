@@ -69,28 +69,7 @@ const ResponsiveForm: React.FC<Props> = ({
       <SelectFormGroup
         key={`ResponsiveForm_SelectFormGroup_${index}`}
         options={selectInput}
-        onChange={value => {  //TODO AutocompleteForm's and SelectForm's onChange function could one and the same!
-          let curVal = value;
-          let valueObjects = [...(selectInput.value as [])];
-
-          //sets the _selected property to true from element linked to evt.currentTarget
-          //and others to false.
-          (valueObjects as []).forEach(
-            (obj: { label: string; value: string; _selected: boolean }) => {
-              if (obj.value === curVal) {
-                obj._selected = true;
-              } else {
-                obj._selected = false;
-              }
-            }
-          );
-
-          //state copying procedure
-          let newInpVal = [...selectInput.value];
-          let inputs = [...inputFields];
-          inputs[index].value = newInpVal;
-          return setInputFields ? setInputFields(() => inputs) : null;
-        }}
+        onChange={value => onFormGroupChange(value, selectInput, inputFields, index)}
       />
     );
   };
@@ -100,30 +79,32 @@ const ResponsiveForm: React.FC<Props> = ({
     id={`${Math.random()*1000}`}
     key={`ResponsiveForm_AutoComplete_${index}`}
     autoCompleteOption={selectInput as AutcompleteInput}
-    onchange={(value)=>{ //TODO AutocompleteForm's and SelectForm's onChange function could one and the same!
-      let curVal = value;
-          let valueObjects = [...(selectInput.value as [])];
-
-          //sets the _selected property to true from element linked to evt.currentTarget
-          //and others to false.
-          (valueObjects as []).forEach(
-            (obj: { label: string; value: string; _selected: boolean }) => {
-              if (obj.value === curVal) {
-                obj._selected = true;
-              } else {
-                obj._selected = false;
-              }
-            }
-          );
-
-          //state copying procedure
-          let newInpVal = [...selectInput.value];
-          let inputs = [...inputFields];
-          inputs[index].value = newInpVal;
-          return setInputFields ? setInputFields(() => inputs) : null;
-    }}
+    onchange={(value)=>onFormGroupChange(value, selectInput, inputFields, index)}
     ></Autocomplete>
   }
+
+  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput, inputFields: Input[], index: number)=>{
+  let curVal = value;
+      let valueObjects = [...(selectInput.value as [])];
+
+      //sets the _selected property to true from element linked
+      //and others to false.
+      (valueObjects as []).forEach(
+        (obj: { label: string; value: string; _selected: boolean }) => {
+          if (obj.value === curVal) {
+            obj._selected = true;
+          } else {
+            obj._selected = false;
+          }
+        }
+      );
+
+      //state copying procedure
+      let newInpVal = [...selectInput.value];
+      let inputs = [...inputFields];
+      inputs[index].value = newInpVal;
+      return setInputFields ? setInputFields(() => inputs) : null;
+}
 
   return (
     //generate form with adequate defined form-groups.
