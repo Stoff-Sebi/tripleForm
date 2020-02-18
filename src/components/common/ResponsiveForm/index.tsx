@@ -14,7 +14,7 @@ interface Props {
 
 const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSearch }) => {
 
-  const generateTextFormGroup = (textInput: TextInput, inputFields: Input[], index: number): JSX.Element => {
+  const generateTextFormGroup = (textInput: TextInput, inputFields: Input[], index: number): JSX.Element | TypeError => {
     if(textInput.type !== "text")throw new TypeError(`Tried to generate a textInputFormGroup, which type is not set to 'text'. Input with label: ${textInput.label}`);
     if(typeof textInput.value !== "string")throw new TypeError(`You have to pass in a string, when the input type is set to 'text'. Error at input with label: ${textInput.label}`);
     return (
@@ -29,6 +29,39 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
     );
   }
 
+  const generateSelectFormGroup = (selectInput: SelectInput, inputFields: Input[], index: number): JSX.Element | TypeError => {
+      if(typeof(selectInput.value) !== 'object')throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`);
+      if(!Array.isArray(selectInput.value))throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`);
+      if(!selectInput.value[0].label || !selectInput.value[0].value)throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`);
+      return (
+        <SelectFormGroup options={selectInput.value} onChange={(evt)=>{
+          let curVal = evt.currentTarget.value;
+          let valueObjects = [...(selectInput.value as [])];
+
+          //sets the _selected property to true from element linked to evt.currentTarget
+          //and others to false.
+          (valueObjects as []).forEach((obj: {label: string, value:string, _selected: boolean}) => {
+            if(obj.value === curVal){
+              obj._selected = true;
+            } else {
+              obj._selected = false;
+            };
+          });
+
+          //@ts-ignore
+          let newInpVal = [...input.value];
+          //@ts-ignore
+          let inputs = [...inputFields];
+          //@ts-ignore
+          inputs[index].value = newInpVal;
+          //console.log(inputs);
+          
+          return setInputFields ? setInputFields(()=>inputs) : null
+        }}/>
+      )
+
+  }
+
   return (
     <form id="responsiveForm">
       {inputFields.map((input, index) => {
@@ -38,35 +71,8 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
           }
 
         if(input.type === "select"){ //TODO add type casting
-            if(typeof(input.value) !== 'object')throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
-            if(!Array.isArray(input.value))throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
-            if(!input.value[0].label || !input.value[0].value)throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
-            return (
-              <SelectFormGroup options={input.value} onChange={(evt)=>{
-                let curVal = evt.currentTarget.value;
-                let valueObjects = [...(input.value as [])];
-
-                //sets the _selected property to true from element linked to evt.currentTarget
-                //and others to false.
-                (valueObjects as []).forEach((obj: {label: string, value:string, _selected: boolean}) => {
-                  if(obj.value === curVal){
-                    obj._selected = true;
-                  } else {
-                    obj._selected = false;
-                  };
-                });
-
-                //@ts-ignore
-                let newInpVal = [...input.value];
-                //@ts-ignore
-                let inputs = [...inputFields];
-                //@ts-ignore
-                inputs[index].value = newInpVal;
-                //console.log(inputs);
-                
-                return setInputFields ? setInputFields(()=>inputs) : null
-              }}/>
-            )}
+          return generateSelectFormGroup(input as SelectInput, inputFields, index)
+        }
       })}
       <button className="btn btn-secondary" onClick={(evt) => handleSearch(evt)}>Search</button>
     </form>
