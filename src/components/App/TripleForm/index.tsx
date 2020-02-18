@@ -58,6 +58,14 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   id:"1233333as",
   placeHolder:"bimbiasdds", 
   parameter: "$10|"
+},
+{
+  label:"test06",
+  value:[{label:"Friedrich", value:"Schiller"}, {label:"Fritzi", value:"Knuff"},{label:"Franz", value:"Hauser"}],
+  type: "autocomplete",
+  id:"1233333as",
+  placeHolder:"bimbiasdds", 
+  parameter: "$11|"
 }
 
 ]}) => {
