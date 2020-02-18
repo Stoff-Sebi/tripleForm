@@ -1,15 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css"; //import css module here -> this variable can then be used in classname.
 import ResponsiveForm from "../../common/ResponsiveForm"
-
-interface QueryInput {
-  label: string,
-  value: string | {label:string, value: string, _selected?: boolean}[],
-  type: "text" | "select" | "autocomplete",
-  id: string;
-  placeHolder?: string;
-  RESTParameter?: string;
-}
+import {QueryInput, QuerySelectInput} from "../../../@types/types";
 
 interface props {
   queryStart?: string;
@@ -24,7 +16,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   type: "text",
   id:"cantus_01_test",
   placeHolder:"z.b. Salzburg",
-  RESTParameter: "$5|"
+  parameter: "$5|"
 },
 {
   label:"test02",
@@ -32,7 +24,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   type: "text",
   id:"123",
   placeHolder:"bimbi",
-  RESTParameter: "$2|"
+  parameter: "$2|"
 },
 {
   label:"test03",
@@ -40,23 +32,23 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   type: "text",
   id:"1233333sssss",
   placeHolder:"bimbiasdds",
-  RESTParameter: "$3|"
+  parameter: "$3|"
 },
 {
   label:"test04",
-  value:[{label:"firstVal", value:"1", _selected:true},{label:"secondVal", value:"2", _selected:false}, ],
+  value:[{label:"firstVal", value:"1", _selected:true},{label:"secondVal", value:"2", _selected:false}],
   type: "select",
   id:"1233333as",
   placeHolder:"bimbiasdds",
-  RESTParameter: "$8|"
+  parameter: "$8|"
 },
 {
   label:"test05",
-  value:[{label:"Vierzehn", value:"14", _selected:true},{label:"Hupfburg", value:"Hupfburg", _selected:false}, ],
+  value:[{label:"Vierzehn", value:"14", _selected:true},{label:"Hupfburg", value:"Hupfburg", _selected:false}],
   type: "select",
   id:"1233333as",
-  placeHolder:"bimbiasdds",
-  RESTParameter: "$9|"
+  placeHolder:"bimbiasdds", 
+  parameter: "$9|"
 }
 
 ]}) => {
@@ -89,22 +81,24 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 
       //check which type queryInput has
       if(queryInput.type==="text"){
-        query += `${queryInput.RESTParameter}${queryInput.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
+        query += `${queryInput.parameter}${queryInput.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
       }
 
       //check if type is queryInput
       if(queryInput.type==="select"){
         //if array
-        if(Array.isArray(queryInput.value)){ 
+        if(Array.isArray(queryInput.value)){
+          queryInput = queryInput as QuerySelectInput; //type casting as QuerySelectInput //TODO add new variable with corrected Type casting!
+          
           (queryInput.value as {label:string, value: string, _selected?: boolean}[]).forEach((inputObj) => {
             //if _selected property set to true
-            if(inputObj._selected === true)query += `${queryInput.RESTParameter}${inputObj.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
+            if(inputObj._selected === true)query += `${queryInput.parameter}${inputObj.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
           })
         } else {
           throw new TypeError(`Encountered a not array type inside an queryInput marked as 'select'. Input's label is: ${queryInput.label}`);
         }
       }
-      
+       
     });
     
     if(query==="undefined")return setQuery("");

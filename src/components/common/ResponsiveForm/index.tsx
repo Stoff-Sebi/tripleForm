@@ -1,16 +1,9 @@
 import React from "react";
 import SelectFormGroup from "../SelectFormGroup/index"
-
-interface inputField {
-  label: string;
-  value: string | Array<{label:string, value: string}>;
-  type: "text" | "select" | "autocomplete";
-  id: string;
-  placeHolder?: string;
-}
+import { Input, SelectInput, TextInput } from "../../../@types/types"
 
 interface Props {
-  inputFields: inputField[];
+  inputFields: Input[];
   setInputFields?: Function;
   handleSearch: (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
@@ -20,7 +13,7 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
     <form id="responsiveForm">
       {inputFields.map((input, index) => {
 
-        //case input field is plain input type == when the value is a plain string.
+        //case input field is plain input type == when the value is a plain string. //TODO add type casting
           if(input.type === "text"){
             if(typeof input.value !== "string")throw new TypeError(`You have to pass in a string, when the input type is set to 'text'. Error at input with label: ${input.label}`);
           return (
@@ -35,7 +28,7 @@ const ResponsiveForm: React.FC<Props> = ({ inputFields, setInputFields, handleSe
           );
         }
 
-        if(input.type === "select")
+        if(input.type === "select") //TODO add type casting
             if(typeof(input.value) !== 'object')throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             if(!Array.isArray(input.value))throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
             if(!input.value[0].label || !input.value[0].value)throw new TypeError(`You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${input.label}`);
