@@ -49,3 +49,14 @@ export interface Form extends QueryBuildAble {
     handleSearch: (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     displayQuery?: boolean;
 }
+
+
+export interface JsonSchemaForm {
+    $id: string,
+    $schema: string,
+    title: string,
+    description: string,
+    required: string[],
+    type: "object",
+    properties: Object
+}
