@@ -81,8 +81,6 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption, onchange=undefin
         onChange: onChange
     }; 
 
-    //TODO need to pass in id via prop -> when multiple autocompletes!
-
     return (
         <>
         
