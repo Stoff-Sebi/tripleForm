@@ -107,7 +107,7 @@ const ResponsiveForm: React.FC<Props> = ({
         if (input.type === "autocomplete") {
           return <Autocomplete
                     id="test"
-                    options={input as AutcompleteInput}
+                    autoCompleteOption={input as AutcompleteInput}
                     ></Autocomplete>
         }
       })}

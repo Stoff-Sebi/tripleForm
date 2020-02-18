@@ -4,7 +4,7 @@ import { AutcompleteInput } from "../../../@types/types"
 
 interface Props {
   id: string,
-  options: AutcompleteInput 
+  autoCompleteOption: AutcompleteInput 
 }
 
 // Imagine you have a list of languages that you'd like to autosuggest.
@@ -40,7 +40,7 @@ const languages: AutcompleteInput = {
 
 
 
-const AutoComplete: React.FC<Props> = ({id}) => {
+const AutoComplete: React.FC<Props> = ({id, autoCompleteOption}) => {
 
     const [value, setValue] = React.useState<string>("");
 
