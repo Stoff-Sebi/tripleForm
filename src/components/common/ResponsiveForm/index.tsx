@@ -96,7 +96,7 @@ const ResponsiveForm: React.FC<Props> = ({
 
   const generateAutoCompleteFormGroup = (selectInput: AutcompleteInput, inputFields: Input[], index: number) => {
     return <Autocomplete
-    id="test"
+    id={`${Math.random()*1000}`}
     autoCompleteOption={selectInput as AutcompleteInput}
     onchange={(value)=>{ //TODO AutocompleteForm's and SelectForm's onChange function could one and the same!
       let curVal = value;
