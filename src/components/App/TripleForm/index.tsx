@@ -44,7 +44,7 @@ const TripleForm: React.FC<props> = ({
       return;
     }
     setTripleFormConfig(gamsConfig.tripleForm);
-    setInputs(gamsConfig.tripleForm.formGroups);
+    setInputs(gamsConfig.tripleForm.properties);
   }, [gamsConfig]);
 
   //
