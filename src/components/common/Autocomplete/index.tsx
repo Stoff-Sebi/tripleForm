@@ -52,7 +52,7 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption}) => {
     const getSuggestions = (value: string) => {
       const inputValue = value.trim().toLowerCase();
       const inputLength = inputValue.length;
-      return inputLength === 0 ? [] : languages.value.filter(lang =>
+      return inputLength === 0 ? [] : autoCompleteOption.value.filter(lang =>
         lang.label.toLowerCase().slice(0, inputLength) === inputValue
       );
     };
@@ -82,7 +82,7 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption}) => {
 
     React.useEffect(()=>{
         if(!value)return;
-        let x = languages.value.filter(val => val.label===value);
+        let x = autoCompleteOption.value.filter(val => val.label===value);
         if(!x[0])return;
         setLinkedObject(x[0]);
     }, [value]);
