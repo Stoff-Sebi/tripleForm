@@ -9,7 +9,7 @@ interface props {
 
 const SelectFormGroup:React.FC<props> = ({options, handleGetSelection, onChange}) => {
 
-    const [selectedVal, setSelectedVal] = React.useState<string | number>(options.value[0].value);
+    const [selectedVal, setSelectedVal] = React.useState<string | number>("");
 
     const handleSelection = (evt: React.ChangeEvent<HTMLSelectElement>) => {
             setSelectedVal(evt.currentTarget.value);
@@ -21,6 +21,7 @@ const SelectFormGroup:React.FC<props> = ({options, handleGetSelection, onChange}
     <div className="form-group">
         <label>Example multiple select - Selected value = {selectedVal}</label>
       <select className="form-control" value={selectedVal} onChange={(evt)=>handleSelection(evt)}>
+        <option>-</option>
         {options.value.map((option, index) => (
             <option key={`SelectFormGroup_option_${index}`} value={option.value}>{ option.label }</option>
         ))}
