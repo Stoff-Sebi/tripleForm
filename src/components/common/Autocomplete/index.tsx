@@ -7,39 +7,6 @@ interface Props {
   autoCompleteOption: AutcompleteInput 
 }
 
-// Imagine you have a list of languages that you'd like to autosuggest.
-const languages: AutcompleteInput = {
-  type:"autocomplete",
-  label: "test",
-  value: [
-    {
-      label: 'C',
-      value: 1972
-    },
-    {
-      label: 'Elm',
-      value: 2012
-    },
-    {
-        label: 'Peter',
-        value: 1932
-      },
-      {
-        label: 'Pez',
-        value: 1931
-      },
-      {
-        label: 'Peanut',
-        value: 19
-      },
-      {
-        label: 'PETA',
-        value: 132
-      },  
-  ]}; 
-
-
-
 const AutoComplete: React.FC<Props> = ({id, autoCompleteOption}) => {
 
     const [value, setValue] = React.useState<string>("");
