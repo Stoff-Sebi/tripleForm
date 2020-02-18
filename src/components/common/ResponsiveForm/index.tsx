@@ -1,6 +1,7 @@
 import React from "react";
 import SelectFormGroup from "../SelectFormGroup/index";
 import { Input, SelectInput, TextInput } from "../../../@types/types";
+import Autocomplete from "../Autocomplete"
 
 interface Props {
   inputFields: Input[];
@@ -102,6 +103,9 @@ const ResponsiveForm: React.FC<Props> = ({
         }
         if (input.type === "select") {
           return generateSelectFormGroup( input as SelectInput, inputFields,index);
+        }
+        if (input.type === "autocomplete") {
+          return <Autocomplete></Autocomplete>
         }
       })}
       <button className="btn btn-secondary" onClick={evt => handleSearch(evt)}>

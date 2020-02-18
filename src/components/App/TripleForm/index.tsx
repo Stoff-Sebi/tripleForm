@@ -10,7 +10,8 @@ interface props {
   encode?: boolean;
 }
 
-const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?params=", parameterDelimiter = ";", parameters = [{
+const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?params=", parameterDelimiter = ";", parameters = [
+{
   label: "Cantus Volltextsuche",
   value:"",
   type: "text",
@@ -49,6 +50,14 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   id:"1233333as",
   placeHolder:"bimbiasdds", 
   parameter: "$9|"
+},
+{
+  label:"test05",
+  value:[{label:"Vierzehn", value:"14", _selected:true},{label:"Hupfburg", value:"Hupfburg", _selected:false}],
+  type: "autocomplete",
+  id:"1233333as",
+  placeHolder:"bimbiasdds", 
+  parameter: "$10|"
 }
 
 ]}) => {
