@@ -49,8 +49,9 @@ const getSuggestionValue = (suggestion: any) => {
 const renderSuggestion = (suggestion: any) => { 
     console.log("RenderSuggestion: ", suggestion)
     return (
-    <div id="nice!">
-      {suggestion.name}
+    <div>
+      <span style={{color:"red"}}>{suggestion.name[0]}</span>
+      <span>{suggestion.name.substring(1,suggestion.name.length)}</span>
     </div>
     )
 }
@@ -90,6 +91,8 @@ const AutoComplete: React.FC = () => {
         value,
         onChange: onChange
     }; 
+
+    //TODO need to pass in id via prop -> when multiple autocompletes!
 
     return (
         <Autosuggest
