@@ -67,7 +67,7 @@ const ResponsiveForm: React.FC<Props> = ({
       );
     return (
       <SelectFormGroup
-        options={selectInput.value}
+        options={selectInput}
         onChange={evt => {
           let curVal = evt.currentTarget.value;
           let valueObjects = [...(selectInput.value as [])];
