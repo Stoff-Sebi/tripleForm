@@ -7,18 +7,18 @@ export interface Input {
     type?: "text" | "select" | "autocomplete";
 }
 
-export interface QueryInput extends Input {
-  subParameter?: string;
-}
-
-export interface QueryTextInput extends QueryInput {
+export interface TextInput extends Input {
     type: "text",
     value: string
 }
 
-export interface QuerySelectInput extends QueryInput {
+export interface QueryInput extends Input, QueryBuildAble {}
+
+export interface QueryTextInput extends TextInput, QueryInput {}
+
+export interface SelectInput extends Input {
     type: "select";
-    value: SelectValue
+    value: SelectValue[]
 }
 
 export interface SelectValue {
@@ -27,10 +27,18 @@ export interface SelectValue {
     _selected: boolean;
 }
 
-export interface Form {
+export interface QuerySelectInput extends SelectInput, QueryInput {}
+
+
+export interface QueryBuildAble {
+    parameter?: string;
+}
+
+
+
+export interface Form extends QueryBuildAble {
     inputFields: QueryInput[];
     setInputFields?: Function;
     handleSearch: (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-    RESTParameter?: string;
     displayQuery?: boolean;
 }
