@@ -8,7 +8,10 @@ interface Props {
 }
 
 // Imagine you have a list of languages that you'd like to autosuggest.
-const languages = [
+const languages: AutcompleteInput = {
+  type:"autocomplete",
+  label: "test",
+  value: [
     {
       label: 'C',
       value: 1972
@@ -33,12 +36,12 @@ const languages = [
         label: 'PETA',
         value: 132
       },  
-  ];
+  ]}; 
 
 const getSuggestions = (value: string) => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
-    return inputLength === 0 ? [] : languages.filter(lang =>
+    return inputLength === 0 ? [] : languages.value.filter(lang =>
       lang.label.toLowerCase().slice(0, inputLength) === inputValue
     );
   };
@@ -77,7 +80,7 @@ const AutoComplete: React.FC<Props> = ({id}) => {
 
     React.useEffect(()=>{
         if(!value)return;
-        let x = languages.filter(val => val.label===value);
+        let x = languages.value.filter(val => val.label===value);
         if(!x[0])return;
         setLinkedObject(x[0]);
     }, [value]);
