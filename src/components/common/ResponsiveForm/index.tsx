@@ -10,8 +10,6 @@ interface Props {
   ) => void;
 }
 
-//TODO do typed generation of inputFields in own Functions
-
 const ResponsiveForm: React.FC<Props> = ({
   inputFields,
   setInputFields,
