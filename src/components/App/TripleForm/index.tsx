@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.css"; //import css module here -> this variable can then be used in classname.
 import ResponsiveForm from "../../common/ResponsiveForm"
 
-interface QueryInputField {
+interface QueryInput {
   label: string,
   value: string | {label:string, value: string, _selected?: boolean}[],
   type: "text" | "select" | "autocomplete",
@@ -14,7 +14,7 @@ interface QueryInputField {
 interface props {
   queryStart?: string;
   parameterDelimiter?: string;
-  parameters?: QueryInputField[];
+  parameters?: QueryInput[];
   encode?: boolean;
 }
 
@@ -62,13 +62,13 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 ]}) => {
 
   const [query, setQuery] = React.useState<""| string>("");
-  const [queryInputFields, setInputs] = React.useState<QueryInputField[]>(parameters);
+  const [queryInputs, setInputs] = React.useState<QueryInput[]>(parameters);
 
   const handleSearch = (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     btnClickEvent.preventDefault(); //prevents default submit action on form.
     if(!query)return alert("wählen Sie einen gültigen Wert für die Suche aus.");
     let inputErrFlag: boolean = false;
-    queryInputFields.forEach(queryInput=>{
+    queryInputs.forEach(queryInput=>{
       if(!queryInput.value){
         inputErrFlag = true;
       }
@@ -79,17 +79,17 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
   }
 
   React.useEffect(()=>{
-    console.log(queryInputFields);
-    if(!queryInputFields) return;
-    console.log("Inputs changed!", queryInputFields);
+    console.log(queryInputs);
+    if(!queryInputs) return;
+    console.log("Inputs changed!", queryInputs);
 
     let query = "";
-    queryInputFields.forEach(queryInput => {
+    queryInputs.forEach(queryInput => {
       if(query==="undefined")query = "";
 
       //check which type queryInput has
       if(queryInput.type==="text"){
-        query += `${queryInput.RESTParameter}${queryInput.value}${queryInputFields.length > 1 ? parameterDelimiter : ''}`;
+        query += `${queryInput.RESTParameter}${queryInput.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
       }
 
       //check if type is queryInput
@@ -98,7 +98,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
         if(Array.isArray(queryInput.value)){ 
           (queryInput.value as {label:string, value: string, _selected?: boolean}[]).forEach((inputObj) => {
             //if _selected property set to true
-            if(inputObj._selected === true)query += `${queryInput.RESTParameter}${inputObj.value}${queryInputFields.length > 1 ? parameterDelimiter : ''}`;
+            if(inputObj._selected === true)query += `${queryInput.RESTParameter}${inputObj.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
           })
         } else {
           throw new TypeError(`Encountered a not array type inside an queryInput marked as 'select'. Input's label is: ${queryInput.label}`);
@@ -109,13 +109,13 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
     
     if(query==="undefined")return setQuery("");
     setQuery(query)
-  }, [queryInputFields]);
+  }, [queryInputs]);
 
   return (
     <>
     <p>{query}</p>
     <ResponsiveForm
-      inputFields={queryInputFields}
+      inputFields={queryInputs}
       setInputFields={setInputs}
       handleSearch={handleSearch}
     ></ResponsiveForm>
