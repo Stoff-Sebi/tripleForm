@@ -1,6 +1,10 @@
 import React from "react";
 import Autosuggest from 'react-autosuggest';
 
+interface Props {
+  id: string
+}
+
 // Imagine you have a list of languages that you'd like to autosuggest.
 const languages = [
     {
@@ -56,7 +60,7 @@ const renderSuggestion = (suggestion: any) => {
     )
 }
 
-const AutoComplete: React.FC = () => {
+const AutoComplete: React.FC<Props> = ({id}) => {
 
     const [value, setValue] = React.useState<string>("");
 
@@ -108,6 +112,7 @@ const AutoComplete: React.FC = () => {
         
         
         <Autosuggest
+            id={id}
             suggestions={suggestions}
             onSuggestionsFetchRequested={onSuggestionsFetchRequested}
             onSuggestionsClearRequested={onSuggestionsClearRequested}
