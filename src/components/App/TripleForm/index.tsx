@@ -12,8 +12,8 @@ interface props {
 }
 
 const TripleForm: React.FC<props> = ({
-  queryStart="https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?params=", 
-  parameterDelimiter = ";", 
+  queryStart=undefined, 
+  parameterDelimiter = undefined, 
   parameters = undefined
 }) => {
 
@@ -47,7 +47,7 @@ const TripleForm: React.FC<props> = ({
       }
     })
     if(inputErrFlag)return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
-    let url = queryStart + encodeURIComponent(query);
+    let url = (queryStart ? queryStart : tripleFormConfig.queryStart) + encodeURIComponent(query);
     window.location.href = url;
   }
 
@@ -60,7 +60,7 @@ const TripleForm: React.FC<props> = ({
 
       //check which type queryInput has
       if(queryInput.type==="text"){
-        query += `${queryInput.parameter}${queryInput.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
+        query += `${queryInput.parameter}${queryInput.value}${queryInputs.length > 1 ? (parameterDelimiter ? parameterDelimiter : tripleFormConfig.parameterDelimiter) : ''}`;
       }
 
       //check if type is queryInput or autocomplete
@@ -69,7 +69,7 @@ const TripleForm: React.FC<props> = ({
         if(Array.isArray(queryInput.value)){
           (queryInput.value as SelectValue[]).forEach((inputObj) => {
             //if _selected property set to true
-            if(inputObj._selected === true)query += `${queryInput.parameter}${inputObj.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
+            if(inputObj._selected === true)query += `${queryInput.parameter}${inputObj.value}${queryInputs.length > 1 ? (parameterDelimiter ? parameterDelimiter : tripleFormConfig.parameterDelimiter) : ''}`;
           })
         } else {
           throw new TypeError(`Encountered a not array type inside an queryInput marked as 'select'. Input's label is: ${queryInput.label}`);
