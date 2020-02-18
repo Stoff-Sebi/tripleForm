@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css"; //import css module here -> this variable can then be used in classname.
 import ResponsiveForm from "../../common/ResponsiveForm"
-import {QueryInput, QuerySelectInput} from "../../../@types/types";
+import {QueryInput, QuerySelectInput, SelectValue} from "../../../@types/types";
 
 interface props {
   queryStart?: string;
@@ -88,9 +88,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
       if(queryInput.type==="select"){
         //if array
         if(Array.isArray(queryInput.value)){
-          queryInput = queryInput as QuerySelectInput; //type casting as QuerySelectInput //TODO add new variable with corrected Type casting!
-          
-          (queryInput.value as {label:string, value: string, _selected?: boolean}[]).forEach((inputObj) => {
+          (queryInput.value as SelectValue[]).forEach((inputObj) => {
             //if _selected property set to true
             if(inputObj._selected === true)query += `${queryInput.parameter}${inputObj.value}${queryInputs.length > 1 ? parameterDelimiter : ''}`;
           })
