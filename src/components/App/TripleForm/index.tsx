@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.css"; //import css module here -> this variable can then be used in classname.
 import ResponsiveForm from "../../common/ResponsiveForm"
 
-interface SearchParameter {
+interface QueryInputField {
   label: string,
   value: string | {label:string, value: string, _selected?: boolean}[],
   type: "text" | "select" | "autocomplete",
@@ -14,7 +14,7 @@ interface SearchParameter {
 interface props {
   queryStart?: string;
   parameterDelimiter?: string;
-  parameters?: SearchParameter[];
+  parameters?: QueryInputField[];
   encode?: boolean;
 }
 
@@ -62,7 +62,7 @@ const TripleForm: React.FC<props> = ({queryStart="https://glossa.uni-graz.at/arc
 ]}) => {
 
   const [query, setQuery] = React.useState<""| string>("");
-  const [inputs, setInputs] = React.useState<SearchParameter[]>(parameters);
+  const [inputs, setInputs] = React.useState<QueryInputField[]>(parameters);
 
   const handleSearch = (btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     btnClickEvent.preventDefault(); //prevents default submit action on form.
