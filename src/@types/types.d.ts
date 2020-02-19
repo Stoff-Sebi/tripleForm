@@ -10,6 +10,7 @@ export interface Input {
     id?: string;
     placeHolder?: string;
     type?: "text" | "select" | "autocomplete";
+    required?: boolean
 }
 
 export interface TextInput extends Input {

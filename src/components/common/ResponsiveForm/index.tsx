@@ -33,6 +33,7 @@ const ResponsiveForm: React.FC<Props> = ({
       <div key={`responsiveForm_formGroup_${index}`} className="form-group">
         <label>{textInput.label}</label>
         <input
+          required={textInput.required}
           className="form-control"
           type="text"
           id={textInput.id}
@@ -125,7 +126,7 @@ const ResponsiveForm: React.FC<Props> = ({
 
   return (
     //generate form with adequate defined form-groups.
-    <form id="responsiveForm">
+    <form id="responsiveForm" className="was-validated">
       {
         //first iterate over different pathVarGroups
         inputFields.map((pathVarGroup, formGroupIndex) => {

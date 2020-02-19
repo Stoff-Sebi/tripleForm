@@ -79,12 +79,17 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption, onchange=undefin
         placeholder: 'Type a programming language',
         value,
         onChange: onChange
-    }; 
+    };
+    
+    const renderInputComponent = (inputProps: any) => (
+        <div>
+          <label></label>
+          <input required style={{border:`1px solid ${value ? '#28a745' : '#dc3545'}`}} type="text" {...inputProps} />
+        </div>
+    );
 
     return (
         <>
-        
-        
         <Autosuggest
             id={id}
             suggestions={suggestions}
@@ -93,6 +98,7 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption, onchange=undefin
             getSuggestionValue={getSuggestionValue}
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
+            renderInputComponent={renderInputComponent}
       />
       <span>Gewählt: { 
         //@ts-ignore
