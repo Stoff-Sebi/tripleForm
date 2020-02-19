@@ -84,7 +84,10 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption, onchange=undefin
     const renderInputComponent = (inputProps: any) => (
         <div>
           {autoCompleteOption ? <><label> {autoCompleteOption.label} </label><br></br></> : null}
-          <input required style={{border:`1px solid ${(autoCompleteOption.value.filter(selObj => selObj.label === value).length!==0) ? '#28a745' : '#dc3545'}`}} type="text" {...inputProps} />
+          {autoCompleteOption.required ? <input style={{border:`1px solid ${((autoCompleteOption.value.filter(selObj => selObj.label === value).length!==0)) ? '#28a745' : '#dc3545'}`}} type="text" {...inputProps} /> : 
+            <input style={{border:`1px solid #28a745`}} type="text" {...inputProps} />
+          }
+          
         </div>
     );
 
