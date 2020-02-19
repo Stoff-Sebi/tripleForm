@@ -87,46 +87,6 @@ const TripleFormReact: React.FC<props> = ({
       
       })
     })
-
-
-
-    /* queryInputs.forEach(queryInput => {
-      if (query === "undefined") query = "";
-
-      //check which type queryInput has
-      if (queryInput.type === "text") {
-        query += `${queryInput.parameter}${queryInput.value}${
-          queryInputs.length > 1
-            ? parameterDelimiter
-              ? parameterDelimiter
-              : tripleFormConfig.parameterDelimiter
-            : ""
-        }`;
-      }
-
-      //check if type is queryInput or autocomplete
-      if (queryInput.type === "select" || queryInput.type === "autocomplete") {
-        //if array
-        if (Array.isArray(queryInput.value)) {
-          (queryInput.value as SelectValue[]).forEach(inputObj => {
-            //if _selected property set to true
-            if (inputObj._selected === true)
-              query += `${queryInput.parameter}${inputObj.value}${
-                queryInputs.length > 1
-                  ? parameterDelimiter
-                    ? parameterDelimiter
-                    : tripleFormConfig.parameterDelimiter
-                  : ""
-              }`;
-          });
-        } else {
-          throw new TypeError(
-            `Encountered a not array type inside an queryInput marked as 'select'. Input's label is: ${queryInput.label}`
-          );
-        }
-      }
-    }); */
-
     if (query === "undefined") return setQuery("");
     setQuery(query);
   }, [queryInputs]);
