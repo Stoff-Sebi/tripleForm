@@ -76,14 +76,13 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption, onchange=undefin
     };
 
     const inputProps = {
-        placeholder: 'Type a programming language',
+        placeholder: autoCompleteOption.placeHolder,
         value,
         onChange: onChange
     };
     
     const renderInputComponent = (inputProps: any) => (
         <div>
-          <label></label>
           <input required style={{border:`1px solid ${value ? '#28a745' : '#dc3545'}`}} type="text" {...inputProps} />
         </div>
     );
