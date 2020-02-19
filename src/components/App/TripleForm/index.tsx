@@ -65,13 +65,7 @@ const TripleFormReact: React.FC<props> = ({
       restVargroup.formGroups.forEach((queryInput, inputObjIndex) => {
         //check which type queryInput has
         if (queryInput.type === "text") {
-          query += `${queryInput.parameter}${queryInput.value}${
-            ((queryInputs.length > 1) && (inputObjIndex !== restVargroup.formGroups.length-1))
-              ? parameterDelimiter
-                ? parameterDelimiter
-                : tripleFormConfig.parameterDelimiter
-              : ""
-          }`;
+          query += `${queryInput.parameter}${queryInput.value}`;
         }
 
         //check if type is queryInput or autocomplete
@@ -81,13 +75,7 @@ const TripleFormReact: React.FC<props> = ({
           (queryInput.value as SelectValue[]).forEach((inputObj, inputObjIndex) => {
             //if _selected property set to true
             if (inputObj._selected === true){
-              query += `${queryInput.parameter}${inputObj.value}${
-                ((queryInputs.length > 1) && (inputObjIndex !== restVargroup.formGroups.length-1))
-                  ? parameterDelimiter
-                    ? parameterDelimiter
-                    : tripleFormConfig.parameterDelimiter
-                  : ""
-              }`;}
+              query += `${queryInput.parameter}${inputObj.value}`;}
           });
         } else {
           throw new TypeError(
@@ -95,8 +83,9 @@ const TripleFormReact: React.FC<props> = ({
           );
         }
       }
-
-
+      //adding the paramDelimiter last if necessary.
+      parameterDelimiter = parameterDelimiter ? parameterDelimiter : tripleFormConfig.parameterDelimiter;
+      query += `${ (inputObjIndex === queryInputs.length-1)  ? parameterDelimiter : ""}`;
       })
     })
 
