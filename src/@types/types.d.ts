@@ -1,7 +1,7 @@
 
 export interface RestPathVariableFormGroup {
     restPathVariable: string;
-    formGroups: Input[];
+    formGroups: QueryInput[];
 }
 
 export interface Input {
