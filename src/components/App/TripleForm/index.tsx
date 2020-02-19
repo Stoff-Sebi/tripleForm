@@ -62,11 +62,11 @@ const TripleFormReact: React.FC<props> = ({
         query += `&${restVargroup.restPathVariable}=`;
       };
 
-      restVargroup.formGroups.forEach(queryInput => {
+      restVargroup.formGroups.forEach((queryInput, inputObjIndex) => {
         //check which type queryInput has
         if (queryInput.type === "text") {
           query += `${queryInput.parameter}${queryInput.value}${
-            queryInputs.length > 1
+            ((queryInputs.length > 1) && (inputObjIndex !== restVargroup.formGroups.length-1))
               ? parameterDelimiter
                 ? parameterDelimiter
                 : tripleFormConfig.parameterDelimiter
@@ -78,16 +78,16 @@ const TripleFormReact: React.FC<props> = ({
       if (queryInput.type === "select" || queryInput.type === "autocomplete") {
         //if array
         if (Array.isArray(queryInput.value)) {
-          (queryInput.value as SelectValue[]).forEach(inputObj => {
+          (queryInput.value as SelectValue[]).forEach((inputObj, inputObjIndex) => {
             //if _selected property set to true
-            if (inputObj._selected === true)
+            if (inputObj._selected === true){
               query += `${queryInput.parameter}${inputObj.value}${
-                queryInputs.length > 1
+                ((queryInputs.length > 1) && (inputObjIndex !== restVargroup.formGroups.length-1))
                   ? parameterDelimiter
                     ? parameterDelimiter
                     : tripleFormConfig.parameterDelimiter
                   : ""
-              }`;
+              }`;}
           });
         } else {
           throw new TypeError(
@@ -153,27 +153,26 @@ const TripleFormReact: React.FC<props> = ({
       throw new TypeError(
         "Cannot start a search without any formGroups defined for the tripleForm!"
       );
-    let inputErrFlag: boolean = false;
-    /* queryInputs.forEach(queryInput => {
+
+    //TODO add validation    
+    /* let inputErrFlag: boolean = false;
+    queryInputs.forEach(queryInput => {  
       if (!queryInput.value) {
         inputErrFlag = true;
       }
-    }); */
+    });
     if (inputErrFlag)
       return alert(
         "Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus."
-      );
+      ); */
     let url =
       (queryStart ? queryStart : tripleFormConfig.queryStart) +
-      encodeURIComponent(query);
+      encodeURI(query);
     window.location.href = url;
   };
 
   return (
     <>
-      {/**This is just for testing purposes! */}
-      <p>{query}</p>
-      {/**Test end */}
 
       <ConfigProvier
         windowConfigPropName={"_gamsComponentConfig"}
