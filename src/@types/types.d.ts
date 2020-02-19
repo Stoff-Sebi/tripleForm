@@ -1,7 +1,12 @@
 
+export interface RestPathVariableFormGroup {
+    restPathVariable: string;
+    formGroups: Input[];
+}
+
 export interface Input {
     label: string;
-    value?: string | Object;
+    value?: string | SelectValue[];
     id?: string;
     placeHolder?: string;
     type?: "text" | "select" | "autocomplete";
@@ -35,12 +40,17 @@ export interface AutcompleteInput extends Input {
     value: SelectValue[];
 }
 
-export interface QueryAutocompleteInput extends AutcompleteInput, QueryBuildAble {}
+export interface QueryAutocompleteInput extends AutcompleteInput, QueryInput {}
 
 export interface QueryBuildAble {
     parameter?: string;
 }
 
+export interface TripleForm {
+    queryStart: string;
+    parameterDelimiter: string,
+    properties: RestPathVariableFormGroup[];
+}
 
 
 export interface Form extends QueryBuildAble {

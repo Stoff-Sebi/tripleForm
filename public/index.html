@@ -33,78 +33,70 @@
     <script>
       window._gamsComponentConfig = {
         tripleForm: {
-          queryStart:"https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?params=", 
+          queryStart:
+            "https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?params=",
           parameterDelimiter: ";",
           properties: [
             {
-              label: "Cantus Volltextsuche",
-              value: "",
-              type: "text",
-              id: "cantus_01_test",
-              placeHolder: "z.b. Salzburg",
-              parameter: "$5|"
+              restPathVariable: "params",
+              formGroups: [
+                {
+                  label: "Cantus Volltextsuche",
+                  value: "",
+                  type: "text",
+                  id: "cantus_01_test",
+                  placeHolder: "z.b. Salzburg",
+                  parameter: "$5|"
+                },
+                {
+                  label: "test04",
+                  value: [
+                    { label: "firstVal", value: "1" },
+                    { label: "secondVal", value: "2" }
+                  ],
+                  type: "select",
+                  id: "1233333as",
+                  placeHolder: "bimbiasdds",
+                  parameter: "$8|"
+                },
+                {
+                  label: "auto01",
+                  value: [
+                    { label: "Kurz", value: "Sebastian" },
+                    { label: "Kurdinand", value: "der Fertig" },
+                    { label: "Kuhn", value: "Thomas" }
+                  ],
+                  type: "autocomplete",
+                  id: "1233333as",
+                  placeHolder: "bimbiasdds",
+                  parameter: "$11|"
+                },
+              ]
             },
             {
-              label: "test02",
-              value: "bla",
-              type: "text",
-              id: "123",
-              placeHolder: "bimbi",
-              parameter: "$2|"
-            },
-            {
-              label: "test03",
-              value: "blasdas",
-              type: "text",
-              id: "1233333sssss",
-              placeHolder: "bimbiasdds",
-              parameter: "$3|"
-            },
-            {
-              label: "test04",
-              value: [
-                { label: "firstVal", value: "1" },
-                { label: "secondVal", value: "2" }
-              ],
-              type: "select",
-              id: "1233333as",
-              placeHolder: "bimbiasdds",
-              parameter: "$8|"
-            },
-            {
-              label: "test05",
-              value: [
-                { label: "Vierzehn", value: "14" },
-                { label: "Hupfburg", value: "Hupfburg" }
-              ],
-              type: "select",
-              id: "1233333as",
-              placeHolder: "bimbiasdds",
-              parameter: "$9|"
-            },
-            {
-              label: "test05",
-              value: [
-                { label: "Salzburg", value: "salzburg" },
-                { label: "Peter", value: "Peter_Hinkelstein" },
-                { label: "Peer", value: "Peer_Liebrecht" }
-              ],
-              type: "autocomplete",
-              id: "1233333as",
-              placeHolder: "bimbiasdds",
-              parameter: "$10|"
-            },
-            {
-              label: "test06",
-              value: [
-                { label: "Friedrich", value: "Schiller" },
-                { label: "Fritzi", value: "Knuff" },
-                { label: "Franz", value: "Hauser" }
-              ],
-              type: "autocomplete",
-              id: "1233333as",
-              placeHolder: "bimbiasdds",
-              parameter: "$11|"
+              restPathVariable: "mode",
+              formGroups: [
+                {
+                  label: "test06",
+                  value: [
+                    { label: "Friedrich", value: "Schiller" },
+                    { label: "Fritzi", value: "Knuff" },
+                    { label: "Franz", value: "Hauser" }
+                  ],
+                  type: "autocomplete",
+                  id: "1233333as",
+                  placeHolder: "bimbiasdds",
+                  parameter: "$11|"
+                },
+                {
+                  label: "Weitere Volltextsuche",
+                  value: "",
+                  type: "text",
+                  id: "cantus_01_test",
+                  placeHolder: "z.b. Salzburg",
+                  parameter: "$5|"
+                }
+              ]
             }
           ]
         }

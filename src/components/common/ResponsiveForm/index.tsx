@@ -1,10 +1,10 @@
 import React from "react";
 import SelectFormGroup from "../SelectFormGroup/index";
-import { Input, SelectInput, TextInput, AutcompleteInput } from "../../../@types/types";
+import { Input, SelectInput, TextInput, AutcompleteInput, RestPathVariableFormGroup, SelectValue } from "../../../@types/types";
 import Autocomplete from "../Autocomplete"
 
 interface Props {
-  inputFields: Input[];
+  inputFields: RestPathVariableFormGroup[];
   setInputFields?: Function;
   handleSearch: (
     btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -18,7 +18,7 @@ const ResponsiveForm: React.FC<Props> = ({
 }) => {
   const generateTextFormGroup = (
     textInput: TextInput,
-    inputFields: Input[],
+    inputFieldsIntern: Input[],
     index: number
   ): JSX.Element | TypeError => {
     if (textInput.type !== "text")
@@ -38,10 +38,20 @@ const ResponsiveForm: React.FC<Props> = ({
           id={textInput.id}
           placeholder={textInput.placeHolder}
           value={textInput.value}
-          onChange={evt => {
-            inputFields[index].value = evt.currentTarget.value;
-            let newInput = [...inputFields];
-            return setInputFields ? setInputFields(() => newInput) : null;
+          onChange={evt => {  
+            //assign to intern input fields given value from input field
+            inputFieldsIntern[index].value = evt.currentTarget.value;
+
+            //find formgroup belonging to the input
+            let formGroupInd: number = inputFields[index].formGroups.indexOf(inputFieldsIntern[index]);
+
+            //copy references
+            let formGroupCopy = {...inputFields[formGroupInd]};
+            let formGroupsCopy = [...inputFields];
+
+            //assign state to new value to copy
+            formGroupsCopy[formGroupInd] = formGroupCopy;
+            return setInputFields ? setInputFields(() => formGroupsCopy) : null;
           }}
         />
       </div>
@@ -51,7 +61,8 @@ const ResponsiveForm: React.FC<Props> = ({
   const generateSelectFormGroup = (
     selectInput: SelectInput,
     inputFields: Input[],
-    index: number
+    index: number,
+    formGroupIndex: number
   ): JSX.Element | TypeError => {
     if (typeof selectInput.value !== "object")
       throw new TypeError(
@@ -69,23 +80,23 @@ const ResponsiveForm: React.FC<Props> = ({
       <SelectFormGroup
         key={`ResponsiveForm_SelectFormGroup_${index}`}
         options={selectInput}
-        onChange={value => onFormGroupChange(value, selectInput, inputFields, index)}
+        onChange={value => onFormGroupChange(value, selectInput, inputFields, index, formGroupIndex)}
       />
     );
   };
 
-  const generateAutoCompleteFormGroup = (selectInput: AutcompleteInput, inputFields: Input[], index: number) => {
+  const generateAutoCompleteFormGroup = (selectInput: AutcompleteInput, inputFields: Input[], index: number, formGroupIndex: number) => {
     return <Autocomplete
     id={`${Math.random()*1000}`}
     key={`ResponsiveForm_AutoComplete_${index}`}
     autoCompleteOption={selectInput as AutcompleteInput}
-    onchange={(value)=>onFormGroupChange(value, selectInput, inputFields, index)}
+    onchange={(value)=>onFormGroupChange(value, selectInput, inputFields, index, formGroupIndex)}
     ></Autocomplete>
   }
 
-  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput, inputFields: Input[], index: number)=>{
-  let curVal = value;
-      let valueObjects = [...(selectInput.value as [])];
+  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput, inputFieldsIntern: Input[], index: number, formGroupIndex: number)=>{
+      let curVal = value;
+      let valueObjects: SelectValue[] = [...selectInput.value];
 
       //sets the _selected property to true from element linked
       //and others to false.
@@ -101,25 +112,37 @@ const ResponsiveForm: React.FC<Props> = ({
 
       //state copying procedure
       let newInpVal = [...selectInput.value];
-      let inputs = [...inputFields];
+      let inputs = [...inputFieldsIntern];
       inputs[index].value = newInpVal;
-      return setInputFields ? setInputFields(() => inputs) : null;
+
+      let formGroupsCopy = [...inputFields];  //TODO remove state access
+      formGroupsCopy[formGroupIndex].formGroups = inputs; //TODO remove index as parameter -> instead find via .find() method.
+
+        console.log(formGroupsCopy);
+
+      return setInputFields ? setInputFields(() => formGroupsCopy) : null;
 }
 
   return (
     //generate form with adequate defined form-groups.
     <form id="responsiveForm">
-      {inputFields.map((input, index) => {
-        if (input.type === "text") {
-          return generateTextFormGroup(input as TextInput, inputFields, index);
-        }
-        if (input.type === "select") {
-          return generateSelectFormGroup( input as SelectInput, inputFields,index);
-        }
-        if (input.type === "autocomplete") {
-          return generateAutoCompleteFormGroup(input as AutcompleteInput, inputFields,index);
-        }
-      })}
+      {
+        //first iterate over different pathVarGroups
+        inputFields.map((pathVarGroup, formGroupIndex) => {
+          //then over individual linked formgroups = Input type
+          return pathVarGroup.formGroups.map((input, index) => {
+            if (input.type === "text") {
+              return generateTextFormGroup(input as TextInput, pathVarGroup.formGroups, index);
+            }
+            if (input.type === "select") {
+              return generateSelectFormGroup( input as SelectInput, pathVarGroup.formGroups,index,formGroupIndex);
+            }
+            if (input.type === "autocomplete") {
+              return generateAutoCompleteFormGroup(input as AutcompleteInput, pathVarGroup.formGroups,index, formGroupIndex);
+            }
+          })
+        })
+      }
       <button className="btn btn-secondary" onClick={evt => handleSearch(evt)}>
         Search
       </button>

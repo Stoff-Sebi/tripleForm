@@ -5,7 +5,9 @@ import ConfigProvier from "../../common/ConfigProvider";
 import {
   QueryInput,
   QuerySelectInput,
-  SelectValue
+  SelectValue,
+  TripleForm,
+  RestPathVariableFormGroup
 } from "../../../@types/types";
 
 interface props {
@@ -15,7 +17,7 @@ interface props {
   encode?: boolean;
 }
 
-const TripleForm: React.FC<props> = ({
+const TripleFormReact: React.FC<props> = ({
   queryStart = undefined,
   parameterDelimiter = undefined,
   parameters = undefined
@@ -30,7 +32,7 @@ const TripleForm: React.FC<props> = ({
   >(undefined);
 
   const [query, setQuery] = React.useState<"" | string>("");
-  const [queryInputs, setInputs] = React.useState<QueryInput[] | undefined>(
+  const [queryInputs, setInputs] = React.useState<RestPathVariableFormGroup[] | undefined>(
     undefined
   );
 
@@ -49,7 +51,7 @@ const TripleForm: React.FC<props> = ({
 
   //
   React.useEffect(() => {
-    if (!queryInputs) return;
+    /* if (!queryInputs) return;
     let query = "";
     queryInputs.forEach(queryInput => {
       if (query === "undefined") query = "";
@@ -89,13 +91,13 @@ const TripleForm: React.FC<props> = ({
     });
 
     if (query === "undefined") return setQuery("");
-    setQuery(query);
+    setQuery(query); */
   }, [queryInputs]);
 
   const handleSearch = (
     btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    btnClickEvent.preventDefault(); //prevents default submit action on form.
+    /* btnClickEvent.preventDefault(); //prevents default submit action on form.
     if (!query)
       return alert("wählen Sie einen gültigen Wert für die Suche aus.");
     if (!queryInputs)
@@ -115,11 +117,21 @@ const TripleForm: React.FC<props> = ({
     let url =
       (queryStart ? queryStart : tripleFormConfig.queryStart) +
       encodeURIComponent(query);
-    window.location.href = url;
+    window.location.href = url; */
   };
 
   return (
     <>
+      {/**This is just for testing purposes! */}
+      <p> {queryInputs ? queryInputs.map(pathVarGroup => {
+        return (<ul>
+          {pathVarGroup.formGroups.map(formGroup => {
+            return (<li>{(formGroup.value && typeof (formGroup.value) === "string") ? formGroup.value : null}</li>)
+          })}
+        </ul>)
+      }) : undefined} </p>
+      {/**Test end */}
+
       <ConfigProvier
         windowConfigPropName={"_gamsComponentConfig"}
         setConfig={setGamsConfig}
@@ -138,4 +150,4 @@ const TripleForm: React.FC<props> = ({
   );
 };
 
-export default TripleForm;
+export default TripleFormReact;
