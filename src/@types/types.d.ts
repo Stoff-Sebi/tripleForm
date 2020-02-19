@@ -51,6 +51,7 @@ export interface TripleForm {
     queryStart: string;
     parameterDelimiter: string,
     properties: RestPathVariableFormGroup[];
+    lifecycle: "develop" | "deploy"
 }
 
 

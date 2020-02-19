@@ -27,9 +27,7 @@ const TripleFormReact: React.FC<props> = ({
     undefined
   );
   //assigned in useEffect -> tripleFormConfig variable.
-  const [tripleFormConfig, setTripleFormConfig] = React.useState<
-    undefined | any
-  >(undefined);
+  const [tripleFormConfig, setTripleFormConfig] = React.useState<TripleForm | any>(undefined);
 
   const [query, setQuery] = React.useState<"" | string>("");
   const [queryInputs, setInputs] = React.useState<RestPathVariableFormGroup[] | undefined>(
@@ -127,12 +125,12 @@ const TripleFormReact: React.FC<props> = ({
       ></ConfigProvier>
       {queryInputs ? (
         <>
-          <p>{query}</p>
           <ResponsiveForm
             inputFields={queryInputs}
             setInputFields={setInputs}
             handleSearch={handleSearch}
           ></ResponsiveForm>
+          {(tripleFormConfig.lifecycle ==="develop") ?<><br></br> <p><em>Query Builder</em><br></br> (set lifecycle to "deploy" to deactivate builder) </p> <p>Decoded: <br></br> {query}</p> <p>Encoded:<br></br> { encodeURIComponent(query)}</p> </> : null}
         </>
       ) : null}
     </>
