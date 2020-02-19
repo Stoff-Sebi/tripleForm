@@ -84,12 +84,12 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption, onchange=undefin
     const renderInputComponent = (inputProps: any) => (
         <div>
           {autoCompleteOption ? <><label> {autoCompleteOption.label} </label><br></br></> : null}
-          <input required style={{border:`1px solid ${value ? '#28a745' : '#dc3545'}`}} type="text" {...inputProps} />
+          <input required style={{border:`1px solid ${(autoCompleteOption.value.filter(selObj => selObj.label === value).length!==0) ? '#28a745' : '#dc3545'}`}} type="text" {...inputProps} />
         </div>
     );
 
     return (
-        <>
+        
         <Autosuggest
             id={id}
             suggestions={suggestions}
@@ -100,11 +100,6 @@ const AutoComplete: React.FC<Props> = ({id, autoCompleteOption, onchange=undefin
             inputProps={inputProps}
             renderInputComponent={renderInputComponent}
       />
-      <span>Gewählt: { 
-        //@ts-ignore
-        (linkedObject && linkedObject.value) ? `Name: ${linkedObject.label} | Jahr: ${linkedObject.value}` : null}</span>
-        <br></br>
-      </>
     )
 
 }
