@@ -34,43 +34,48 @@
       window._gamsComponentConfig = {
         tripleForm: {
           queryStart:
-            "https://glossa.uni-graz.at/archive/objects/query:cantus.fulltext/methods/sdef:Query/get?",
+            "https://glossa.uni-graz.at/archive/objects/query:cantus.synopsis2/methods/sdef:Query/get?",
           parameterDelimiter: ";",
           properties: [
             {
               restPathVariable: "params",
               formGroups: [
                 {
-                  label: "Cantus Volltextsuche",
-                  value: "",
-                  type: "text",
-                  id: "cantus_01_test",
-                  placeHolder: "z.b. Salzburg",
-                  parameter: "$5|"
-                },
-                {
-                  label: "test04",
+                  label: "LO 01",
                   value: [
-                    { label: "firstVal", value: "1" },
-                    { label: "secondVal", value: "2" }
+                    { label: "Salzburg Ra", value: "<https://gams.uni-graz.at/o:cantus.salzburg.ra>" },
+                    { label: "Salzburg Ur", value: "<https://gams.uni-graz.at/o:cantus.salzburg.ur>" },
+                    { label: "Salzburg Sal", value: "<https://gams.uni-graz.at/o:cantus.salzburg.sal>"}
                   ],
-                  type: "select",
-                  id: "1233333as",
+                  type: "autocomplete",
+                  id: "L01",
                   placeHolder: "bimbiasdds",
-                  parameter: "$8|"
+                  parameter: "$1|"
                 },
                 {
-                  label: "auto01",
+                  label: "LO 02",
                   value: [
-                    { label: "Kurz", value: "Sebastian" },
-                    { label: "Kurdinand", value: "der Fertig" },
-                    { label: "Kuhn", value: "Thomas" }
+                    { label: "Salzburg Ra", value: "<https://gams.uni-graz.at/o:cantus.salzburg.ra>" },
+                    { label: "Salzburg Ur", value: "<https://gams.uni-graz.at/o:cantus.salzburg.ur>" },
+                    { label: "Salzburg Sal", value: "<https://gams.uni-graz.at/o:cantus.salzburg.sal>"}
                   ],
                   type: "autocomplete",
                   id: "1233333as",
                   placeHolder: "bimbiasdds",
-                  parameter: "$11|"
+                  parameter: "$2|"
                 },
+                {
+                  label: "LO 03",
+                  value: [
+                  { label: "Salzburg Ra", value: "<https://gams.uni-graz.at/o:cantus.salzburg.ra>" },
+                    { label: "Salzburg Ur", value: "<https://gams.uni-graz.at/o:cantus.salzburg.ur>" },
+                    { label: "Salzburg Sal", value: "<https://gams.uni-graz.at/o:cantus.salzburg.sal>"}
+                  ],
+                  type: "autocomplete",
+                  id: "1233333asasdd",
+                  placeHolder: "bimbiasdds",
+                  parameter: "$3|"
+                }
               ]
             },
             {
@@ -78,12 +83,8 @@
               formGroups: [
                 {
                   label: "test06",
-                  value: [
-                    { label: "Friedrich", value: "Schiller" },
-                    { label: "Fritzi", value: "Knuff" },
-                    { label: "Franz", value: "Hauser" }
-                  ],
-                  type: "autocomplete",
+                  value: "",
+                  type: "text",
                   id: "1233333as",
                   placeHolder: "bimbiasdds",
                   parameter: ""
