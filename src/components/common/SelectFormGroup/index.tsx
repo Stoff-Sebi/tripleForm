@@ -11,7 +11,7 @@ const SelectFormGroup:React.FC<props> = ({options, onChange}) => {
     const [selectedVal, setSelectedVal] = React.useState<string>("");
 
     React.useEffect(()=>{
-      if(!onChange || !selectedVal)return;
+      if(selectedVal === undefined || selectedVal === "undefined" || selectedVal === null)return;
       if(onChange)onChange(selectedVal);
     }, [selectedVal]);
 

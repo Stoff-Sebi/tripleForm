@@ -53,6 +53,9 @@ const TripleFormReact: React.FC<props> = ({
   React.useEffect(() => {
     if (!queryInputs) return;
     let query = "";
+    let paramDelimiter = parameterDelimiter
+    ? parameterDelimiter
+    : tripleFormConfig.parameterDelimiter;
 
     queryInputs.forEach(restVargroup => {
       if (query.includes(restVargroup.restPathVariable))
@@ -66,12 +69,10 @@ const TripleFormReact: React.FC<props> = ({
       }
 
       restVargroup.formGroups.forEach((queryInput, inputObjIndex) => {
-        parameterDelimiter = parameterDelimiter
-          ? parameterDelimiter
-          : tripleFormConfig.parameterDelimiter;
+         
         //check which type queryInput has
         if (queryInput.type === "text") {
-          query += `${inputObjIndex === 0 ? "" : parameterDelimiter}${
+          query += `${inputObjIndex === 0 ? "" : paramDelimiter}${
             queryInput.parameter
           }${queryInput.value}`;
         }
@@ -86,7 +87,7 @@ const TripleFormReact: React.FC<props> = ({
             (queryInput.value as SelectValue[]).forEach(inputObj => {
               //if _selected property set to true
               if (inputObj._selected === true) {
-                query += `${inputObjIndex === 0 ? "" : parameterDelimiter}${
+                query += `${inputObjIndex === 0 ? "" : paramDelimiter}${
                   queryInput.parameter
                 }${inputObj.value}`;
               }
