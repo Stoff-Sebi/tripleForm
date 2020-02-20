@@ -103,7 +103,6 @@ const ResponsiveForm: React.FC<Props> = ({
       valueObjects.forEach(select => select._selected = (select.value === value));
       
       //copy then set state
-      
       let formGroupsCopy = zimUtils.copyDeep(restPathGroups);  //generates a deep copy of state
       formGroupsCopy[formGroupIndex].formGroups = inputFieldsIntern; 
       return setInputFields ? setInputFields(() => formGroupsCopy) : null;
