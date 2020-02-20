@@ -53,6 +53,8 @@ const TripleFormReact: React.FC<props> = ({
   React.useEffect(() => {
     if (!queryInputs) return;
     let query = "";
+    
+    //if paramDelimiter is set via props take that otherwise take setting in tripleFormConfig
     let paramDelimiter = parameterDelimiter
     ? parameterDelimiter
     : tripleFormConfig.parameterDelimiter;
