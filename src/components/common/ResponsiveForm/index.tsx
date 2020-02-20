@@ -1,5 +1,6 @@
 import React from "react";
 import SelectFormGroup from "../SelectFormGroup/index";
+import TextFormGroup from "../TextFormGroup";
 import { Input, SelectInput, TextInput, AutcompleteInput, RestPathVariableGroup, SelectValue } from "../../../@types/types";
 import Autocomplete from "../Autocomplete"
 import zimUtils from "../../../utils/utils"
@@ -20,43 +21,13 @@ const ResponsiveForm: React.FC<Props> = ({
   const generateTextFormGroup = (
     textInput: TextInput,
     inputFieldsIntern: Input[],
-    index: number
-  ): JSX.Element | TypeError => {
-    if (textInput.type !== "text")
-      throw new TypeError(
-        `Tried to generate a textInputFormGroup, which type is not set to 'text'. Input with label: ${textInput.label}`
-      );
-    if (typeof textInput.value !== "string")
-      throw new TypeError(
-        `You have to pass in a string, when the input type is set to 'text'. Error at input with label: ${textInput.label}`
-      );
+  ): JSX.Element | TypeError => { 
     return (
-      <div key={`responsiveForm_formGroup_${index}`} className="form-group">
-        <label>{textInput.label}</label>
-        <input
-          required={textInput.required}
-          className="form-control"
-          type="text"
-          id={textInput.id}
-          placeholder={textInput.placeHolder}
-          value={textInput.value}
-          onChange={evt => {  
-            //assign to intern input fields given value from input field
-            inputFieldsIntern[index].value = evt.currentTarget.value;
-
-            //find formgroup belonging to the input
-            let formGroupInd: number = restPathGroups[index].formGroups.indexOf(inputFieldsIntern[index]);
-
-            //copy references
-            let formGroupCopy = {...restPathGroups[formGroupInd]};
-            let formGroupsCopy = [...restPathGroups];
-
-            //assign state to new value to copy
-            formGroupsCopy[formGroupInd] = formGroupCopy;
-            return setInputFields ? setInputFields(() => formGroupsCopy) : null;
-          }}
-        />
-      </div>
+      <TextFormGroup
+        key={`responsiveForm_formGroup_${inputFieldsIntern.indexOf(textInput)}`}
+        options={textInput}
+        onChange={value => onFormGroupChange(value, textInput)}
+      ></TextFormGroup>
     );
   };
 
@@ -94,7 +65,16 @@ const ResponsiveForm: React.FC<Props> = ({
     ></Autocomplete>
   }
 
-  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput)=>{
+  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput | TextInput) => {
+      //when the type is text input need different procedure
+      if(selectInput.type ==="text"){
+        //assign to intern input fields given value from input field
+        selectInput.value = value;
+        let formGroupsCopy = zimUtils.copyDeep(restPathGroups);  //generates a deep copy of state
+        return setInputFields ? setInputFields(() => formGroupsCopy) : null;
+      }
+
+      //case type is 'autocomplete' or 'select'
       
       //sets the _selected property to true from element linked
       //and others to false.
@@ -115,7 +95,7 @@ const ResponsiveForm: React.FC<Props> = ({
           //then over individual linked formgroups = Input type
           return pathVarGroup.formGroups.map((input, index) => {
             if (input.type === "text") {
-              return generateTextFormGroup(input as TextInput, pathVarGroup.formGroups, index);
+              return generateTextFormGroup(input as TextInput, pathVarGroup.formGroups);
             }
             if (input.type === "select") {
               return generateSelectFormGroup( input as SelectInput, pathVarGroup.formGroups);
