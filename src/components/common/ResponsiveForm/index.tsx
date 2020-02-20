@@ -100,15 +100,7 @@ const ResponsiveForm: React.FC<Props> = ({
 
       //sets the _selected property to true from element linked
       //and others to false.
-      (valueObjects as []).forEach(
-        (obj: { label: string; value: string; _selected: boolean }) => {
-          if (obj.value === curVal) {
-            obj._selected = true;
-          } else {
-            obj._selected = false;
-          }
-        }
-      );
+      valueObjects.forEach(select => select._selected = (select.value === curVal));
 
       //state copying procedure
       let newInpVal = [...selectInput.value];
@@ -117,8 +109,6 @@ const ResponsiveForm: React.FC<Props> = ({
 
       let formGroupsCopy = [...restPathGroups];  //TODO remove state access
       formGroupsCopy[formGroupIndex].formGroups = inputs; //TODO remove index as parameter -> instead find via .find() method.
-
-        console.log(formGroupsCopy);
 
       return setInputFields ? setInputFields(() => formGroupsCopy) : null;
 }
