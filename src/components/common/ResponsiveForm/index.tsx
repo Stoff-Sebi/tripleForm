@@ -4,7 +4,7 @@ import { Input, SelectInput, TextInput, AutcompleteInput, RestPathVariableGroup,
 import Autocomplete from "../Autocomplete"
 
 interface Props {
-  inputFields: RestPathVariableGroup[];
+  restPathGroups: RestPathVariableGroup[];
   setInputFields?: Function;
   handleSearch: (
     btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const ResponsiveForm: React.FC<Props> = ({
-  inputFields,
+  restPathGroups,
   setInputFields,
   handleSearch
 }) => {
@@ -44,11 +44,11 @@ const ResponsiveForm: React.FC<Props> = ({
             inputFieldsIntern[index].value = evt.currentTarget.value;
 
             //find formgroup belonging to the input
-            let formGroupInd: number = inputFields[index].formGroups.indexOf(inputFieldsIntern[index]);
+            let formGroupInd: number = restPathGroups[index].formGroups.indexOf(inputFieldsIntern[index]);
 
             //copy references
-            let formGroupCopy = {...inputFields[formGroupInd]};
-            let formGroupsCopy = [...inputFields];
+            let formGroupCopy = {...restPathGroups[formGroupInd]};
+            let formGroupsCopy = [...restPathGroups];
 
             //assign state to new value to copy
             formGroupsCopy[formGroupInd] = formGroupCopy;
@@ -115,7 +115,7 @@ const ResponsiveForm: React.FC<Props> = ({
       let inputs = [...inputFieldsIntern];
       selectInput.value = newInpVal;
 
-      let formGroupsCopy = [...inputFields];  //TODO remove state access
+      let formGroupsCopy = [...restPathGroups];  //TODO remove state access
       formGroupsCopy[formGroupIndex].formGroups = inputs; //TODO remove index as parameter -> instead find via .find() method.
 
         console.log(formGroupsCopy);
@@ -128,7 +128,7 @@ const ResponsiveForm: React.FC<Props> = ({
     <form id="responsiveForm" className="was-validated">
       {
         //first iterate over different pathVarGroups
-        inputFields.map((pathVarGroup, formGroupIndex) => {
+        restPathGroups.map((pathVarGroup, formGroupIndex) => {
           //then over individual linked formgroups = Input type
           return pathVarGroup.formGroups.map((input, index) => {
             if (input.type === "text") {

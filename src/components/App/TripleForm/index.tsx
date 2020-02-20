@@ -138,7 +138,7 @@ const TripleFormReact: React.FC<props> = ({
       {queryInputs ? (
         <>
           <ResponsiveForm
-            inputFields={queryInputs}
+            restPathGroups={queryInputs}
             setInputFields={setInputs}
             handleSearch={handleSearch}
           ></ResponsiveForm>
