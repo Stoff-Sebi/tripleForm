@@ -55,8 +55,8 @@ const TripleFormReact: React.FC<props> = ({
 
     //if paramDelimiter is set via props take that otherwise take setting in tripleFormConfig
     let paramDelimiter = parameterDelimiter
-    ? parameterDelimiter
-    : tripleFormConfig.parameterDelimiter;
+      ? parameterDelimiter
+      : tripleFormConfig.parameterDelimiter;
 
     queryInputs.forEach(restVargroup => {
       if (query.includes(restVargroup.restPathVariable))
@@ -70,7 +70,6 @@ const TripleFormReact: React.FC<props> = ({
       }
 
       restVargroup.formGroups.forEach((queryInput, inputObjIndex) => {
-         
         //check which type queryInput has
         if (queryInput.type === "text") {
           query += `${inputObjIndex === 0 ? "" : paramDelimiter}${
@@ -153,8 +152,10 @@ const TripleFormReact: React.FC<props> = ({
               <br></br>{" "}
               <p>
                 <em>Query Builder</em>
-                <br></br> (set lifecycle to "deploy" to deactivate builder){" "}<br></br>
-                Query-Start: {queryStart ? queryStart : tripleFormConfig.queryStart}
+                <br></br> (set lifecycle to "deploy" to deactivate builder){" "}
+                <br></br>
+                Query-Start:{" "}
+                {queryStart ? queryStart : tripleFormConfig.queryStart}
               </p>{" "}
               <p>
                 Decoded: <br></br> {query}
