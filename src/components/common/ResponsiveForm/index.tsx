@@ -113,7 +113,7 @@ const ResponsiveForm: React.FC<Props> = ({
 
   return (
     //generate form with adequate defined form-groups.
-    <form id="responsiveForm" className="was-validated">
+    <form className="was-validated responsiveform">
       {//first iterate over different pathVarGroups
       restPathGroups.map((pathVarGroup: RestPathVariableGroup) => {
         //then over individual linked formgroups = Input type

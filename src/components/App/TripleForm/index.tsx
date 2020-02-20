@@ -138,7 +138,7 @@ const TripleFormReact: React.FC<props> = ({
   };
 
   return (
-    <>
+    <div className="tripleform">
       <ConfigProvier
         windowConfigPropName={"_gamsComponentConfig"}
         setConfig={setGamsConfig}
@@ -174,7 +174,7 @@ const TripleFormReact: React.FC<props> = ({
           ) : null}
         </>
       ) : null}
-    </>
+    </div>
   );
 };
 
