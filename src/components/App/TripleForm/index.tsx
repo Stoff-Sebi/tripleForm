@@ -132,6 +132,8 @@ const TripleFormReact: React.FC<props> = ({
     } catch (e) {
       return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
     }
+
+    //last navigate to page
     let url = (queryStart ? queryStart : tripleFormConfig.queryStart) + query;
     window.location.href = encodeURI(url);
   };
