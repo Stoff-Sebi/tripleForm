@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./styles.module.css"; //import css module here -> this variable can then be used in classname.
 import ResponsiveForm from "../../common/ResponsiveForm";
 import ConfigProvier from "../../common/ConfigProvider";
 import {
