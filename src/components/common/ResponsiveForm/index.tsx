@@ -111,7 +111,7 @@ const ResponsiveForm: React.FC<Props> = ({
     <form id="responsiveForm" className="was-validated">
       {
         //first iterate over different pathVarGroups
-        restPathGroups.map((pathVarGroup, formGroupIndex) => {
+        restPathGroups.map(pathVarGroup => {
           //then over individual linked formgroups = Input type
           return pathVarGroup.formGroups.map((input, index) => {
             if (input.type === "text") {
