@@ -36,13 +36,11 @@ const AutoComplete: React.FC<Props> = ({
   // based on the clicked suggestion. Teach Autosuggest how to calculate the
   // input value for every given suggestion.
   const getSuggestionValue = (suggestion: any) => {
-    console.log("getSuggestionValue: ", suggestion);
     return suggestion.label;
   };
 
   // Use your imagination to render suggestions.
   const renderSuggestion = (suggestion: any) => {
-    console.log("RenderSuggestion: ", suggestion);
     return (
       <div>
         <span style={{ color: "red" }}>{suggestion.label[0]}</span>
@@ -66,13 +64,10 @@ const AutoComplete: React.FC<Props> = ({
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
   const onSuggestionsFetchRequested = ({ value }: any) => {
-    console.log("onSuggestionsFetchRequested:", value);
     //setting getter method to be handled inside the autosuggest
     //@ts-ignore
     suggestions = getSuggestions(value);
     let newSugs = Array.from(suggestions);
-
-    console.log(newSugs);
     setSuggestions(() => newSugs);
   };
 
