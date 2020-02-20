@@ -61,8 +61,7 @@ const ResponsiveForm: React.FC<Props> = ({
 
   const generateSelectFormGroup = (
     selectInput: SelectInput,
-    inputFields: Input[],
-    index: number,
+    inputGroups: Input[],
     formGroupIndex: number
   ): JSX.Element | TypeError => {
     if (typeof selectInput.value !== "object")
@@ -79,23 +78,23 @@ const ResponsiveForm: React.FC<Props> = ({
       );
     return (
       <SelectFormGroup
-        key={`ResponsiveForm_SelectFormGroup_${index}`}
+        key={`ResponsiveForm_SelectFormGroup_${inputGroups.indexOf(selectInput)}`}
         options={selectInput}
-        onChange={value => onFormGroupChange(value, selectInput, inputFields, index, formGroupIndex)}
+        onChange={value => onFormGroupChange(value, selectInput, inputGroups,formGroupIndex)}
       />
     );
   };
 
-  const generateAutoCompleteFormGroup = (selectInput: AutcompleteInput, inputFields: Input[], index: number, formGroupIndex: number) => {
+  const generateAutoCompleteFormGroup = (selectInput: AutcompleteInput, inputGroups: Input[], formGroupIndex: number) => {
     return <Autocomplete
     id={`${Math.random()*1000}`}
-    key={`ResponsiveForm_AutoComplete_${index}`}
+    key={`ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}`}
     autoCompleteOption={selectInput as AutcompleteInput}
-    onchange={(value)=>onFormGroupChange(value, selectInput, inputFields, index, formGroupIndex)}
+    onchange={(value)=>onFormGroupChange(value, selectInput, inputGroups, formGroupIndex)}
     ></Autocomplete>
   }
 
-  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput, inputFieldsIntern: Input[], index: number, formGroupIndex: number)=>{
+  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput, inputFieldsIntern: Input[], formGroupIndex: number)=>{
       let curVal = value;
       let valueObjects: SelectValue[] = [...selectInput.value];
 
@@ -114,7 +113,7 @@ const ResponsiveForm: React.FC<Props> = ({
       //state copying procedure
       let newInpVal = [...selectInput.value];
       let inputs = [...inputFieldsIntern];
-      inputs[index].value = newInpVal;
+      selectInput.value = newInpVal;
 
       let formGroupsCopy = [...inputFields];  //TODO remove state access
       formGroupsCopy[formGroupIndex].formGroups = inputs; //TODO remove index as parameter -> instead find via .find() method.
@@ -136,10 +135,10 @@ const ResponsiveForm: React.FC<Props> = ({
               return generateTextFormGroup(input as TextInput, pathVarGroup.formGroups, index);
             }
             if (input.type === "select") {
-              return generateSelectFormGroup( input as SelectInput, pathVarGroup.formGroups,index,formGroupIndex);
+              return generateSelectFormGroup( input as SelectInput, pathVarGroup.formGroups, formGroupIndex);
             }
             if (input.type === "autocomplete") {
-              return generateAutoCompleteFormGroup(input as AutcompleteInput, pathVarGroup.formGroups,index, formGroupIndex);
+              return generateAutoCompleteFormGroup(input as AutcompleteInput, pathVarGroup.formGroups,formGroupIndex);
             }
           })
         })
