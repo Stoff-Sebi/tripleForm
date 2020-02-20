@@ -3,18 +3,20 @@ import { SelectInput } from "../../../@types/types"
 
 interface props {
     options: SelectInput,
-    handleGetSelection?: (selection: string) => void;
-    onChange?: (evt:any) => void
+    onChange?: (value: string) => void
 }
 
-const SelectFormGroup:React.FC<props> = ({options, handleGetSelection, onChange}) => {
+const SelectFormGroup:React.FC<props> = ({options, onChange}) => {
 
-    const [selectedVal, setSelectedVal] = React.useState<string | number>("");
+    const [selectedVal, setSelectedVal] = React.useState<string>("");
+
+    React.useEffect(()=>{
+      if(!onChange || !selectedVal)return;
+      if(onChange)onChange(selectedVal);
+    }, [selectedVal]);
 
     const handleSelection = (evt: React.ChangeEvent<HTMLSelectElement>) => {
             setSelectedVal(evt.currentTarget.value);
-            if(handleGetSelection)handleGetSelection(selectedVal as string);
-            if(onChange)onChange(evt.currentTarget.value);
     } 
 
   return (
