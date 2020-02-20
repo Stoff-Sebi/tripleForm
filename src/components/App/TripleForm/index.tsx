@@ -151,7 +151,8 @@ const TripleFormReact: React.FC<props> = ({
               <br></br>{" "}
               <p>
                 <em>Query Builder</em>
-                <br></br> (set lifecycle to "deploy" to deactivate builder){" "}
+                <br></br> (set lifecycle to "deploy" to deactivate builder){" "}<br></br>
+                Query-Start: {queryStart ? queryStart : tripleFormConfig.queryStart}
               </p>{" "}
               <p>
                 Decoded: <br></br> {query}
