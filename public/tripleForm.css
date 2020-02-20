@@ -1,7 +1,3 @@
-body {
-       font-family: Helvetica, sans-serif;
-       min-height: 200vh;
-     }
      
      .react-autosuggest__container {
        position: relative;
