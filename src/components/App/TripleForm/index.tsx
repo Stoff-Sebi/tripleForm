@@ -170,7 +170,7 @@ const TripleFormReact: React.FC<props> = ({
            * see TripleForm type -> only displayed when lifecycle set to develop
            */}
           {(tripleFormConfig.lifecycle === "develop") ? (
-            <QueryBuilder query={query} queryStart={ queryStart ? queryStart : tripleFormConfig.queryStart}/>
+            <QueryBuilder query={query} queryStart={ queryStart ? queryStart : tripleFormConfig.queryStart} paramDelimiter={parameterDelimiter ? parameterDelimiter : tripleFormConfig.parameterDelimiter}/>
           ) : null}
         </>
       ) : null}

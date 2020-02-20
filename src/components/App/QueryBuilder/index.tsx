@@ -3,24 +3,31 @@ import React from "react";
 interface props {
   queryStart: string;
   query: string;
+  paramDelimiter: string;
 }
 
-const QueryBuilder: React.FC<props> = ({ queryStart, query }) => {
+const QueryBuilder: React.FC<props> = ({ queryStart, query, paramDelimiter }) => {
   return (
-    <>
-      <br></br>{" "}
+    <div className={`container`}>
+      <br></br>
+      <h4>Query Build Helper</h4>
       <p>
-        <em>Query Builder</em>
-        <br></br> (set lifecycle to "deploy" to deactivate builder) <br></br>
-        Query-Start: {queryStart}
+        (set lifecycle to "deploy" to deactivate builder) <br></br>
+        <br></br>Query-Start: <br></br>{queryStart}
       </p>{" "}
+      <hr></hr>
       <p>
         Decoded: <br></br> {query}
       </p>{" "}
+      <hr></hr>
       <p>
         Encoded:<br></br> {encodeURIComponent(query)}
       </p>{" "}
-    </>
+      <hr></hr>
+      <p>
+        Given parameter-delimiter:<br></br> {paramDelimiter}
+      </p>{" "}
+    </div>
   );
 };
 
