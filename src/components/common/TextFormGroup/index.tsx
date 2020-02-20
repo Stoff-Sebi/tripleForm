@@ -11,7 +11,7 @@ const TextFormGroup: React.FC<props> = ({options, onChange = undefined}) => {
     const [value, setValue] = React.useState<string>("");
 
     React.useEffect(()=>{
-        if(!value)return;
+        if(value === undefined || value === "undefined" || value === null)return;
         if(onChange)onChange(value);
     }, [value]);
 
