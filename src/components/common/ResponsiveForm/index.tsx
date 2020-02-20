@@ -2,6 +2,7 @@ import React from "react";
 import SelectFormGroup from "../SelectFormGroup/index";
 import { Input, SelectInput, TextInput, AutcompleteInput, RestPathVariableGroup, SelectValue } from "../../../@types/types";
 import Autocomplete from "../Autocomplete"
+import zimUtils from "../../../utils/utils"
 
 interface Props {
   restPathGroups: RestPathVariableGroup[];
@@ -102,8 +103,9 @@ const ResponsiveForm: React.FC<Props> = ({
       valueObjects.forEach(select => select._selected = (select.value === value));
       
       //copy then set state
-      let formGroupsCopy = JSON.parse(JSON.stringify(restPathGroups));  //generates a deep copy
-      formGroupsCopy[formGroupIndex].formGroups = inputFieldsIntern; //TODO remove index as parameter -> instead find via .find() method.
+      
+      let formGroupsCopy = zimUtils.copyDeep(restPathGroups);  //generates a deep copy of state
+      formGroupsCopy[formGroupIndex].formGroups = inputFieldsIntern; 
       return setInputFields ? setInputFields(() => formGroupsCopy) : null;
 }
 
