@@ -115,6 +115,7 @@ const TripleFormReact: React.FC<props> = ({
         "Cannot start a search without any formGroups defined for the tripleForm!"
       );
 
+    //form validation  
     try {
       queryInputs.forEach(restPathGroup => {
         restPathGroup.formGroups.forEach(formGroup => {
@@ -131,18 +132,6 @@ const TripleFormReact: React.FC<props> = ({
     } catch (e) {
       return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
     }
-
-    //TODO add validation
-    /* let inputErrFlag: boolean = false;
-    queryInputs.forEach(queryInput => {  
-      if (!queryInput.value) {
-        inputErrFlag = true;
-      }
-    });
-    if (inputErrFlag)
-      return alert(
-        "Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus."
-      ); */
     let url = (queryStart ? queryStart : tripleFormConfig.queryStart) + query;
     window.location.href = encodeURI(url);
   };
