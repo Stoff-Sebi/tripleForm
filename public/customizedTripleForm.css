@@ -12,6 +12,7 @@
     max-width: 50em;
     /* background-color: whitesmoke; */
     border-left: 15em solid whitesmoke;
+    border-bottom: 1em solid whitesmoke;
     /* border-radius: 5px; */
 }
 
