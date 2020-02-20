@@ -35,6 +35,7 @@ const ResponsiveForm: React.FC<Props> = ({
     selectInput: SelectInput,
     inputGroups: Input[]
   ): JSX.Element | TypeError => {
+    //first runtime validation
     if (typeof selectInput.value !== "object")
       throw new TypeError(
         `You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`
