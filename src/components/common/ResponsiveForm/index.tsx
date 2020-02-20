@@ -43,18 +43,7 @@ const ResponsiveForm: React.FC<Props> = ({
     inputGroups: Input[]
   ): JSX.Element | TypeError => {
     //first runtime validation
-    if (typeof selectInput.value !== "object")
-      throw new TypeError(
-        `You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`
-      );
-    if (!Array.isArray(selectInput.value))
-      throw new TypeError(
-        `You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`
-      );
-    if (!selectInput.value[0].label || !selectInput.value[0].value)
-      throw new TypeError(
-        `You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`
-      );
+    runtimeValidateSelect(selectInput);
     return (
       <SelectFormGroup
         key={`ResponsiveForm_SelectFormGroup_${inputGroups.indexOf(
@@ -70,6 +59,8 @@ const ResponsiveForm: React.FC<Props> = ({
     selectInput: AutcompleteInput,
     inputGroups: Input[]
   ) => {
+    //first runtime validation
+    runtimeValidateSelect(selectInput);
     return (
       <Autocomplete
         id={`${Math.random() * 1000}`}
@@ -103,6 +94,22 @@ const ResponsiveForm: React.FC<Props> = ({
     let formGroupsCopy = zimUtils.copyDeep(restPathGroups); //generates a deep copy of state
     return setInputFields ? setInputFields(() => formGroupsCopy) : null;
   };
+
+  const runtimeValidateSelect = (selectInput: AutcompleteInput | SelectInput): void | TypeError => {
+    //first runtime validation
+    if (typeof selectInput.value !== "object")
+      throw new TypeError(
+        `You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`
+      );
+    if (!Array.isArray(selectInput.value))
+      throw new TypeError(
+        `You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`
+      );
+    if (!selectInput.value[0].label || !selectInput.value[0].value)
+      throw new TypeError(
+        `You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`
+      );
+  }
 
   return (
     //generate form with adequate defined form-groups.
