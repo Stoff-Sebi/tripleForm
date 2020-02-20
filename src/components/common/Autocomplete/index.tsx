@@ -88,7 +88,7 @@ const AutoComplete: React.FC<Props> = ({
   };
 
   const renderInputComponent = (inputProps: any) => (
-    <div>
+    <div className="tripleform--autocomplete-formgroup">
       {autoCompleteOption ? (
         <>
           <label> {autoCompleteOption.label} </label>

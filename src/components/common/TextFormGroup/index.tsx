@@ -28,7 +28,7 @@ const TextFormGroup: React.FC<props> = ({options, onChange = undefined}) => {
     }, []);
 
     return (
-    <div className="form-group">
+    <div className="form-group tripleform--textformgroup">
         <label>{options.label}</label>
         <input
         required={options.required}
