@@ -53,7 +53,7 @@ const AutoComplete: React.FC<Props> = ({
     setValue(newValue);
   };
 
-  React.useEffect(() => {
+  React.useEffect(() => { 
     if (!value) return;
     let obj = autoCompleteOption.value.filter(val => val.label === value);
     if (!obj[0]) return;
@@ -91,6 +91,7 @@ const AutoComplete: React.FC<Props> = ({
         </>
       ) : null}
       {autoCompleteOption.required ? (
+        <>
         <input
           style={{
             border: `1px solid ${
@@ -103,12 +104,16 @@ const AutoComplete: React.FC<Props> = ({
           type="text"
           {...inputProps}
         />
-      ) : (
+        {autoCompleteOption.small ? <small className="form-text text-muted">{autoCompleteOption.small}</small> : null}
+        </>
+      ) : (<>
         <input
           style={{ border: `1px solid #28a745` }}
           type="text"
           {...inputProps}
         />
+        {autoCompleteOption.small ? <small className="form-text text-muted">{autoCompleteOption.small}</small> : null}
+        </>
       )}
     </div>
   );

@@ -39,6 +39,7 @@ const TextFormGroup: React.FC<props> = ({options, onChange = undefined}) => {
         value={options.value}
         onChange={evt => setValue(evt.currentTarget.value)}
         />
+        {options.small ? <small className="form-text text-muted">{options.small}</small> : null}
     </div>); 
 }
 

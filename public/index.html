@@ -44,6 +44,7 @@
               formGroups: [
                 {
                   label: "Libri Ordinarii wählen",
+                  small: "Hier gewähltes LO entspricht der Anzeige links in der folgenden synoptischen Vergleichsansicht...",
                   value: [
                   {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<https://gams.uni-graz.at/o:cantus.brixen>'},
   {label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<https://gams.uni-graz.at/o:cantus.freising>'},
@@ -129,9 +130,10 @@
                   ],
                   type: "autocomplete",
                   id: "1233333as",
-                  placeHolder: "Wählen Sie ein LO",
+                  placeHolder: "Wählen Sie ein LO.",
                   parameter: "$2|",
-                  required:true
+                  required:true,
+                  small: "...zweites LO wird folgend mittig dargestellt...",
                 },
                 {
                   value: [
@@ -176,7 +178,8 @@
                   id: "1233333asasdd",
                   placeHolder: "Wählen Sie ein LO",
                   parameter: "$3|",
-                  required:true
+                  required:true,
+                  small:"... und drittes LO in der Spalte rechts."
                 }
               ]
             },
@@ -185,6 +188,7 @@
               formGroups: [
                 {
                   label: "Fest einschränken",
+                  small: "Wählen Sie abschließend mit Hilfe der Autovervollständigung die Einschränkung auf einen spezifisches Fest.",
                   value: [
                   {value: "default", label: "Bitte wählen..."}, {
     value: "01000000",
@@ -1060,7 +1064,7 @@
                   ],
                   type: "autocomplete",
                   id: "1233333as",
-                  placeHolder: "bimbiasdds",
+                  placeHolder: "z.b. 's'",
                   parameter: "",
                   required:true
                 }

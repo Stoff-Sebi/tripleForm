@@ -28,6 +28,7 @@ const SelectFormGroup:React.FC<props> = ({options, onChange}) => {
             <option key={`SelectFormGroup_option_${index}`} value={option.value}>{ option.label }</option>
         ))}
       </select>
+        {options.small ? <small className="form-text text-muted">{options.small}</small> : null}
     </div>
   );
 };

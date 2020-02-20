@@ -6,11 +6,12 @@ export interface RestPathVariableGroup {
 
 export interface Input {
     label: string;
+    small?: string;
     value?: string | SelectValue[];
     id?: string;
     placeHolder?: string;
     type?: "text" | "select" | "autocomplete";
-    required?: boolean
+    required?: boolean;
 }
 
 export interface TextInput extends Input {
