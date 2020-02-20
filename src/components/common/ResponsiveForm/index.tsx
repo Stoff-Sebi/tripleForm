@@ -1,9 +1,16 @@
 import React from "react";
 import SelectFormGroup from "../SelectFormGroup/index";
 import TextFormGroup from "../TextFormGroup";
-import { Input, SelectInput, TextInput, AutcompleteInput, RestPathVariableGroup, SelectValue } from "../../../@types/types";
-import Autocomplete from "../Autocomplete"
-import zimUtils from "../../../utils/utils"
+import {
+  Input,
+  SelectInput,
+  TextInput,
+  AutcompleteInput,
+  RestPathVariableGroup,
+  SelectValue
+} from "../../../@types/types";
+import Autocomplete from "../Autocomplete";
+import zimUtils from "../../../utils/utils";
 
 interface Props {
   restPathGroups: RestPathVariableGroup[];
@@ -20,8 +27,8 @@ const ResponsiveForm: React.FC<Props> = ({
 }) => {
   const generateTextFormGroup = (
     textInput: TextInput,
-    inputFieldsIntern: Input[],
-  ): JSX.Element | TypeError => { 
+    inputFieldsIntern: Input[]
+  ): JSX.Element | TypeError => {
     return (
       <TextFormGroup
         key={`responsiveForm_formGroup_${inputFieldsIntern.indexOf(textInput)}`}
@@ -50,63 +57,80 @@ const ResponsiveForm: React.FC<Props> = ({
       );
     return (
       <SelectFormGroup
-        key={`ResponsiveForm_SelectFormGroup_${inputGroups.indexOf(selectInput)}`}
+        key={`ResponsiveForm_SelectFormGroup_${inputGroups.indexOf(
+          selectInput
+        )}`}
         options={selectInput}
         onChange={value => onFormGroupChange(value, selectInput)}
       />
     );
   };
 
-  const generateAutoCompleteFormGroup = (selectInput: AutcompleteInput, inputGroups: Input[]) => {
-    return <Autocomplete
-    id={`${Math.random()*1000}`}
-    key={`ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}`}
-    autoCompleteOption={selectInput as AutcompleteInput}
-    onchange={(value)=>onFormGroupChange(value, selectInput)}
-    ></Autocomplete>
-  }
+  const generateAutoCompleteFormGroup = (
+    selectInput: AutcompleteInput,
+    inputGroups: Input[]
+  ) => {
+    return (
+      <Autocomplete
+        id={`${Math.random() * 1000}`}
+        key={`ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}`}
+        autoCompleteOption={selectInput as AutcompleteInput}
+        onchange={value => onFormGroupChange(value, selectInput)}
+      ></Autocomplete>
+    );
+  };
 
-  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput | TextInput) => {
-      //when the type is text input need different procedure
-      if(selectInput.type ==="text"){
-        //assign to intern input fields given value from input field
-        selectInput.value = value;
-        let formGroupsCopy = zimUtils.copyDeep(restPathGroups);  //generates a deep copy of state
-        return setInputFields ? setInputFields(() => formGroupsCopy) : null;
-      }
-
-      //case type is 'autocomplete' or 'select'
-      
-      //sets the _selected property to true from element linked
-      //and others to false.
-      let valueObjects: SelectValue[] = [...selectInput.value];
-      valueObjects.forEach(select => select._selected = (select.value === value));
-      
-      //copy then set state (for resetting state errors`?)
-      let formGroupsCopy = zimUtils.copyDeep(restPathGroups);  //generates a deep copy of state 
+  const onFormGroupChange = (
+    value: string,
+    selectInput: AutcompleteInput | SelectInput | TextInput
+  ) => {
+    //when the type is text input need different procedure
+    if (selectInput.type === "text") {
+      //assign to intern input fields given value from input field
+      selectInput.value = value;
+      let formGroupsCopy = zimUtils.copyDeep(restPathGroups); //generates a deep copy of state
       return setInputFields ? setInputFields(() => formGroupsCopy) : null;
-}
+    }
+
+    //case type is 'autocomplete' or 'select'
+
+    //sets the _selected property to true from element linked
+    //and others to false.
+    let valueObjects: SelectValue[] = [...selectInput.value];
+    valueObjects.forEach(select => (select._selected = select.value === value));
+
+    //copy then set state (for resetting state errors`?)
+    let formGroupsCopy = zimUtils.copyDeep(restPathGroups); //generates a deep copy of state
+    return setInputFields ? setInputFields(() => formGroupsCopy) : null;
+  };
 
   return (
     //generate form with adequate defined form-groups.
     <form id="responsiveForm" className="was-validated">
-      {
-        //first iterate over different pathVarGroups
-        restPathGroups.map(pathVarGroup => {
-          //then over individual linked formgroups = Input type
-          return pathVarGroup.formGroups.map((input, index) => {
-            if (input.type === "text") {
-              return generateTextFormGroup(input as TextInput, pathVarGroup.formGroups);
-            }
-            if (input.type === "select") {
-              return generateSelectFormGroup( input as SelectInput, pathVarGroup.formGroups);
-            }
-            if (input.type === "autocomplete") {
-              return generateAutoCompleteFormGroup(input as AutcompleteInput, pathVarGroup.formGroups);
-            }
-          })
-        })
-      }
+      {//first iterate over different pathVarGroups
+      restPathGroups.map(pathVarGroup => {
+        //then over individual linked formgroups = Input type
+        return pathVarGroup.formGroups.map((input, index) => {
+          if (input.type === "text") {
+            return generateTextFormGroup(
+              input as TextInput,
+              pathVarGroup.formGroups
+            );
+          }
+          if (input.type === "select") {
+            return generateSelectFormGroup(
+              input as SelectInput,
+              pathVarGroup.formGroups
+            );
+          }
+          if (input.type === "autocomplete") {
+            return generateAutoCompleteFormGroup(
+              input as AutcompleteInput,
+              pathVarGroup.formGroups
+            );
+          }
+        });
+      })}
       <button className="btn btn-secondary" onClick={evt => handleSearch(evt)}>
         Search
       </button>
