@@ -14,6 +14,7 @@ import zimUtils from "../../../utils/utils";
 
 interface Props {
   restPathGroups: RestPathVariableGroup[];
+  inputIsValid: boolean | undefined;
   setInputFields?: Function;
   handleSearch: (
     btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -22,6 +23,7 @@ interface Props {
 
 const ResponsiveForm: React.FC<Props> = ({
   restPathGroups,
+  inputIsValid,
   setInputFields,
   handleSearch
 }) => {
@@ -140,7 +142,7 @@ const ResponsiveForm: React.FC<Props> = ({
           }
         });
       })}
-      <button className="btn btn-secondary" onClick={evt => handleSearch(evt)}>
+      <button className={`btn ${ inputIsValid ? 'btn-success' : 'btn-warning'}`} onClick={evt => handleSearch(evt)}>
         Search
       </button>
     </form>

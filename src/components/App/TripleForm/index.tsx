@@ -34,6 +34,8 @@ const TripleFormReact: React.FC<props> = ({
     RestPathVariableGroup[] | undefined
   >(undefined);
 
+  const [inputIsValid, setInputIsValid] = React.useState<boolean | undefined>(undefined);
+
   // initial useEffect to configure component
   React.useEffect(() => {
     if (!gamsConfig) return;
@@ -103,18 +105,11 @@ const TripleFormReact: React.FC<props> = ({
     setQuery(query);
   }, [queryInputs]);
 
-  const handleSearch = (
-    btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    btnClickEvent.preventDefault(); //prevents default submit action on form.
-    if (!query)
-      return alert("wählen Sie einen gültigen Wert für die Suche aus.");
-    if (!queryInputs)
-      throw new TypeError(
-        "Cannot start a search without any formGroups defined for the tripleForm!"
-      );
 
-    //form validation  
+  //validates when query changes.
+  //sets inputIsValid state to true | false.
+  React.useEffect(()=>{
+    if(!queryInputs)return;
     try {
       queryInputs.forEach(restPathGroup => {
         restPathGroup.formGroups.forEach(formGroup => {
@@ -128,10 +123,25 @@ const TripleFormReact: React.FC<props> = ({
           }
         });
       });
+      setInputIsValid(true);
     } catch (e) {
-      return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
+      setInputIsValid(false);
     }
+  }, [query]);
 
+  const handleSearch = (
+    btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    btnClickEvent.preventDefault(); //prevents default submit action on form.
+    if (!query)
+      return alert("wählen Sie einen gültigen Wert für die Suche aus.");
+    if (!queryInputs)
+      throw new TypeError(
+        "Cannot start a search without any formGroups defined for the tripleForm!"
+      ); 
+    if(!inputIsValid)
+      return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
+    
     //last navigate to page
     let url = (queryStart ? queryStart : tripleFormConfig.queryStart) + query;
     window.location.href = encodeURI(url);
@@ -145,10 +155,12 @@ const TripleFormReact: React.FC<props> = ({
       ></ConfigProvier>
       {queryInputs ? (
         <>
+          <p>valid: {`${inputIsValid}`}</p>
           <ResponsiveForm
             restPathGroups={queryInputs}
             setInputFields={setInputs}
             handleSearch={handleSearch}
+            inputIsValid={inputIsValid}
           ></ResponsiveForm>
           {/**
            * Display help to construct query via the query builder.
