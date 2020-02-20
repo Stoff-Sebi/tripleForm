@@ -7,7 +7,7 @@ import {
   QuerySelectInput,
   SelectValue,
   TripleForm,
-  RestPathVariableFormGroup
+  RestPathVariableGroup
 } from "../../../@types/types";
 
 interface props {
@@ -33,7 +33,7 @@ const TripleFormReact: React.FC<props> = ({
 
   const [query, setQuery] = React.useState<"" | string>("");
   const [queryInputs, setInputs] = React.useState<
-    RestPathVariableFormGroup[] | undefined
+    RestPathVariableGroup[] | undefined
   >(undefined);
 
   // initial useEffect to configure component

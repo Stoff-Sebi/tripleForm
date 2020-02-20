@@ -1,10 +1,10 @@
 import React from "react";
 import SelectFormGroup from "../SelectFormGroup/index";
-import { Input, SelectInput, TextInput, AutcompleteInput, RestPathVariableFormGroup, SelectValue } from "../../../@types/types";
+import { Input, SelectInput, TextInput, AutcompleteInput, RestPathVariableGroup, SelectValue } from "../../../@types/types";
 import Autocomplete from "../Autocomplete"
 
 interface Props {
-  inputFields: RestPathVariableFormGroup[];
+  inputFields: RestPathVariableGroup[];
   setInputFields?: Function;
   handleSearch: (
     btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>

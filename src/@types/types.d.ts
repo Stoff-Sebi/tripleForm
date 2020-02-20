@@ -1,5 +1,5 @@
 
-export interface RestPathVariableFormGroup {
+export interface RestPathVariableGroup {
     restPathVariable: string;
     formGroups: QueryInput[];
 }
@@ -50,7 +50,7 @@ export interface QueryBuildAble {
 export interface TripleForm {
     queryStart: string;
     parameterDelimiter: string,
-    properties: RestPathVariableFormGroup[];
+    properties: RestPathVariableGroup[];
     lifecycle: "develop" | "deploy"
 }
 
