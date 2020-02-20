@@ -95,7 +95,9 @@ const ResponsiveForm: React.FC<Props> = ({
     return setInputFields ? setInputFields(() => formGroupsCopy) : null;
   };
 
-  const runtimeValidateSelect = (selectInput: AutcompleteInput | SelectInput): void | TypeError => {
+  const runtimeValidateSelect = (
+    selectInput: AutcompleteInput | SelectInput
+  ): void | TypeError => {
     //first runtime validation
     if (typeof selectInput.value !== "object")
       throw new TypeError(
@@ -109,7 +111,7 @@ const ResponsiveForm: React.FC<Props> = ({
       throw new TypeError(
         `You have to pass in an array of objects if selected type of input is 'select'. Given input-label: ${selectInput.label}`
       );
-  }
+  };
 
   return (
     //generate form with adequate defined form-groups.
@@ -117,7 +119,7 @@ const ResponsiveForm: React.FC<Props> = ({
       {//first iterate over different pathVarGroups
       restPathGroups.map((pathVarGroup: RestPathVariableGroup) => {
         //then over individual linked formgroups = Input type
-        return pathVarGroup.formGroups.map((input) => {
+        return pathVarGroup.formGroups.map(input => {
           if (input.type === "text") {
             return generateTextFormGroup(
               input as TextInput,
