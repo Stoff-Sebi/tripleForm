@@ -1,5 +1,6 @@
 import React from "react";
 import ResponsiveForm from "../../common/ResponsiveForm";
+import QueryBuilder from "../QueryBuilder"
 import ConfigProvier from "../../common/ConfigProvider";
 import {
   QueryInput,
@@ -158,7 +159,6 @@ const TripleFormReact: React.FC<props> = ({
       ></ConfigProvier>
       {queryInputs ? (
         <>
-          <p>valid: {`${inputIsValid}`}</p>
           <ResponsiveForm
             restPathGroups={queryInputs}
             setInputFields={setInputs}
@@ -169,23 +169,8 @@ const TripleFormReact: React.FC<props> = ({
            * Display help to construct query via the query builder.
            * see TripleForm type -> only displayed when lifecycle set to develop
            */}
-          {(tripleFormConfig as TripleForm).lifecycle === "develop" ? (
-            <>
-              <br></br>{" "}
-              <p>
-                <em>Query Builder</em>
-                <br></br> (set lifecycle to "deploy" to deactivate builder){" "}
-                <br></br>
-                Query-Start:{" "}
-                {queryStart ? queryStart : tripleFormConfig.queryStart}
-              </p>{" "}
-              <p>
-                Decoded: <br></br> {query}
-              </p>{" "}
-              <p>
-                Encoded:<br></br> {encodeURIComponent(query)}
-              </p>{" "}
-            </>
+          {(tripleFormConfig.lifecycle === "develop") ? (
+            <QueryBuilder query={query} queryStart={ queryStart ? queryStart : tripleFormConfig.queryStart}/>
           ) : null}
         </>
       ) : null}
