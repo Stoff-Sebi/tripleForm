@@ -34,7 +34,9 @@ const TripleFormReact: React.FC<props> = ({
     RestPathVariableGroup[] | undefined
   >(undefined);
 
-  const [inputIsValid, setInputIsValid] = React.useState<boolean | undefined>(undefined);
+  const [inputIsValid, setInputIsValid] = React.useState<boolean | undefined>(
+    undefined
+  );
 
   // initial useEffect to configure component
   React.useEffect(() => {
@@ -105,21 +107,20 @@ const TripleFormReact: React.FC<props> = ({
     setQuery(query);
   }, [queryInputs]);
 
-
   //validates when query changes.
   //sets inputIsValid state to true | false.
-  React.useEffect(()=>{
-    if(!queryInputs)return;
+  React.useEffect(() => {
+    if (!queryInputs) return;
     try {
       queryInputs.forEach(restPathGroup => {
         restPathGroup.formGroups.forEach(formGroup => {
-          if(!formGroup.value && formGroup.required)throw new TypeError();
-          if(Array.isArray(formGroup.value) && formGroup.required){
+          if (!formGroup.value && formGroup.required) throw new TypeError();
+          if (Array.isArray(formGroup.value) && formGroup.required) {
             let oneIsTrue = false;
             formGroup.value.forEach(input => {
-              if(input._selected === true)oneIsTrue=true;
+              if (input._selected === true) oneIsTrue = true;
             });
-            if(!oneIsTrue)throw new TypeError();
+            if (!oneIsTrue) throw new TypeError();
           }
         });
       });
@@ -138,10 +139,12 @@ const TripleFormReact: React.FC<props> = ({
     if (!queryInputs)
       throw new TypeError(
         "Cannot start a search without any formGroups defined for the tripleForm!"
-      ); 
-    if(!inputIsValid)
-      return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
-    
+      );
+    if (!inputIsValid)
+      return alert(
+        "Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus."
+      );
+
     //last navigate to page
     let url = (queryStart ? queryStart : tripleFormConfig.queryStart) + query;
     window.location.href = encodeURI(url);
