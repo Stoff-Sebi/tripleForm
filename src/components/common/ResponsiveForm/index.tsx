@@ -62,8 +62,7 @@ const ResponsiveForm: React.FC<Props> = ({
 
   const generateSelectFormGroup = (
     selectInput: SelectInput,
-    inputGroups: Input[],
-    formGroupIndex: number
+    inputGroups: Input[]
   ): JSX.Element | TypeError => {
     if (typeof selectInput.value !== "object")
       throw new TypeError(
@@ -81,21 +80,21 @@ const ResponsiveForm: React.FC<Props> = ({
       <SelectFormGroup
         key={`ResponsiveForm_SelectFormGroup_${inputGroups.indexOf(selectInput)}`}
         options={selectInput}
-        onChange={value => onFormGroupChange(value, selectInput, inputGroups,formGroupIndex)}
+        onChange={value => onFormGroupChange(value, selectInput)}
       />
     );
   };
 
-  const generateAutoCompleteFormGroup = (selectInput: AutcompleteInput, inputGroups: Input[], formGroupIndex: number) => {
+  const generateAutoCompleteFormGroup = (selectInput: AutcompleteInput, inputGroups: Input[]) => {
     return <Autocomplete
     id={`${Math.random()*1000}`}
     key={`ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}`}
     autoCompleteOption={selectInput as AutcompleteInput}
-    onchange={(value)=>onFormGroupChange(value, selectInput, inputGroups, formGroupIndex)}
+    onchange={(value)=>onFormGroupChange(value, selectInput)}
     ></Autocomplete>
   }
 
-  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput, inputFieldsIntern: Input[], formGroupIndex: number)=>{
+  const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput)=>{
       
       //sets the _selected property to true from element linked
       //and others to false.
@@ -119,10 +118,10 @@ const ResponsiveForm: React.FC<Props> = ({
               return generateTextFormGroup(input as TextInput, pathVarGroup.formGroups, index);
             }
             if (input.type === "select") {
-              return generateSelectFormGroup( input as SelectInput, pathVarGroup.formGroups, formGroupIndex);
+              return generateSelectFormGroup( input as SelectInput, pathVarGroup.formGroups);
             }
             if (input.type === "autocomplete") {
-              return generateAutoCompleteFormGroup(input as AutcompleteInput, pathVarGroup.formGroups,formGroupIndex);
+              return generateAutoCompleteFormGroup(input as AutcompleteInput, pathVarGroup.formGroups);
             }
           })
         })
