@@ -21,7 +21,7 @@ const SelectFormGroup:React.FC<props> = ({options, onChange}) => {
 
   return (
     <div className="form-group tripleform--selectformgroup">
-        <label>Example multiple select - Selected value = {selectedVal}</label>
+        <label>{options.label}</label>
       <select required={options.required} className="form-control" value={selectedVal} onChange={(evt)=>handleSelection(evt)}>
         <option key={`SelectFormGroup_option_-1`}></option>
         {options.value.map((option, index) => (
