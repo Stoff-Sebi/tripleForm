@@ -115,9 +115,9 @@ const ResponsiveForm: React.FC<Props> = ({
     //generate form with adequate defined form-groups.
     <form id="responsiveForm" className="was-validated">
       {//first iterate over different pathVarGroups
-      restPathGroups.map(pathVarGroup => {
+      restPathGroups.map((pathVarGroup: RestPathVariableGroup) => {
         //then over individual linked formgroups = Input type
-        return pathVarGroup.formGroups.map((input, index) => {
+        return pathVarGroup.formGroups.map((input) => {
           if (input.type === "text") {
             return generateTextFormGroup(
               input as TextInput,
