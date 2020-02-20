@@ -115,6 +115,23 @@ const TripleFormReact: React.FC<props> = ({
         "Cannot start a search without any formGroups defined for the tripleForm!"
       );
 
+    try {
+      queryInputs.forEach(restPathGroup => {
+        restPathGroup.formGroups.forEach(formGroup => {
+          if(!formGroup.value && formGroup.required)throw new TypeError();
+          if(Array.isArray(formGroup.value) && formGroup.required){
+            let oneIsTrue = false;
+            formGroup.value.forEach(input => {
+              if(input._selected === true)oneIsTrue=true;
+            });
+            if(!oneIsTrue)throw new TypeError();
+          }
+        });
+      });
+    } catch (e) {
+      return alert("Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus.");
+    }
+
     //TODO add validation
     /* let inputErrFlag: boolean = false;
     queryInputs.forEach(queryInput => {  
