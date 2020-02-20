@@ -95,21 +95,15 @@ const ResponsiveForm: React.FC<Props> = ({
   }
 
   const onFormGroupChange = (value: string, selectInput: AutcompleteInput | SelectInput, inputFieldsIntern: Input[], formGroupIndex: number)=>{
-      let curVal = value;
-      let valueObjects: SelectValue[] = [...selectInput.value];
-
+      
       //sets the _selected property to true from element linked
       //and others to false.
-      valueObjects.forEach(select => select._selected = (select.value === curVal));
-
-      //state copying procedure
-      let newInpVal = [...selectInput.value];
-      let inputs = [...inputFieldsIntern];
-      selectInput.value = newInpVal;
-
-      let formGroupsCopy = [...restPathGroups];  //TODO remove state access
-      formGroupsCopy[formGroupIndex].formGroups = inputs; //TODO remove index as parameter -> instead find via .find() method.
-
+      let valueObjects: SelectValue[] = [...selectInput.value];
+      valueObjects.forEach(select => select._selected = (select.value === value));
+      
+      //copy then set state
+      let formGroupsCopy = JSON.parse(JSON.stringify(restPathGroups));  //generates a deep copy
+      formGroupsCopy[formGroupIndex].formGroups = inputFieldsIntern; //TODO remove index as parameter -> instead find via .find() method.
       return setInputFields ? setInputFields(() => formGroupsCopy) : null;
 }
 
