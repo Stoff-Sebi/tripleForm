@@ -4,7 +4,6 @@ import ResponsiveForm from "../../common/ResponsiveForm";
 import ConfigProvier from "../../common/ConfigProvider";
 import {
   QueryInput,
-  QuerySelectInput,
   SelectValue,
   TripleForm,
   RestPathVariableGroup
@@ -53,7 +52,7 @@ const TripleFormReact: React.FC<props> = ({
   React.useEffect(() => {
     if (!queryInputs) return;
     let query = "";
-    
+
     //if paramDelimiter is set via props take that otherwise take setting in tripleFormConfig
     let paramDelimiter = parameterDelimiter
     ? parameterDelimiter
