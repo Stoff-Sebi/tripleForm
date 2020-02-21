@@ -169,6 +169,7 @@ const TripleFormReact: React.FC<props> = ({
       <ConfigProvier
         windowConfigPropName={"_gamsComponentConfig"}
         setConfig={setGamsConfig}
+        configUrl={undefined}
       ></ConfigProvier>
       {queryInputs ? (
         <>
