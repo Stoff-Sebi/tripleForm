@@ -38,6 +38,7 @@ const TripleFormReact: React.FC<props> = ({
   const [inputIsValid, setInputIsValid] = React.useState<boolean | undefined>(
     undefined
   );
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   // initial useEffect to configure component
   React.useEffect(() => {
@@ -161,6 +162,7 @@ const TripleFormReact: React.FC<props> = ({
 
     //last navigate to page
     let url = (queryStart ? queryStart : tripleFormConfig.queryStart) + query;
+    setLoading(true);
     window.location.href = encodeURI(url);
   };
 
@@ -178,6 +180,7 @@ const TripleFormReact: React.FC<props> = ({
             setInputFields={setInputs}
             handleSearch={handleSearch}
             inputIsValid={inputIsValid}
+            loading={loading}
           ></ResponsiveForm>
           {/**
            * Display help to construct query via the query builder.

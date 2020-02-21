@@ -19,13 +19,15 @@ interface Props {
   handleSearch: (
     btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
+  loading?: boolean;
 }
 
 const ResponsiveForm: React.FC<Props> = ({
   restPathGroups,
   inputIsValid,
   setInputFields,
-  handleSearch
+  handleSearch,
+  loading = undefined
 }) => {
   const generateTextFormGroup = (
     textInput: TextInput,
@@ -156,6 +158,7 @@ const ResponsiveForm: React.FC<Props> = ({
       <button className={`btn ${ inputIsValid ? 'btn-success' : 'btn-warning'}`} onClick={evt => handleSearch(evt)}>
         Search
       </button>
+      <div className="spinner-border tripleform--spinner" style={{visibility: loading ? "inherit" : "hidden"}}  role="status"></div>
     </form>
   );
 };

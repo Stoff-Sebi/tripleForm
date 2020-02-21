@@ -23,3 +23,10 @@
 .tripleform .responsiveform .form-group {
     margin-top: .1em;
 }
+
+.tripleform .tripleform--spinner {
+    width: 1.5rem; 
+    height: 1.5rem; 
+    margin-left: 1em;
+    color: lightgray;
+}

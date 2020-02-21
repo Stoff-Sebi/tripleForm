@@ -23,3 +23,10 @@
     overflow: hidden;
     display: inline;
 }
+
+.tripleform .tripleform--spinner {
+    width: 1.5rem; 
+    height: 1.5rem; 
+    margin-left: 1em;
+    color: lightgray;
+}
