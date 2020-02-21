@@ -118,19 +118,22 @@ const ResponsiveForm: React.FC<Props> = ({
   };
 
   //state and useeffect only needed to make form fade in on render
-  const [formOpacity, setFormOpacity] =  React.useState<number>(0);
-  React.useEffect(()=>{
+  const [formOpacity, setFormOpacity] = React.useState<number>(0);
+  React.useEffect(() => {
     let opacity = 0;
-    let interval = setInterval(()=>{
+    let interval = setInterval(() => {
       opacity = opacity + 0.1;
       setFormOpacity(opacity);
-      if(opacity>1)clearInterval(interval);
-    },40);
+      if (opacity > 1) clearInterval(interval);
+    }, 40);
   }, []);
 
   return (
     //generate form with adequate defined form-groups.
-    <form className="was-validated responsiveform" style={{opacity:formOpacity}}>
+    <form
+      className="was-validated responsiveform"
+      style={{ opacity: formOpacity }}
+    >
       {//first iterate over different pathVarGroups
       restPathGroups.map((pathVarGroup: RestPathVariableGroup) => {
         //then over individual linked formgroups = Input type
@@ -155,10 +158,17 @@ const ResponsiveForm: React.FC<Props> = ({
           }
         });
       })}
-      <button className={`btn ${ inputIsValid ? 'btn-success' : 'btn-warning'}`} onClick={evt => handleSearch(evt)}>
+      <button
+        className={`btn ${inputIsValid ? "btn-success" : "btn-warning"}`}
+        onClick={evt => handleSearch(evt)}
+      >
         Search
       </button>
-      <div className="spinner-border tripleform--spinner" style={{visibility: loading ? "inherit" : "hidden"}}  role="status"></div>
+      <div
+        className="spinner-border tripleform--spinner"
+        style={{ visibility: loading ? "inherit" : "hidden" }}
+        role="status"
+      ></div>
     </form>
   );
 };
