@@ -18,6 +18,8 @@ const AutoComplete: React.FC<Props> = ({
       return filtered.length > 0 ? filtered[0].label as string : "";
   });
 
+  const [typedIn, setTypedIn] = React.useState<string>(value);
+
   const [linkedObject, setLinkedObject] = React.useState<Object | undefined>(
     undefined
   );
@@ -26,8 +28,10 @@ const AutoComplete: React.FC<Props> = ({
   let [suggestions, setSuggestions] = React.useState<string[]>([]);
 
   const getSuggestions = (value: string) => {
+    setTypedIn(value); // sets a state where typed in value is stored.
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
+    if(value==="*")return autoCompleteOption.value;
     return inputLength === 0
       ? []
       : autoCompleteOption.value.filter(
@@ -44,10 +48,11 @@ const AutoComplete: React.FC<Props> = ({
 
   // Use your imagination to render suggestions.
   const renderSuggestion = (suggestion: any) => {
+    let typedInLength = typedIn.length;
     return (
       <div>
-        <span style={{ color: "red" }}>{suggestion.label[0]}</span>
-        <span>{suggestion.label.substring(1, suggestion.label.length)}</span>
+        <span style={{ color: "red" }}>{suggestion.label.substring(0,typedInLength)}</span>
+        <span>{suggestion.label.substring(typedInLength, suggestion.label.length)}</span>
       </div>
     );
   };
