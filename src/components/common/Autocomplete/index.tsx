@@ -27,11 +27,12 @@ const AutoComplete: React.FC<Props> = ({
   //needs to be let because getter has to be set!
   let [suggestions, setSuggestions] = React.useState<string[]>([]);
 
-  const getSuggestions = (value: string) => {
-    setTypedIn(value); // sets a state where typed in value is stored.
-    const inputValue = value.trim().toLowerCase();
+  const getSuggestions = (typedValue: string) => {
+    setTypedIn(typedValue); // sets a state where typed in value is stored.
+    if(typedValue===value)setValue("");
+    const inputValue = typedValue.trim().toLowerCase();
     const inputLength = inputValue.length;
-    if(value==="*")return autoCompleteOption.value;
+    if(typedValue==="*")return autoCompleteOption.value;
     return inputLength === 0
       ? []
       : autoCompleteOption.value.filter(
