@@ -8,7 +8,10 @@ interface props {
 
 const SelectFormGroup:React.FC<props> = ({options, onChange}) => {
 
-    const [selectedVal, setSelectedVal] = React.useState<string>("");
+    const [selectedVal, setSelectedVal] = React.useState<string>(() => {
+      let filtered = options.value.filter(val=>(val._selected===true));
+      return filtered.length > 0 ? filtered[0].value as string : "";
+    });
 
     React.useEffect(()=>{
       if(selectedVal === undefined || selectedVal === "undefined" || selectedVal === null)return;

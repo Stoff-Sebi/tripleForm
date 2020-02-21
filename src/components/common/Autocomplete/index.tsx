@@ -13,7 +13,10 @@ const AutoComplete: React.FC<Props> = ({
   autoCompleteOption,
   onchange = undefined
 }) => {
-  const [value, setValue] = React.useState<string>("");
+  const [value, setValue] = React.useState<string>(()=>{
+    let filtered = autoCompleteOption.value.filter(val=>(val._selected===true));
+      return filtered.length > 0 ? filtered[0].label as string : "";
+  });
 
   const [linkedObject, setLinkedObject] = React.useState<Object | undefined>(
     undefined

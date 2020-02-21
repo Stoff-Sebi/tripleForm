@@ -8,7 +8,7 @@ interface props {
 
 const TextFormGroup: React.FC<props> = ({options, onChange = undefined}) => {
 
-    const [value, setValue] = React.useState<string>("");
+    const [value, setValue] = React.useState<string>(options.value);
 
     React.useEffect(()=>{
         if(value === undefined || value === "undefined" || value === null)return;
