@@ -137,7 +137,7 @@ const ResponsiveForm: React.FC<Props> = ({
       {//first iterate over different pathVarGroups
       restPathGroups.map((pathVarGroup: RestPathVariableGroup) => {
         //then over individual linked formgroups = Input type
-        return pathVarGroup.formGroups.map(input => {
+        return ( <div className="responsive-form--form-block"> {pathVarGroup.formGroups.map(input => {
           if (input.type === "text") {
             return generateTextFormGroup(
               input as TextInput,
@@ -156,8 +156,9 @@ const ResponsiveForm: React.FC<Props> = ({
               pathVarGroup.formGroups
             );
           }
-        });
+        })}</div>);
       })}
+      <div className="responsive-form--form-block">
       <button
         className={`btn ${inputIsValid ? "btn-success" : "btn-warning"}`}
         onClick={evt => handleSearch(evt)}
@@ -169,6 +170,7 @@ const ResponsiveForm: React.FC<Props> = ({
         style={{ visibility: loading ? "inherit" : "hidden" }}
         role="status"
       ></div>
+      </div>
     </form>
   );
 };
