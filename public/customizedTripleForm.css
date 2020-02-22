@@ -2,6 +2,7 @@
     Available Classes:
     tripleform || Main Container of form
     responsiveform || the form element
+    responsive-form--form-block || spans a group of inputs for a restpath-variable. 
     tripleform--autocomplete-formgroup || 
     tripleform--selectformgroup ||
     tripleform--textformgroup ||

@@ -2,6 +2,7 @@
     Available Classes:
     tripleform || Main Container of form
     responsiveform || the form element
+    responsive-form--form-block || spans a group of inputs for a restpath-variable.  
     tripleform--autocomplete-formgroup || 
     tripleform--selectformgroup ||
     tripleform--textformgroup ||
@@ -10,7 +11,6 @@
 .tripleform .responsiveform {
     padding: 3em;
     box-shadow: 1px 1px 2px 10px inset whitesmoke;
-    display: flex;
 }
 
 .tripleform .responsiveform input, small, select {
@@ -19,14 +19,26 @@
     
 }
 
-.tripleform .responsiveform .form-group {
-    overflow: hidden;
-    display: inline;
-}
-
 .tripleform .tripleform--spinner {
     width: 1.5rem; 
     height: 1.5rem; 
     margin-left: 1em;
     color: lightgray;
+}
+
+.tripleform .responsive-form--form-block {
+    display: flex;  
+}
+
+.tripleform .responsive-form--form-block:first-child {
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.tripleform .responsive-form--form-block:nth-child(2) {
+      margin-left: 4em;
+}
+
+.tripleform .responsive-form--form-block:nth-child(3) {
+    margin-left: 4em;
 }
