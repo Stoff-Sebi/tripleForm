@@ -50,14 +50,6 @@ const TripleFormReact: React.FC<props> = ({
       return;
     }
     setTripleFormConfig(gamsConfig.tripleForm);
-    
-    //local storage handling
-    let localQueryInputs = localStorage.getItem('tripleForm');
-    /* if(localQueryInputs){
-      setInputs(JSON.parse(localQueryInputs));
-    } else {
-      setInputs(gamsConfig.tripleForm.properties);
-    }; */
     setInputs(gamsConfig.tripleForm.properties);
   }, [gamsConfig]);
 
@@ -115,12 +107,6 @@ const TripleFormReact: React.FC<props> = ({
     });
     if (query === "undefined") return setQuery("");
     setQuery(query);
-  }, [queryInputs]);
-
-  //sets the local storage whenever the input changes.
-  React.useEffect(()=>{
-    if(!queryInputs)return;
-    localStorage.setItem('tripleForm', JSON.stringify(queryInputs));
   }, [queryInputs]);
 
   //validates when query changes.
