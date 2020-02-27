@@ -5,35 +5,27 @@ interface props {
   onChange: (value: string) => void;
   value: string;
   localStorageKey: string;
-  useLocaleStorage: boolean;
-  [properties: string]:
-    | React.InputHTMLAttributes<HTMLInputElement>
-    | Function
-    | string
-    | boolean
-    | null;
+  [properties: string]: any
 }
 
 const StorageInput: React.FC<props> = ({
   onChange,
   value,
   localStorageKey,
-  useLocaleStorage,
   ...properties
 }) => {
-  const [inputValue, setInputValue] = React.useState<string>(value);
 
   return (
     <>
       <LocalStorageApplier
         storageKey={localStorageKey}
-        value={inputValue}
-        getLoadedValue={(val)=>setInputValue(val)}
+        value={value}
+        onChange={(val)=>onChange(val)}
       >
         <input
-          onChange={evt => setInputValue(evt.currentTarget.value)}
-          value={inputValue}
-          {...properties}
+          onChange={evt => onChange(evt.currentTarget.value)}
+          value={value}
+          {...properties} //spreads any further given properties
         ></input>
       </LocalStorageApplier>
     </>

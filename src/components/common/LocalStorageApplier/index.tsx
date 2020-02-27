@@ -4,39 +4,27 @@ interface Props {
   value: string;
   storageKey: string;
   children: any;
-  getLoadedValue: (val: string) => void;
-  resetStoredValue?: boolean;
-  
+  onChange: (val: string) => void;
 }
 
 const LocalStorageApplier: React.FC<Props> = ({
   children,
   value,
   storageKey,
-  getLoadedValue,
+  onChange
 }) => {
-  const [savedValue, setSavedValue] = React.useState<string>(value);
 
-  React.useEffect(() => {    
+  React.useEffect(() => {
     let storageVal = localStorage.getItem(storageKey);
-    if(storageVal === null){
-      storageVal=""
-    } else {
-      
-    }
-    setSavedValue(storageVal);
-    if(getLoadedValue)getLoadedValue(storageVal);
+    if (storageVal === null) storageVal = "";
+    if (onChange) onChange(storageVal);
   }, []);
 
   React.useEffect(() => {
     localStorage.setItem(storageKey, value);
   }, [value]);
 
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default LocalStorageApplier;
