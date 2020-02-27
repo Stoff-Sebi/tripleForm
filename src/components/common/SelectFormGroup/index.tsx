@@ -5,9 +5,10 @@ import LocalStorageApplier from "../LocalStorageApplier";
 interface props {
   options: SelectInput;
   onChange: (value: string) => void;
+  localStorageKey: string;
 }
 
-const SelectFormGroup: React.FC<props> = ({ options, onChange }) => {
+const SelectFormGroup: React.FC<props> = ({ options, onChange, localStorageKey }) => {
   const [selectedVal, setSelectedVal] = React.useState<string>(() => {
     let filtered = options.value.filter(val => val._selected === true);
     return filtered.length > 0 ? (filtered[0].value as string) : "";
@@ -33,7 +34,7 @@ const SelectFormGroup: React.FC<props> = ({ options, onChange }) => {
       <LocalStorageApplier
         value={selectedVal}
         onChange={(val)=>handleSelection(val)}
-        storageKey="blä"  
+        storageKey={`SelectFormGroup_${localStorageKey}`}  
       >
         {options.label ? <label>{options.label}</label> : null}
         <select

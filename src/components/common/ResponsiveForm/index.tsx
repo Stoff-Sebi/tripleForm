@@ -53,6 +53,9 @@ const ResponsiveForm: React.FC<Props> = ({
         key={`ResponsiveForm_SelectFormGroup_${inputGroups.indexOf(
           selectInput
         )}`}
+        localStorageKey={`ResponsiveForm_${inputGroups.indexOf(
+          selectInput
+        )}`}
         options={selectInput}
         onChange={value => onFormGroupChange(value, selectInput)}
       />
