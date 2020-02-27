@@ -1,5 +1,5 @@
 import React from "react";
-
+import StorageInput from "../../common/StorageInput";
 interface props {
   queryStart: string;
   query: string;
@@ -7,8 +7,17 @@ interface props {
 }
 
 const QueryBuilder: React.FC<props> = ({ queryStart, query, paramDelimiter }) => {
+
+  const [state, setState] = React.useState<string>("");
+
   return (
     <div className={`container`}>
+      <StorageInput
+        localStorageKey="x"
+        onChange={(val)=>setState(val)}
+        useLocaleStorage={true}
+        value={state}
+      ></StorageInput>
       <br></br>
       <h4>Query Build Helper</h4>
       <p>

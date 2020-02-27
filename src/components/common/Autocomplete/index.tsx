@@ -1,17 +1,20 @@
 import React from "react";
 import Autosuggest from "react-autosuggest";
 import { AutcompleteInput } from "../../../@types/types";
+import LocalStorageApplier from "../LocalStorageApplier"
 
 interface Props {
   id: string;
   autoCompleteOption: AutcompleteInput;
   onchange?: (evt: any) => void;
+  localStorageKey: string;
 }
 
 const AutoComplete: React.FC<Props> = ({
   id,
   autoCompleteOption,
-  onchange = undefined
+  onchange = undefined,
+  localStorageKey
 }) => {
   const [value, setValue] = React.useState<string>(()=>{
     let filtered = autoCompleteOption.value.filter(val=>(val._selected===true));
@@ -128,16 +131,22 @@ const AutoComplete: React.FC<Props> = ({
   );
 
   return (
-    <Autosuggest
-      id={id}
-      suggestions={suggestions}
-      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      getSuggestionValue={getSuggestionValue}
-      renderSuggestion={renderSuggestion}
-      inputProps={inputProps}
-      renderInputComponent={renderInputComponent}
-    />
+    <LocalStorageApplier
+      onChange={val => setValue(val)}
+      value={value}
+      storageKey={localStorageKey}
+    >
+      <Autosuggest
+        id={id}
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={inputProps}
+        renderInputComponent={renderInputComponent}
+      />
+    </LocalStorageApplier>
   );
 };
 

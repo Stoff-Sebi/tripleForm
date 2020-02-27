@@ -1,5 +1,6 @@
 import React from "react";
 import { TextInput } from "../../../@types/types";
+import LocalStorageInput from "../StorageInput";
 
 interface props {
     options: TextInput
@@ -30,15 +31,16 @@ const TextFormGroup: React.FC<props> = ({options, onChange = undefined}) => {
     return (
     <div className="form-group tripleform--textformgroup">
         { options.label ? <label>{options.label}</label> : null}
-        <input
-        required={options.required}
-        className="form-control"
-        type="text"
-        id={options.id}
-        placeholder={options.placeHolder}
-        value={options.value}
-        onChange={evt => setValue(evt.currentTarget.value)}
-        />
+        <LocalStorageInput
+          localStorageKey="x" //TODO handle storage key more efficient!
+          required={options.required}
+          className="form-control"
+          type="text"
+          id={options.id}
+          placeholder={options.placeHolder}
+          value={options.value}
+          onChange={val => setValue(val)}
+        ></LocalStorageInput>
         {options.small ? <small className="form-text text-muted">{options.small}</small> : null}
     </div>); 
 }

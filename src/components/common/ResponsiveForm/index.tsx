@@ -71,6 +71,7 @@ const ResponsiveForm: React.FC<Props> = ({
         key={`ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}`}
         autoCompleteOption={selectInput as AutcompleteInput}
         onchange={value => onFormGroupChange(value, selectInput)}
+        localStorageKey={`ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}`}
       ></Autocomplete>
     );
   };

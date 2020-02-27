@@ -53,11 +53,12 @@ const TripleFormReact: React.FC<props> = ({
     
     //local storage handling
     let localQueryInputs = localStorage.getItem('tripleForm');
-    if(localQueryInputs){
+    /* if(localQueryInputs){
       setInputs(JSON.parse(localQueryInputs));
     } else {
       setInputs(gamsConfig.tripleForm.properties);
-    };
+    }; */
+    setInputs(gamsConfig.tripleForm.properties);
   }, [gamsConfig]);
 
   //Use Effect build the query as url string
