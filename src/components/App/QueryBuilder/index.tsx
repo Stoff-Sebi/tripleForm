@@ -18,7 +18,7 @@ const QueryBuilder: React.FC<props> = ({ queryStart, query, paramDelimiter }) =>
         localStorageKey="x"
         onChange={(val)=>setState(val)}
         useLocaleStorage={true}
-        options={[{label:"hi", value:"test"}]}
+        options={[{label:"hi", value:"test"}, {label:"hi02", value:"test02"}]}
         value={state}
         placeHolder="Das ist ein placeholder"
       ></StorageSelect>
