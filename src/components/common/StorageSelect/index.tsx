@@ -32,7 +32,7 @@ const StorageSelect: React.FC<Props> = ({
             {...properties}
           >
             {placeHolder ? (
-              <option key={`SelectFormGroup_option_-1`} value="" disabled>
+              <option key={`SelectFormGroup_option_-1`} value="" disabled hidden>
                 {placeHolder}
               </option>
             ) : (
