@@ -13,8 +13,8 @@ interface Props {
 const StorageSelect: React.FC<Props> = ({
   onChange,
   value,
-  localStorageKey,
   options,
+  localStorageKey,
   placeHolder = undefined,
   ...properties
 }) => {
@@ -22,13 +22,14 @@ const StorageSelect: React.FC<Props> = ({
     <>
       {
         <LocalStorageApplier
-          onChange={() => undefined}
+          onChange={(val) => onChange(val)}
           storageKey={localStorageKey}
-          value={"x"}
+          value={value}
         >
           <select
             value={value}
             onChange={evt => onChange(evt.currentTarget.value)}
+            {...properties}
           >
             {placeHolder ? (
               <option key={`SelectFormGroup_option_-1`} value="" disabled>
