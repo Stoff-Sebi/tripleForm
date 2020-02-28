@@ -181,7 +181,7 @@ const ResponsiveForm: React.FC<Props> = ({
         >
           Search
         </button>
-        <button className="btn btn-light" onClick={ navigationUtils.resetStorageReloadPage }>Suche zurücksetzen</button>
+        <button className="btn btn-light" onClick={(evt) =>  {evt.preventDefault(); navigationUtils.resetStorageReloadPage()} }>Suche zurücksetzen</button>
         <div
           className="spinner-border tripleform--spinner"
           style={{ visibility: loading ? "inherit" : "hidden" }}
