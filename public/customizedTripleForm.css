@@ -3,9 +3,11 @@
     tripleform || Main Container of form
     responsiveform || the form element
     responsive-form--form-block || spans a group of inputs for a restpath-variable. 
+    responsive-form--button-block || form block that handles the buttons
     tripleform--autocomplete-formgroup || 
     tripleform--selectformgroup ||
     tripleform--textformgroup ||
+    
 *************************/
 
 .tripleform .responsiveform {
@@ -30,4 +32,8 @@
     height: 1.5rem; 
     margin-left: 1em;
     color: lightgray;
+}
+
+.responsive-form--button-block button {
+    margin-right: .5em;
 }

@@ -174,14 +174,14 @@ const ResponsiveForm: React.FC<Props> = ({
           </div>
         );
       })}
-      <div className="responsive-form--form-block">
+      <div className="responsive-form--form-block responsive-form--button-block">
         <button
           className={`btn ${inputIsValid ? "btn-success" : "btn-warning"}`}
           onClick={evt => handleSearch(evt)}
         >
           Search
         </button>
-        <button className="btn" onClick={ navigationUtils.resetStorageReloadPage }>Suche zurücksetzen</button>
+        <button className="btn btn-light" onClick={ navigationUtils.resetStorageReloadPage }>Suche zurücksetzen</button>
         <div
           className="spinner-border tripleform--spinner"
           style={{ visibility: loading ? "inherit" : "hidden" }}
