@@ -8,7 +8,12 @@ interface props {
   localStorageKey: string;
 }
 
-const SelectFormGroup: React.FC<props> = ({ options, onChange, localStorageKey }) => {
+const SelectFormGroup: React.FC<props> = ({
+  options,
+  onChange,
+  localStorageKey
+}) => {
+  // search for the corresponding value according to _selected property.
   const [selectedVal, setSelectedVal] = React.useState<string>(() => {
     let filtered = options.value.filter(val => val._selected === true);
     return filtered.length > 0 ? (filtered[0].value as string) : "";
@@ -22,7 +27,7 @@ const SelectFormGroup: React.FC<props> = ({ options, onChange, localStorageKey }
       selectedVal === null
     )
       return;
-    if (onChange) onChange(selectedVal);
+    onChange(selectedVal);
   }, [selectedVal]);
 
   const handleSelection = (value: string) => {
@@ -33,8 +38,8 @@ const SelectFormGroup: React.FC<props> = ({ options, onChange, localStorageKey }
     <div className="form-group tripleform--selectformgroup">
       <LocalStorageApplier
         value={selectedVal}
-        onChange={(val)=>handleSelection(val)}
-        storageKey={localStorageKey}  
+        onChange={val => handleSelection(val)}
+        storageKey={localStorageKey}
       >
         {options.label ? <label>{options.label}</label> : null}
         <select
