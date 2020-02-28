@@ -20,7 +20,10 @@ const SelectFormGroup: React.FC<props> = ({
   });
 
   const handleSelection = (value: string) => {
+    //set selection intern - string of value.
     setSelectedVal(value);
+
+    //communicate to above selection 
     let filtered = options.value.filter(val => val.value === value);
     let matched = filtered.length > 0 ? (filtered[0].value as string) : "";
     onChange(matched);
