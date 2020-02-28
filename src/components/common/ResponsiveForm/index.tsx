@@ -33,9 +33,11 @@ const ResponsiveForm: React.FC<Props> = ({
     textInput: TextInput,
     inputFieldsIntern: Input[]
   ): JSX.Element | TypeError => {
+    let keyId = `responsiveForm_TextFormGroup_${inputFieldsIntern.indexOf(textInput)}_${textInput.id}` ;
     return (
       <TextFormGroup
-        key={`responsiveForm_formGroup_${inputFieldsIntern.indexOf(textInput)}`}
+        key={keyId}
+        localStorageKey={keyId}
         options={textInput}
         onChange={value => onFormGroupChange(value, textInput)}
       ></TextFormGroup>
@@ -48,14 +50,13 @@ const ResponsiveForm: React.FC<Props> = ({
   ): JSX.Element | TypeError => {
     //first runtime validation
     runtimeValidateSelect(selectInput);
+    let keyId = `ResponsiveForm_SelectFormGroup_${inputGroups.indexOf(
+      selectInput
+    )}_${selectInput.id}`;
     return (
       <SelectFormGroup
-        key={`ResponsiveForm_SelectFormGroup_${inputGroups.indexOf(
-          selectInput
-        )}`}
-        localStorageKey={`ResponsiveForm_${inputGroups.indexOf(
-          selectInput
-        )}`}
+        key={keyId}
+        localStorageKey={keyId}
         options={selectInput}
         onChange={value => onFormGroupChange(value, selectInput)}
       />
@@ -68,13 +69,14 @@ const ResponsiveForm: React.FC<Props> = ({
   ) => {
     //first runtime validation
     runtimeValidateSelect(selectInput);
+    let keyId = `ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}_${selectInput.id}`;
     return (
       <Autocomplete
         id={`${Math.random() * 1000}`}
-        key={`ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}`}
+        key={keyId}
         autoCompleteOption={selectInput as AutcompleteInput}
         onchange={value => onFormGroupChange(value, selectInput)}
-        localStorageKey={`ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}`}
+        localStorageKey={keyId}
       ></Autocomplete>
     );
   };

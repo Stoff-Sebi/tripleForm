@@ -134,7 +134,7 @@ const AutoComplete: React.FC<Props> = ({
     <LocalStorageApplier
       onChange={val => setValue(val)}
       value={value}
-      storageKey={`${localStorageKey}_${autoCompleteOption.id}`}
+      storageKey={localStorageKey}
     >
       <Autosuggest
         id={id}

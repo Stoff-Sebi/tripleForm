@@ -3,17 +3,18 @@ import { TextInput } from "../../../@types/types";
 import LocalStorageInput from "../StorageInput";
 
 interface props {
-    options: TextInput
-    onChange?: (value: string) => void
+    options: TextInput;
+    onChange: (value: string) => void;
+    localStorageKey: string
 }
 
-const TextFormGroup: React.FC<props> = ({options, onChange = undefined}) => {
+const TextFormGroup: React.FC<props> = ({options, onChange, localStorageKey}) => {
 
     const [value, setValue] = React.useState<string>(options.value);
 
     React.useEffect(()=>{
         if(value === undefined || value === "undefined" || value === null)return;
-        if(onChange)onChange(value);
+        onChange(value);
     }, [value]);
 
     //small runtime validation to run only on mount
@@ -32,7 +33,7 @@ const TextFormGroup: React.FC<props> = ({options, onChange = undefined}) => {
     <div className="form-group tripleform--textformgroup">
         { options.label ? <label>{options.label}</label> : null}
         <LocalStorageInput
-          localStorageKey="x" //TODO handle storage key more efficient!
+          localStorageKey={localStorageKey}
           required={options.required}
           className="form-control"
           type="text"
