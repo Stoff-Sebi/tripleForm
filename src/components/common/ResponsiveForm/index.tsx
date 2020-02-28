@@ -11,6 +11,7 @@ import {
 } from "../../../@types/types";
 import Autocomplete from "../Autocomplete";
 import zimUtils from "../../../utils/utils";
+import { navigationUtils } from "../../../utils/navigation";
 
 interface Props {
   restPathGroups: RestPathVariableGroup[];
@@ -180,6 +181,7 @@ const ResponsiveForm: React.FC<Props> = ({
         >
           Search
         </button>
+        <button className="btn" onClick={ navigationUtils.resetStorageReloadPage }>Suche zurücksetzen</button>
         <div
           className="spinner-border tripleform--spinner"
           style={{ visibility: loading ? "inherit" : "hidden" }}
