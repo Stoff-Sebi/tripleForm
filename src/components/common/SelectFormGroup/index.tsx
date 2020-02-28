@@ -34,7 +34,7 @@ const SelectFormGroup: React.FC<props> = ({ options, onChange, localStorageKey }
       <LocalStorageApplier
         value={selectedVal}
         onChange={(val)=>handleSelection(val)}
-        storageKey={`${localStorageKey}_SelectFormGroup`}  
+        storageKey={`${localStorageKey}_SelectFormGroup_${options.id}`}  
       >
         {options.label ? <label>{options.label}</label> : null}
         <select
