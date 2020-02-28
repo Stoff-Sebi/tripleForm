@@ -7,7 +7,7 @@ interface Props {
   localStorageKey: string;
   options: { label: string; value: string }[];
   placeHolder?: string;
-  [properties: string]: any;
+  [properties: string]: any;  //properties are spread onto the <select> element.
 }
 
 const StorageSelect: React.FC<Props> = ({

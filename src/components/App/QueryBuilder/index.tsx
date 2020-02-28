@@ -21,6 +21,7 @@ const QueryBuilder: React.FC<props> = ({ queryStart, query, paramDelimiter }) =>
         options={[{label:"hi", value:"test"}, {label:"hi02", value:"test02"}]}
         value={state}
         placeHolder="Das ist ein placeholder"
+        className="form-control"
       ></StorageSelect>
       <br></br>
       <h4>Query Build Helper</h4>
