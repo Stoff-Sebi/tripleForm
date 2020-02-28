@@ -6,14 +6,14 @@ import LocalStorageApplier from "../LocalStorageApplier"
 interface Props {
   id: string;
   autoCompleteOption: AutcompleteInput;
-  onchange?: (evt: any) => void;
+  onchange: (evt: any) => void;
   localStorageKey: string;
 }
 
 const AutoComplete: React.FC<Props> = ({
   id,
   autoCompleteOption,
-  onchange = undefined,
+  onchange,
   localStorageKey
 }) => {
   const [value, setValue] = React.useState<string>(()=>{
@@ -28,7 +28,13 @@ const AutoComplete: React.FC<Props> = ({
 
   const getSuggestions = (typedValue: string) => {
     setTypedIn(typedValue); // sets a state where typed in value is stored.
-    if(typedValue===value)setValue("");
+    
+    //sets the input to empty when clicked on
+    if(typedValue===value){
+      onchange(undefined);  //resect selection for "component above";
+      setValue("");         //clear input
+    };
+
     const inputValue = typedValue.trim().toLowerCase();
     const inputLength = inputValue.length;
     if(typedValue==="*")return autoCompleteOption.value;
