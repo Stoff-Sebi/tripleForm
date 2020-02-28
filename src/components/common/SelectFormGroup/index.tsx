@@ -19,19 +19,11 @@ const SelectFormGroup: React.FC<props> = ({
     return filtered.length > 0 ? (filtered[0].value as string) : "";
   });
 
-  React.useEffect(() => {
-    if (
-      selectedVal === "" ||
-      selectedVal === undefined ||
-      selectedVal === "undefined" ||
-      selectedVal === null
-    )
-      return;
-    onChange(selectedVal);
-  }, [selectedVal]);
-
   const handleSelection = (value: string) => {
     setSelectedVal(value);
+    let filtered = options.value.filter(val => val.value === value);
+    let matched = filtered.length > 0 ? (filtered[0].value as string) : "";
+    onChange(matched);
   };
 
   return (
