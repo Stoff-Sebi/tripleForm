@@ -7,6 +7,7 @@ interface Props {
   onChange: (val: string) => void;
 }
 
+//TODO jsdoc
 const LocalStorageApplier: React.FC<Props> = ({
   children,
   value,
