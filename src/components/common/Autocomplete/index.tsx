@@ -23,10 +23,6 @@ const AutoComplete: React.FC<Props> = ({
 
   const [typedIn, setTypedIn] = React.useState<string>(value);
 
-  const [linkedObject, setLinkedObject] = React.useState<Object | undefined>(
-    undefined
-  );
-
   //needs to be let because getter has to be set!
   let [suggestions, setSuggestions] = React.useState<string[]>([]);
 
@@ -69,7 +65,6 @@ const AutoComplete: React.FC<Props> = ({
     if (!value) return;
     let obj = autoCompleteOption.value.filter(val => val.label === value);
     if (!obj[0]) return;
-    setLinkedObject(obj[0]);
     if (onchange) onchange(obj[0].value);
   }, [value]);
 
