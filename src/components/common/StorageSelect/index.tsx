@@ -4,7 +4,7 @@ import LocalStorageApplier from "../LocalStorageApplier";
 interface Props {
   onChange: (value: string) => void;
   value: string;
-  localStorageKey: string | false;
+  localStorageKey: string;
   options: { label: string; value: string }[];
   placeHolder?: string;
   [properties: string]: any;
@@ -23,7 +23,7 @@ const StorageSelect: React.FC<Props> = ({
       {
         <LocalStorageApplier
           onChange={() => undefined}
-          storageKey="test"
+          storageKey={localStorageKey}
           value={"x"}
         >
           <select
