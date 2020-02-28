@@ -1,6 +1,6 @@
 import React from "react";
 import { SelectInput } from "../../../@types/types";
-import LocalStorageApplier from "../LocalStorageApplier";
+import StorageSelect from "../StorageSelect";
 
 interface props {
   options: SelectInput;
@@ -36,31 +36,18 @@ const SelectFormGroup: React.FC<props> = ({
 
   return (
     <div className="form-group tripleform--selectformgroup">
-      <LocalStorageApplier
+      {options.label ? <label>{options.label}</label> : null}
+      <StorageSelect
+        localStorageKey={localStorageKey}
+        onChange={(val)=>handleSelection(val)}
+        useLocaleStorage={true}
+        options={options.value as {label: string, value: string}[]}
         value={selectedVal}
-        onChange={val => handleSelection(val)}
-        storageKey={localStorageKey}
-      >
-        {options.label ? <label>{options.label}</label> : null}
-        <select
-          required={options.required}
-          className="form-control"
-          value={selectedVal}
-          onChange={evt => handleSelection(evt.currentTarget.value)}
-        >
-          <option key={`SelectFormGroup_option_-1`} value="">
-            {options.placeHolder}
-          </option>
-          {options.value.map((option, index) => (
-            <option
-              key={`SelectFormGroup_option_${index}`}
-              value={option.value}
-            >
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </LocalStorageApplier>
+        // following props are spread to <select>
+        placeHolder={options.placeHolder}
+        className="form-control"
+        required={options.required}
+      ></StorageSelect>
       {options.small ? (
         <small className="form-text text-muted">{options.small}</small>
       ) : null}
