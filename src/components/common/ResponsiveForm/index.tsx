@@ -33,7 +33,9 @@ const ResponsiveForm: React.FC<Props> = ({
     textInput: TextInput,
     inputFieldsIntern: Input[]
   ): JSX.Element | TypeError => {
-    let keyId = `responsiveForm_TextFormGroup_${inputFieldsIntern.indexOf(textInput)}_${textInput.id}` ;
+    let keyId = `responsiveForm_TextFormGroup_${inputFieldsIntern.indexOf(
+      textInput
+    )}_${textInput.id}`;
     return (
       <TextFormGroup
         key={keyId}
@@ -69,7 +71,9 @@ const ResponsiveForm: React.FC<Props> = ({
   ) => {
     //first runtime validation
     runtimeValidateSelect(selectInput);
-    let keyId = `ResponsiveForm_AutoComplete_${inputGroups.indexOf(selectInput)}_${selectInput.id}`;
+    let keyId = `ResponsiveForm_AutoComplete_${inputGroups.indexOf(
+      selectInput
+    )}_${selectInput.id}`;
     return (
       <Autocomplete
         id={`${Math.random() * 1000}`}
@@ -143,39 +147,44 @@ const ResponsiveForm: React.FC<Props> = ({
       {//first iterate over different pathVarGroups
       restPathGroups.map((pathVarGroup: RestPathVariableGroup) => {
         //then over individual linked formgroups = Input type
-        return ( <div className="responsive-form--form-block"> {pathVarGroup.formGroups.map(input => {
-          if (input.type === "text") {
-            return generateTextFormGroup(
-              input as TextInput,
-              pathVarGroup.formGroups
-            );
-          }
-          if (input.type === "select") {
-            return generateSelectFormGroup(
-              input as SelectInput,
-              pathVarGroup.formGroups
-            );
-          }
-          if (input.type === "autocomplete") {
-            return generateAutoCompleteFormGroup(
-              input as AutcompleteInput,
-              pathVarGroup.formGroups
-            );
-          }
-        })}</div>);
+        return (
+          <div className="responsive-form--form-block">
+            {" "}
+            {pathVarGroup.formGroups.map(input => {
+              if (input.type === "text") {
+                return generateTextFormGroup(
+                  input as TextInput,
+                  pathVarGroup.formGroups
+                );
+              }
+              if (input.type === "select") {
+                return generateSelectFormGroup(
+                  input as SelectInput,
+                  pathVarGroup.formGroups
+                );
+              }
+              if (input.type === "autocomplete") {
+                return generateAutoCompleteFormGroup(
+                  input as AutcompleteInput,
+                  pathVarGroup.formGroups
+                );
+              }
+            })}
+          </div>
+        );
       })}
       <div className="responsive-form--form-block">
-      <button
-        className={`btn ${inputIsValid ? "btn-success" : "btn-warning"}`}
-        onClick={evt => handleSearch(evt)}
-      >
-        Search
-      </button>
-      <div
-        className="spinner-border tripleform--spinner"
-        style={{ visibility: loading ? "inherit" : "hidden" }}
-        role="status"
-      ></div>
+        <button
+          className={`btn ${inputIsValid ? "btn-success" : "btn-warning"}`}
+          onClick={evt => handleSearch(evt)}
+        >
+          Search
+        </button>
+        <div
+          className="spinner-border tripleform--spinner"
+          style={{ visibility: loading ? "inherit" : "hidden" }}
+          role="status"
+        ></div>
       </div>
     </form>
   );
