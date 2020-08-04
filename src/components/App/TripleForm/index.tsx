@@ -9,6 +9,13 @@ import {
   RestPathVariableGroup
 } from "../../../@types/types";
 
+import { GAMSWidgetProps } from "../../common/GamsWidget";
+// extending the prop-type of the GamsWidgetComponent
+interface GAMSTripleFormProps extends GAMSWidgetProps {
+  widgetDef: TripleForm 
+}
+
+
 interface props {
   queryStart?: string;
   parameterDelimiter?: string;
