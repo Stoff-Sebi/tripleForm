@@ -31,7 +31,7 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
   );
   //assigned in useEffect -> tripleFormConfig variable.
   const [tripleFormConfig, setTripleFormConfig] = React.useState<
-    TripleForm | any
+    TripleForm | undefined
   >(undefined);
 
   const [query, setQuery] = React.useState<"" | string>("");
@@ -63,9 +63,8 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
     let query = "";
 
     //if paramDelimiter is set via props take that otherwise take setting in tripleFormConfig
-    let paramDelimiter = widgetDef.gui
-      ? widgetDef.gui.parameterDelimiter
-      : tripleFormConfig.parameterDelimiter;
+    if(!widgetDef.gui)return;
+    let paramDelimiter = widgetDef.gui;
 
     queryInputs.forEach(restVargroup => {
       if (query.includes(restVargroup.restPathVariable))
@@ -150,9 +149,10 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
       return alert(
         "Bitte wählen Sie für alle Suchfelder einen gültigen Wert aus."
       );
+    if(!widgetDef.gui)return;
 
     //last navigate to page
-    let url = (widgetDef.gui ? widgetDef.gui : tripleFormConfig.queryStart) + query;
+    let url = widgetDef.gui.queryStart + query;
     setLoading(true);
     window.location.href = encodeURI(url);
   };
@@ -172,8 +172,8 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
            * Display help to construct query via the query builder.
            * see TripleForm type -> only displayed when lifecycle set to develop
            */}
-          {(tripleFormConfig.lifecycle === "develop") ? (
-            <QueryBuilder query={query} queryStart={ widgetDef.gui ? widgetDef.gui.queryStart : tripleFormConfig.queryStart} paramDelimiter={widgetDef.gui ? widgetDef.gui.parameterDelimiter : tripleFormConfig.parameterDelimiter}/>
+          {(widgetDef.lifecycle) && (widgetDef.lifecycle  === "develop") ? (
+            <QueryBuilder query={query} queryStart={widgetDef.gui.queryStart} paramDelimiter={widgetDef.gui.parameterDelimiter}/>
           ) : null}
         </>
       ) : null}
