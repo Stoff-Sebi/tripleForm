@@ -1,4 +1,6 @@
 
+import { GamsWidgetType } from "../components/common/GamsWidget";
+
 export interface RestPathVariableGroup {
     restPathVariable: string;
     formGroups: QueryInput[];
@@ -48,11 +50,12 @@ export interface QueryBuildAble {
     parameter?: string;
 }
 
-export interface TripleForm {
-    queryStart: string;
-    parameterDelimiter: string,
-    properties: RestPathVariableGroup[];
-    lifecycle: "develop" | "deploy"
+export interface TripleForm extends GamsWidgetType {
+    gui: {
+        queryStart: string;
+        parameterDelimiter: string,
+        params: RestPathVariableGroup[],
+    }
 }
 
 
