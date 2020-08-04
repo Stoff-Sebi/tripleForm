@@ -142,10 +142,10 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
 
   return (
     <div className="tripleform">
-      {widgetDef.gui ? (
+      {widgetDef.gui && queryInputs ? (
         <>
           <ResponsiveForm
-            restPathGroups={widgetDef.gui.params}
+            restPathGroups={queryInputs}
             setInputFields={setInputs}
             handleSearch={handleSearch}
             inputIsValid={inputIsValid}
