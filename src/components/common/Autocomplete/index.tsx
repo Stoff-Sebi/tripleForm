@@ -41,7 +41,7 @@ const AutoComplete: React.FC<Props> = ({
     return inputLength === 0
       ? []
       : autoCompleteOption.value.filter(
-          lang => lang.label.toLowerCase().slice(0, inputLength) === inputValue
+          lang => lang.label ? (lang.label.toLowerCase().slice(0, inputLength) === inputValue) : undefined
         );
   };
 
