@@ -7,6 +7,7 @@ import {
   TripleForm,
   RestPathVariableGroup
 } from "../../../@types/types";
+import { copyDeep } from "../../../utils/gamsUtils";
 
 import { GAMSWidgetProps } from "../../common/GamsWidget";
 // extending the prop-type of the GamsWidgetComponent
@@ -18,12 +19,12 @@ interface GAMSTripleFormProps extends GAMSWidgetProps {
 const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
   widgetDef
 }) => {
-  //for config linked with ConfigProvider
-  const [gamsConfig, setGamsConfig] = React.useState<undefined | any>(
-    undefined
-  );
-
+  
+  //state constructs the query string
   const [query, setQuery] = React.useState<"" | string>("");
+
+  // copy of widgetdef.gui.params
+  // RestpathVariable type is manipulated by user -> React needs that for two-way binding.
   const [queryInputs, setInputs] = React.useState<
     RestPathVariableGroup[] | undefined
   >(undefined);
@@ -33,26 +34,20 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
   );
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  // initial useEffect to configure component
+  // initial useEffect to copy data structure inside the gui.
   React.useEffect(() => {
-    if (!gamsConfig) return;
-    if (!gamsConfig.tripleForm) {
-      console.error(
-        "No tripleForm property could've been detected. Make sure to apply configuration inside window._gamsComponentConfig.tripleForm"
-      );
-      return;
-    }
-    setInputs(gamsConfig.tripleForm.properties);
-  }, [gamsConfig]);
+    if(!widgetDef.gui)return;
+    setInputs(copyDeep(widgetDef.gui.params));
+  }, [widgetDef]);
 
   //Use Effect build the query as url string
   React.useEffect(() => {
     if (!queryInputs) return;
     let query = "";
 
-    //if paramDelimiter is set via props take that otherwise take setting in tripleFormConfig
+    //delimiter set in widgetDefinition
     if(!widgetDef.gui)return;
-    let paramDelimiter = widgetDef.gui;
+    let paramDelimiter = widgetDef.gui.parameterDelimiter;
 
     queryInputs.forEach(restVargroup => {
       if (query.includes(restVargroup.restPathVariable))
