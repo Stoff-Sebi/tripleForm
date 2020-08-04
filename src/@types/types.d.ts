@@ -35,7 +35,6 @@ export interface SelectValue {
     value: string | number;
     _selected?: boolean;
 }
-}
 
 export interface QuerySelectInput extends SelectInput, QueryInput {}
 
