@@ -15,13 +15,6 @@ interface GAMSTripleFormProps extends GAMSWidgetProps {
 }
 
 
-interface props {
-  queryStart?: string;
-  parameterDelimiter?: string;
-  parameters?: QueryInput[];
-  encode?: boolean;
-}
-
 const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
   widgetDef
 }) => {
