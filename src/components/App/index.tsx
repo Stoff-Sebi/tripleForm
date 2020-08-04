@@ -5,7 +5,7 @@ import WidgetDefProvider from "../common/GamsWidget/WidgetDefProvider"
 import DataProvider from "../common/GamsWidget/DataProvider"
 
 const TripleFormWidget = () => {
-  return ( 
+  return (
     <GamsWidget
       WidgetComponent={{ Component: TripleForm }}
       WidgetDefProvider={{ Component: WidgetDefProvider, props: { globalPropName:"__gamsWidget__TripleForm", datastream: "WIDGET_TRIPLE_FORM" } }}

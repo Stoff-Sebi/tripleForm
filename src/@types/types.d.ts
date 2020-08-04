@@ -51,7 +51,7 @@ export interface QueryBuildAble {
 }
 
 export interface TripleForm extends GamsWidgetType {
-    gui: {
+    gui?: { 
         queryStart: string;
         parameterDelimiter: string,
         params: RestPathVariableGroup[],
