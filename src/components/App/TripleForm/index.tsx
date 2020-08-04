@@ -64,7 +64,7 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
     let query = "";
 
     //if paramDelimiter is set via props take that otherwise take setting in tripleFormConfig
-    let paramDelimiter = widgetDef.gui.parameterDelimiter
+    let paramDelimiter = widgetDef.gui
       ? widgetDef.gui.parameterDelimiter
       : tripleFormConfig.parameterDelimiter;
 
@@ -153,7 +153,7 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
       );
 
     //last navigate to page
-    let url = (widgetDef.gui.queryStart ? widgetDef.gui.queryStart : tripleFormConfig.queryStart) + query;
+    let url = (widgetDef.gui ? widgetDef.gui : tripleFormConfig.queryStart) + query;
     setLoading(true);
     window.location.href = encodeURI(url);
   };
@@ -165,10 +165,10 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
         setConfig={setGamsConfig}
         configUrl={undefined}
       ></ConfigProvier>
-      {queryInputs ? (
+      {widgetDef.gui ? (
         <>
           <ResponsiveForm
-            restPathGroups={queryInputs}
+            restPathGroups={widgetDef.gui.params}
             setInputFields={setInputs}
             handleSearch={handleSearch}
             inputIsValid={inputIsValid}
@@ -179,7 +179,7 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
            * see TripleForm type -> only displayed when lifecycle set to develop
            */}
           {(tripleFormConfig.lifecycle === "develop") ? (
-            <QueryBuilder query={query} queryStart={ widgetDef.gui.queryStart ? widgetDef.gui.queryStart : tripleFormConfig.queryStart} paramDelimiter={widgetDef.gui.parameterDelimiter ? widgetDef.gui.parameterDelimiter : tripleFormConfig.parameterDelimiter}/>
+            <QueryBuilder query={query} queryStart={ widgetDef.gui ? widgetDef.gui.queryStart : tripleFormConfig.queryStart} paramDelimiter={widgetDef.gui ? widgetDef.gui.parameterDelimiter : tripleFormConfig.parameterDelimiter}/>
           ) : null}
         </>
       ) : null}

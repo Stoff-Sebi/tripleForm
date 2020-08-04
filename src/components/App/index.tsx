@@ -4,7 +4,7 @@ import TripleForm from "./TripleForm";
 import WidgetDefProvider from "../common/GamsWidget/WidgetDefProvider"
 import DataProvider from "../common/GamsWidget/DataProvider"
 
-const TripleFormWidget = () => {
+const TripleFormWidget: React.FC = () => {
   return (
     <GamsWidget
       WidgetComponent={{ Component: TripleForm }}
