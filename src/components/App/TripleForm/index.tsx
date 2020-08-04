@@ -29,10 +29,6 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
   const [gamsConfig, setGamsConfig] = React.useState<undefined | any>(
     undefined
   );
-  //assigned in useEffect -> tripleFormConfig variable.
-  const [tripleFormConfig, setTripleFormConfig] = React.useState<
-    TripleForm | undefined
-  >(undefined);
 
   const [query, setQuery] = React.useState<"" | string>("");
   const [queryInputs, setInputs] = React.useState<
@@ -53,7 +49,6 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
       );
       return;
     }
-    setTripleFormConfig(gamsConfig.tripleForm);
     setInputs(gamsConfig.tripleForm.properties);
   }, [gamsConfig]);
 
