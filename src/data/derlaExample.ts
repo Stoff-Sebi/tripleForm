@@ -22,9 +22,21 @@ const derlaExample: TripleForm = {
             value:[
               {label:"Test01", value:"4"}
             ]
+          },
+          {
+            parameter:"$2",
+            placeHolder:"Obergruppe",
+            label:"Obergruppe einschränken",
+            small:"* zeigt alle Optionen an",
+            type:"select",
+            required:true,
+            value:[
+              {label:"Test01", value:"4"},
+              {label:"Test02", value:"4123"}
+            ]
           }
         ]
-      }
+      },
     ]
   }
 
