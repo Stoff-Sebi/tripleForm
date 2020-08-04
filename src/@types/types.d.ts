@@ -7,7 +7,7 @@ export interface RestPathVariableGroup {
 }
 
 export interface Input {
-    label: string;
+    label?: string;
     small?: string;
     value?: string | SelectValue[];
     id?: string;
@@ -31,9 +31,10 @@ export interface SelectInput extends Input {
 }
 
 export interface SelectValue {
-    label: string;
+    label?: string;
     value: string | number;
     _selected?: boolean;
+}
 }
 
 export interface QuerySelectInput extends SelectInput, QueryInput {}
