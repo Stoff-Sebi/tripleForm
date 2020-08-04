@@ -1,7 +1,6 @@
 import React from "react";
 import ResponsiveForm from "../../common/ResponsiveForm";
 import QueryBuilder from "../QueryBuilder"
-import ConfigProvier from "../../common/ConfigProvider";
 import {
   QueryInput,
   SelectValue,
@@ -160,11 +159,6 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
 
   return (
     <div className="tripleform">
-      <ConfigProvier
-        windowConfigPropName={"_gamsComponentConfig"}
-        setConfig={setGamsConfig}
-        configUrl={undefined}
-      ></ConfigProvier>
       {widgetDef.gui ? (
         <>
           <ResponsiveForm
