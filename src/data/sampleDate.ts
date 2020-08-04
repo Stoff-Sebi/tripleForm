@@ -16,145 +16,142 @@ export const exampleForm: TripleForm = {
         restPathVariable: "params",
         formGroups: [
           {
-            label: "Libri Ordinarii wählen",
-            small: "Hier gewähltes LO entspricht der Anzeige links in der folgenden synoptischen Vergleichsansicht...",
+            small:"Wählen Sie ein LO aus",
+            required: true,
             value: [
-            {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<https://gams.uni-graz.at/o:cantus.brixen>'},
-{label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<https://gams.uni-graz.at/o:cantus.freising>'},
-{label:'Hirsau (OSB) (CH-Zz RH 74b)',value:'<https://gams.uni-graz.at/o:cantus.hirsau>'},
+            {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.brixen&gt;</xsl:text>'},
+{label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.freising&gt;</xsl:text>'},
+{label:'Hirsau (OSB) (CH-Zz RH 74b)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.hirsau&gt;</xsl:text>'},
 
-{label:'Klosteneuburg (CRSA) KNB1 (A-KN 635)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb1>'},
-{label:'Klosteneuburg (CRSA) KNB2 (A-KN 1213)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb2>'},
-{label:'Klosteneuburg (CRSA) KNB3 (A-KN 983)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb3>'},
-{label:'Klosteneuburg (CRSA) KNB4 (A-KN 1014)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb4>'},
+{label:'Klosteneuburg (CRSA) KNB1 (A-KN 635)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb1&gt;</xsl:text>'},
+{label:'Klosteneuburg (CRSA) KNB2 (A-KN 1213)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb2&gt;</xsl:text>'},
+{label:'Klosteneuburg (CRSA) KNB3 (A-KN 983)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb3&gt;</xsl:text>'},
+{label:'Klosteneuburg (CRSA) KNB4 (A-KN 1014)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb4&gt;</xsl:text>'},
 
-{label:'Moosburg (Kollegiatsstift) (D-Mbs Clm 9469)',value:'<https://gams.uni-graz.at/o:cantus.moosburg>'},
+{label:'Moosburg (Kollegiatsstift) (D-Mbs Clm 9469)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.moosburg&gt;</xsl:text>'},
 
-{label:'Diözese Passau rekonstruierter Urtext',value:'<https://gams.uni-graz.at/o:cantus.passau.ur>'},
-{label:'Diözese Passau SP1 (A-SPL 83/3)',value:'<https://gams.uni-graz.at/o:cantus.passau.sp>'},
-{label:'Diözese Passau SVE (A-Wn 1874)',value:'<https://gams.uni-graz.at/o:cantus.passau.sve>'},
-{label:'Diözese Passau KNB (A-KN 1194)',value:'<https://gams.uni-graz.at/o:cantus.passau.knb>'},
+{label:'Diözese Passau rekonstruierter Urtext',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.ur&gt;</xsl:text>'},
+{label:'Diözese Passau SP1 (A-SPL 83/3)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.sp&gt;</xsl:text>'},
+{label:'Diözese Passau SVE (A-Wn 1874)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.sve&gt;</xsl:text>'},
+{label:'Diözese Passau KNB (A-KN 1194)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.knb&gt;</xsl:text>'},
 
-{label:'Diözese Passau (CRSA) PAC (A-Gu 208)',value:'<https://gams.uni-graz.at/o:cantus.seckau1.pac>'},
+{label:'Diözese Passau (CRSA) PAC (A-Gu 208)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau1.pac&gt;</xsl:text>'},
 
-{label:'St.Nikola (CRSA) Mengotus (A-Wn 1482)',value:'<https://gams.uni-graz.at/o:cantus.stnikola>'},
+{label:'St.Nikola (CRSA) Mengotus (A-Wn 1482)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.stnikola&gt;</xsl:text>'},
 
-{label:'Diözese Regensburg (D-Mbs clm 26947)',value:'<https://gams.uni-graz.at/o:cantus.regensburg>'},
+{label:'Diözese Regensburg (D-Mbs clm 26947)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.regensburg&gt;</xsl:text>'},
 
-{label:'St.Emmeram (OSB) EMM1 (D-Mbs clm 14183)',value:'<https://gams.uni-graz.at/o:cantus.emmeram.emm1>'},
-{label:'St.Emmeram (OSB) EMM2 (D-Mbs clm 14428)',value:'<https://gams.uni-graz.at/o:cantus.emmeram.emm2>'},
-{label:'St.Emmeram (OSB) EMM3 (D-Mbs clm 14073, Kastl)',value:'<https://gams.uni-graz.at/o:cantus.emmeram.emm3>'},
+{label:'St.Emmeram (OSB) EMM1 (D-Mbs clm 14183)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.emmeram.emm1&gt;</xsl:text>'},
+{label:'St.Emmeram (OSB) EMM2 (D-Mbs clm 14428)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.emmeram.emm2&gt;</xsl:text>'},
+{label:'St.Emmeram (OSB) EMM3 (D-Mbs clm 14073, Kastl)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.emmeram.emm3&gt;</xsl:text>'},
 
-{label:'Erzdiözese Salzburg rekonstruierter Urtext',value:'<https://gams.uni-graz.at/o:cantus.salzburg.ur>'},
-{label:'Erzdiözese Salzburg SAL (A-Su M II 6)',value:'<https://gams.uni-graz.at/o:cantus.salzburg.sal>'},
-{label:'Erzdiözese Salzburg RA (D-Mbs clm 12635)',value:'<https://gams.uni-graz.at/o:cantus.salzburg.ra>'},
-{label:'Erzdiözese Salzburg VO (A-VOR 99)',value:'<https://gams.uni-graz.at/o:cantus.salzburg.vo>'},
+{label:'Erzdiözese Salzburg rekonstruierter Urtext',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.ur&gt;</xsl:text>'},
+{label:'Erzdiözese Salzburg SAL (A-Su M II 6)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.sal&gt;</xsl:text>'},
+{label:'Erzdiözese Salzburg RA (D-Mbs clm 12635)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.ra&gt;</xsl:text>'},
+{label:'Erzdiözese Salzburg VO (A-VOR 99)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.vo&gt;</xsl:text>'},
 
-{label:'Seckau (CRSA) Seckau 1 (A-Gu 208)',value:'<https://gams.uni-graz.at/o:cantus.seckau1.se1>'},
-{label:'Seckau (CRSA) Seckau 2 (A-Gu 756)',value:'<https://gams.uni-graz.at/o:cantus.seckau2>'},
-{label:'Seckau (CRSA) Seckau 3 (A-Gu 1566)',value:'<https://gams.uni-graz.at/o:cantus.seckau3>'},
+{label:'Seckau (CRSA) Seckau 1 (A-Gu 208)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau1.se1&gt;</xsl:text>'},
+{label:'Seckau (CRSA) Seckau 2 (A-Gu 756)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau2&gt;</xsl:text>'},
+{label:'Seckau (CRSA) Seckau 3 (A-Gu 1566)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau3&gt;</xsl:text>'},
 
-{label:'Vorau-Salzburg (CRSA) (A-VOR 333)',value:'<https://gams.uni-graz.at/o:cantus.vorau>'}
+{label:'Vorau-Salzburg (CRSA) (A-VOR 333)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.vorau&gt;</xsl:text>'}
             ],
             type: "select",
-            id: "tripleform_L01",
+            id: "L01",
             placeHolder: "Wählen Sie aus der Liste ein LO aus.",
-            parameter: "$1|",
-            required: true
+            parameter: "$1|"
           },
-          {
-            label: "Libri Ordinarii wählen",
+          { 
             value: [
-            {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<https://gams.uni-graz.at/o:cantus.brixen>'},
-{label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<https://gams.uni-graz.at/o:cantus.freising>'},
-{label:'Hirsau (OSB) (CH-Zz RH 74b)',value:'<https://gams.uni-graz.at/o:cantus.hirsau>'},
-
-{label:'Klosteneuburg (CRSA) KNB1 (A-KN 635)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb1>'},
-{label:'Klosteneuburg (CRSA) KNB2 (A-KN 1213)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb2>'},
-{label:'Klosteneuburg (CRSA) KNB3 (A-KN 983)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb3>'},
-{label:'Klosteneuburg (CRSA) KNB4 (A-KN 1014)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb4>'},
-
-{label:'Moosburg (Kollegiatsstift) (D-Mbs Clm 9469)',value:'<https://gams.uni-graz.at/o:cantus.moosburg>'},
-
-{label:'Diözese Passau rekonstruierter Urtext',value:'<https://gams.uni-graz.at/o:cantus.passau.ur>'},
-{label:'Diözese Passau SP1 (A-SPL 83/3)',value:'<https://gams.uni-graz.at/o:cantus.passau.sp>'},
-{label:'Diözese Passau SVE (A-Wn 1874)',value:'<https://gams.uni-graz.at/o:cantus.passau.sve>'},
-{label:'Diözese Passau KNB (A-KN 1194)',value:'<https://gams.uni-graz.at/o:cantus.passau.knb>'},
-
-{label:'Diözese Passau (CRSA) PAC (A-Gu 208)',value:'<https://gams.uni-graz.at/o:cantus.seckau1.pac>'},
-
-{label:'St.Nikola (CRSA) Mengotus (A-Wn 1482)',value:'<https://gams.uni-graz.at/o:cantus.stnikola>'},
-
-{label:'Diözese Regensburg (D-Mbs clm 26947)',value:'<https://gams.uni-graz.at/o:cantus.regensburg>'},
-
-{label:'St.Emmeram (OSB) EMM1 (D-Mbs clm 14183)',value:'<https://gams.uni-graz.at/o:cantus.emmeram.emm1>'},
-{label:'St.Emmeram (OSB) EMM2 (D-Mbs clm 14428)',value:'<https://gams.uni-graz.at/o:cantus.emmeram.emm2>'},
-{label:'St.Emmeram (OSB) EMM3 (D-Mbs clm 14073, Kastl)',value:'<https://gams.uni-graz.at/o:cantus.emmeram.emm3>'},
-
-{label:'Erzdiözese Salzburg rekonstruierter Urtext',value:'<https://gams.uni-graz.at/o:cantus.salzburg.ur>'},
-{label:'Erzdiözese Salzburg SAL (A-Su M II 6)',value:'<https://gams.uni-graz.at/o:cantus.salzburg.sal>'},
-{label:'Erzdiözese Salzburg RA (D-Mbs clm 12635)',value:'<https://gams.uni-graz.at/o:cantus.salzburg.ra>'},
-{label:'Erzdiözese Salzburg VO (A-VOR 99)',value:'<https://gams.uni-graz.at/o:cantus.salzburg.vo>'},
-
-{label:'Seckau (CRSA) Seckau 1 (A-Gu 208)',value:'<https://gams.uni-graz.at/o:cantus.seckau1.se1>'},
-{label:'Seckau (CRSA) Seckau 2 (A-Gu 756)',value:'<https://gams.uni-graz.at/o:cantus.seckau2>'},
-{label:'Seckau (CRSA) Seckau 3 (A-Gu 1566)',value:'<https://gams.uni-graz.at/o:cantus.seckau3>'},
-
-{label:'Vorau-Salzburg (CRSA) (A-VOR 333)',value:'<https://gams.uni-graz.at/o:cantus.vorau>'}
+            {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.brixen&gt;</xsl:text>'},
+  {label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.freising&gt;</xsl:text>'},
+  {label:'Hirsau (OSB) (CH-Zz RH 74b)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.hirsau&gt;</xsl:text>'},
+  
+  {label:'Klosteneuburg (CRSA) KNB1 (A-KN 635)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb1&gt;</xsl:text>'},
+  {label:'Klosteneuburg (CRSA) KNB2 (A-KN 1213)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb2&gt;</xsl:text>'},
+  {label:'Klosteneuburg (CRSA) KNB3 (A-KN 983)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb3&gt;</xsl:text>'},
+  {label:'Klosteneuburg (CRSA) KNB4 (A-KN 1014)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb4&gt;</xsl:text>'},
+  
+  {label:'Moosburg (Kollegiatsstift) (D-Mbs Clm 9469)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.moosburg&gt;</xsl:text>'},
+  
+  {label:'Diözese Passau rekonstruierter Urtext',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.ur&gt;</xsl:text>'},
+  {label:'Diözese Passau SP1 (A-SPL 83/3)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.sp&gt;</xsl:text>'},
+  {label:'Diözese Passau SVE (A-Wn 1874)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.sve&gt;</xsl:text>'},
+  {label:'Diözese Passau KNB (A-KN 1194)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.knb&gt;</xsl:text>'},
+  
+  {label:'Diözese Passau (CRSA) PAC (A-Gu 208)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau1.pac&gt;</xsl:text>'},
+  
+  {label:'St.Nikola (CRSA) Mengotus (A-Wn 1482)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.stnikola&gt;</xsl:text>'},
+  
+  {label:'Diözese Regensburg (D-Mbs clm 26947)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.regensburg&gt;</xsl:text>'},
+  
+  {label:'St.Emmeram (OSB) EMM1 (D-Mbs clm 14183)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.emmeram.emm1&gt;</xsl:text>'},
+  {label:'St.Emmeram (OSB) EMM2 (D-Mbs clm 14428)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.emmeram.emm2&gt;</xsl:text>'},
+  {label:'St.Emmeram (OSB) EMM3 (D-Mbs clm 14073, Kastl)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.emmeram.emm3&gt;</xsl:text>'},
+  
+  {label:'Erzdiözese Salzburg rekonstruierter Urtext',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.ur&gt;</xsl:text>'},
+  {label:'Erzdiözese Salzburg SAL (A-Su M II 6)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.sal&gt;</xsl:text>'},
+  {label:'Erzdiözese Salzburg RA (D-Mbs clm 12635)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.ra&gt;</xsl:text>'},
+  {label:'Erzdiözese Salzburg VO (A-VOR 99)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.vo&gt;</xsl:text>'},
+  
+  {label:'Seckau (CRSA) Seckau 1 (A-Gu 208)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau1.se1&gt;</xsl:text>'},
+  {label:'Seckau (CRSA) Seckau 2 (A-Gu 756)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau2&gt;</xsl:text>'},
+  {label:'Seckau (CRSA) Seckau 3 (A-Gu 1566)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau3&gt;</xsl:text>'},
+  
+  {label:'Vorau-Salzburg (CRSA) (A-VOR 333)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.vorau&gt;</xsl:text>'}
             ],
-            type: "autocomplete",
-            id: "tripleform_LO02",
-            placeHolder: "Wählen Sie ein LO.",
+            small:"Wählen Sie ein LO aus",
+            type: "select",
+            id: "1233333as",
+            placeHolder: "Wählen Sie aus der Liste ein LO aus.",
             parameter: "$2|",
-            required:true,
-            small: "...zweites LO wird folgend mittig dargestellt...",
+            required:true
           },
           {
-            label: "Libri Ordinarii wählen",
             value: [
-            {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<https://gams.uni-graz.at/o:cantus.brixen>'},
-{label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<https://gams.uni-graz.at/o:cantus.freising>'},
-{label:'Hirsau (OSB) (CH-Zz RH 74b)',value:'<https://gams.uni-graz.at/o:cantus.hirsau>'},
-
-{label:'Klosteneuburg (CRSA) KNB1 (A-KN 635)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb1>'},
-{label:'Klosteneuburg (CRSA) KNB2 (A-KN 1213)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb2>'},
-{label:'Klosteneuburg (CRSA) KNB3 (A-KN 983)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb3>'},
-{label:'Klosteneuburg (CRSA) KNB4 (A-KN 1014)',value:'<https://gams.uni-graz.at/o:cantus.klosterneuburg.knb4>'},
-
-{label:'Moosburg (Kollegiatsstift) (D-Mbs Clm 9469)',value:'<https://gams.uni-graz.at/o:cantus.moosburg>'},
-
-{label:'Diözese Passau rekonstruierter Urtext',value:'<https://gams.uni-graz.at/o:cantus.passau.ur>'},
-{label:'Diözese Passau SP1 (A-SPL 83/3)',value:'<https://gams.uni-graz.at/o:cantus.passau.sp>'},
-{label:'Diözese Passau SVE (A-Wn 1874)',value:'<https://gams.uni-graz.at/o:cantus.passau.sve>'},
-{label:'Diözese Passau KNB (A-KN 1194)',value:'<https://gams.uni-graz.at/o:cantus.passau.knb>'},
-
-{label:'Diözese Passau (CRSA) PAC (A-Gu 208)',value:'<https://gams.uni-graz.at/o:cantus.seckau1.pac>'},
-
-{label:'St.Nikola (CRSA) Mengotus (A-Wn 1482)',value:'<https://gams.uni-graz.at/o:cantus.stnikola>'},
-
-{label:'Diözese Regensburg (D-Mbs clm 26947)',value:'<https://gams.uni-graz.at/o:cantus.regensburg>'},
-
-{label:'St.Emmeram (OSB) EMM1 (D-Mbs clm 14183)',value:'<https://gams.uni-graz.at/o:cantus.emmeram.emm1>'},
-{label:'St.Emmeram (OSB) EMM2 (D-Mbs clm 14428)',value:'<https://gams.uni-graz.at/o:cantus.emmeram.emm2>'},
-{label:'St.Emmeram (OSB) EMM3 (D-Mbs clm 14073, Kastl)',value:'<https://gams.uni-graz.at/o:cantus.emmeram.emm3>'},
-
-{label:'Erzdiözese Salzburg rekonstruierter Urtext',value:'<https://gams.uni-graz.at/o:cantus.salzburg.ur>'},
-{label:'Erzdiözese Salzburg SAL (A-Su M II 6)',value:'<https://gams.uni-graz.at/o:cantus.salzburg.sal>'},
-{label:'Erzdiözese Salzburg RA (D-Mbs clm 12635)',value:'<https://gams.uni-graz.at/o:cantus.salzburg.ra>'},
-{label:'Erzdiözese Salzburg VO (A-VOR 99)',value:'<https://gams.uni-graz.at/o:cantus.salzburg.vo>'},
-
-{label:'Seckau (CRSA) Seckau 1 (A-Gu 208)',value:'<https://gams.uni-graz.at/o:cantus.seckau1.se1>'},
-{label:'Seckau (CRSA) Seckau 2 (A-Gu 756)',value:'<https://gams.uni-graz.at/o:cantus.seckau2>'},
-{label:'Seckau (CRSA) Seckau 3 (A-Gu 1566)',value:'<https://gams.uni-graz.at/o:cantus.seckau3>'},
-
-{label:'Vorau-Salzburg (CRSA) (A-VOR 333)',value:'<https://gams.uni-graz.at/o:cantus.vorau>'}
+            {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.brixen&gt;</xsl:text>'},
+  {label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.freising&gt;</xsl:text>'},
+  {label:'Hirsau (OSB) (CH-Zz RH 74b)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.hirsau&gt;</xsl:text>'},
+  
+  {label:'Klosteneuburg (CRSA) KNB1 (A-KN 635)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb1&gt;</xsl:text>'},
+  {label:'Klosteneuburg (CRSA) KNB2 (A-KN 1213)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb2&gt;</xsl:text>'},
+  {label:'Klosteneuburg (CRSA) KNB3 (A-KN 983)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb3&gt;</xsl:text>'},
+  {label:'Klosteneuburg (CRSA) KNB4 (A-KN 1014)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.klosterneuburg.knb4&gt;</xsl:text>'},
+  
+  {label:'Moosburg (Kollegiatsstift) (D-Mbs Clm 9469)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.moosburg&gt;</xsl:text>'},
+  
+  {label:'Diözese Passau rekonstruierter Urtext',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.ur&gt;</xsl:text>'},
+  {label:'Diözese Passau SP1 (A-SPL 83/3)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.sp&gt;</xsl:text>'},
+  {label:'Diözese Passau SVE (A-Wn 1874)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.sve&gt;</xsl:text>'},
+  {label:'Diözese Passau KNB (A-KN 1194)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.passau.knb&gt;</xsl:text>'},
+  
+  {label:'Diözese Passau (CRSA) PAC (A-Gu 208)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau1.pac&gt;</xsl:text>'},
+  
+  {label:'St.Nikola (CRSA) Mengotus (A-Wn 1482)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.stnikola&gt;</xsl:text>'},
+  
+  {label:'Diözese Regensburg (D-Mbs clm 26947)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.regensburg&gt;</xsl:text>'},
+  
+  {label:'St.Emmeram (OSB) EMM1 (D-Mbs clm 14183)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.emmeram.emm1&gt;</xsl:text>'},
+  {label:'St.Emmeram (OSB) EMM2 (D-Mbs clm 14428)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.emmeram.emm2&gt;</xsl:text>'},
+  {label:'St.Emmeram (OSB) EMM3 (D-Mbs clm 14073, Kastl)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.emmeram.emm3&gt;</xsl:text>'},
+  
+  {label:'Erzdiözese Salzburg rekonstruierter Urtext',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.ur&gt;</xsl:text>'},
+  {label:'Erzdiözese Salzburg SAL (A-Su M II 6)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.sal&gt;</xsl:text>'},
+  {label:'Erzdiözese Salzburg RA (D-Mbs clm 12635)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.ra&gt;</xsl:text>'},
+  {label:'Erzdiözese Salzburg VO (A-VOR 99)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.salzburg.vo&gt;</xsl:text>'},
+  
+  {label:'Seckau (CRSA) Seckau 1 (A-Gu 208)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau1.se1&gt;</xsl:text>'},
+  {label:'Seckau (CRSA) Seckau 2 (A-Gu 756)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau2&gt;</xsl:text>'},
+  {label:'Seckau (CRSA) Seckau 3 (A-Gu 1566)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.seckau3&gt;</xsl:text>'},
+  
+  {label:'Vorau-Salzburg (CRSA) (A-VOR 333)',value:'<xsl:text disable-output-escaping="yes">&lt;https://gams.uni-graz.at/o:cantus.vorau&gt;</xsl:text>'}
             ],
-            type: "autocomplete",
-            id: "tripleform_LO3",
-            placeHolder: "Wählen Sie ein LO",
+            small:"Wählen Sie ein LO aus",
+            type: "select",
+            id: "1233333asasdd",
+            placeHolder: "Wählen Sie aus der Liste ein LO aus.",
             parameter: "$3|",
-            required:true,
-            small:"... und drittes LO in der Spalte rechts."
+            required:true
           }
         ]
       },
@@ -162,8 +159,7 @@ export const exampleForm: TripleForm = {
         restPathVariable: "mode",
         formGroups: [
           {
-            label: "Fest einschränken",
-            small: "Wählen Sie abschließend mit Hilfe der Autovervollständigung die Einschränkung auf einen spezifisches Fest.",
+            small:"Wählen Sie ein Fest",
             value: [
             {value: "default", label: "Bitte wählen..."}, {
 value: "01000000",
@@ -1038,20 +1034,11 @@ label: "Additamenta"
 }, {value: "99999999", label: "Vigilia Ascensio Dom."}, {value: "99999998", label: "Viginti Quattuor Senatorum"},{value: "00000000", label: "Commentarius"}
             ],
             type: "autocomplete",
-            id: "tripleform_feast",
-            placeHolder: "z.b. 's'",
+            id: "1233333as",
+            placeHolder: "Fest wählen",
             parameter: "",
             required:true
           }
-          /* {
-            label: "LO 03",
-            value: "",
-            type: "text",
-            id: "1233333asasdd",
-            placeHolder: "bimbiasdds",
-            parameter: "",
-            required:true
-          } */
         ]
       }
     ]
@@ -1059,3 +1046,5 @@ label: "Additamenta"
 
   
 }
+
+
