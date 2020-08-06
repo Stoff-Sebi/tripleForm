@@ -7,6 +7,7 @@ interface Props {
   localStorageKey: string;
   options: { label: string; value: string }[];
   placeHolder?: string;
+  prepend?: string;
   [properties: string]: any;  //properties are spread onto the <select> element.
 }
 
@@ -16,6 +17,7 @@ const StorageSelect: React.FC<Props> = ({
   options,
   localStorageKey,
   placeHolder = undefined,
+  prepend,
   ...properties
 }) => {
   return (
@@ -26,6 +28,10 @@ const StorageSelect: React.FC<Props> = ({
           storageKey={localStorageKey}
           value={value}
         >
+          <div className="input-group mb-3">
+          {prepend ? <div className="input-group-prepend">
+      <span className="input-group-text" id="basic-addon1">{prepend}</span>
+          </div> : null}
           <select
             value={value}
             onChange={evt => onChange(evt.currentTarget.value)}
@@ -53,7 +59,7 @@ const StorageSelect: React.FC<Props> = ({
                 {option.label}
               </option>
             ))}
-          </select>
+          </select></div>
         </LocalStorageApplier>
       }
     </>

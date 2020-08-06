@@ -44,6 +44,7 @@ const SelectFormGroup: React.FC<props> = ({
         placeHolder={options.placeHolder}
         className="form-control"
         required={options.required}
+        prepend={options.prepend}
       ></StorageSelect>
       {options.small ? (
         <small className="form-text text-muted">{options.small}</small>

@@ -14,6 +14,7 @@ export interface Input {
     placeHolder?: string;
     type?: "text" | "select" | "autocomplete";
     required?: boolean;
+    prepend?: string;
 }
 
 export interface TextInput extends Input {
