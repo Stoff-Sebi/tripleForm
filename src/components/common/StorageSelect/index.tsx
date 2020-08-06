@@ -31,12 +31,18 @@ const StorageSelect: React.FC<Props> = ({
             onChange={evt => onChange(evt.currentTarget.value)}
             {...properties}
           >
+            {/**
+             * When placeholder is undefined take the first value of options
+             * as default value.
+             */}
             {placeHolder ? (
               <option key={`SelectFormGroup_option_-1`} value="" disabled hidden>
                 {placeHolder}
               </option>
             ) : (
-              undefined
+              <option key={`SelectFormGroup_option_-1`} value={options[0].value} disabled hidden>
+                {options[0].value}
+              </option>
             )}
 
             {options.map((option, index) => (
