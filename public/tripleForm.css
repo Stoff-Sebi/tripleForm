@@ -4,14 +4,14 @@
      }
      
      .react-autosuggest__input {
-       width: 100%;
+       /* max-width: 75%; */
        height: calc(1.5em + .75rem + 2px);
        padding: 10px 20px;
        font-family: Helvetica, sans-serif;
        font-weight: 300;
        font-size: 16px;
        border: 1px solid #aaa;
-       border-radius: 4px;
+       /* border-radius: 4px; */
      }
      
      .react-autosuggest__input--focused {

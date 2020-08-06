@@ -105,7 +105,12 @@ const AutoComplete: React.FC<Props> = ({
       ) : null}
       {autoCompleteOption.required ? (
         <>
+        <div className="input-group mb-3 autocomplete--input-group">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">@</span>
+          </div>
         <input
+          className="form-control"
           style={{
             border: `1px solid ${
               autoCompleteOption.value.filter(selObj => selObj.label === value)
@@ -116,15 +121,20 @@ const AutoComplete: React.FC<Props> = ({
           }}
           type="text"
           {...inputProps}
-        />
+        /></div>
         {autoCompleteOption.small ? <small className="form-text text-muted">{autoCompleteOption.small}</small> : null}
         </>
       ) : (<>
+      <div className="input-group mb-3 autocomplete--input-group">
+      <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">@</span>
+        </div>
         <input
+          className="form-control"
           style={{ border: `1px solid #28a745` }}
           type="text"
           {...inputProps}
-        />
+        /></div>
         {autoCompleteOption.small ? <small className="form-text text-muted">{autoCompleteOption.small}</small> : null}
         </>
       )}
@@ -137,16 +147,16 @@ const AutoComplete: React.FC<Props> = ({
       value={value}
       storageKey={localStorageKey}
     >
-      <Autosuggest
-        id={id}
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-        renderInputComponent={renderInputComponent}
-      />
+        <Autosuggest
+          id={id}
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          renderInputComponent={renderInputComponent}
+        />
     </LocalStorageApplier>
   );
 };

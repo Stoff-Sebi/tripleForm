@@ -14,10 +14,18 @@
     box-shadow: 1px 1px 2px 10px inset whitesmoke;
 }
 
-.tripleform .responsiveform input, small, select {
-    margin-right: 10em;
-    max-width: 20em;
-    
+.tripleform .form-group {
+    margin-right: 2em;
+    max-width: 30em;
+    border-radius: 0 !important;
+}
+
+.tripleform select {
+    border-radius: 0;
+}
+
+.tripleform .input-group-text {
+    border-radius: 0;
 }
 
 .tripleform .tripleform--spinner {

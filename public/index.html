@@ -47,8 +47,8 @@ gui:{
       restPathVariable: "params",
       formGroups: [
         {
-          label: "Libri Ordinarii wählen",
-          small: "Hier gewähltes LO entspricht der Anzeige links in der folgenden synoptischen Vergleichsansicht...",
+          //label: "Libri Ordinarii wählen",
+          //small: "Hier gewähltes LO entspricht der Anzeige links in der folgenden synoptischen Vergleichsansicht...",
           value: [
           {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<https://gams.uni-graz.at/o:cantus.brixen>'},
 {label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<https://gams.uni-graz.at/o:cantus.freising>'},
@@ -95,7 +95,7 @@ gui:{
           required: true
         },
         {
-          label: "Libri Ordinarii wählen",
+          //label: "Libri Ordinarii wählen",
           value: [
           {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<https://gams.uni-graz.at/o:cantus.brixen>'},
 {label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<https://gams.uni-graz.at/o:cantus.freising>'},
@@ -134,16 +134,16 @@ gui:{
 
 {label:'Vorau-Salzburg (CRSA) (A-VOR 333)',value:'<https://gams.uni-graz.at/o:cantus.vorau>'}
           ],
-          type: "autocomplete",
+          type: "select",
           id: "tripleform_LO02",
-          placeHolder: "Wählen Sie ein LO.",
+          //placeHolder: "Wählen Sie ein LO.",
           parameter: "$2|",
-          required:true,
-          small: "...zweites LO wird folgend mittig dargestellt...",
-          prepend:"nice"
+          required:false,
+          //small: "...zweites LO wird folgend mittig dargestellt...",
+          prepend:"LO",
         },
         {
-          label: "Libri Ordinarii wählen",
+          //label: "Libri Ordinarii wählen",
           value: [
           {label:'Diözese Brixen (I-SCAcc VII A 10)',value:'<https://gams.uni-graz.at/o:cantus.brixen>'},
 {label:'Diözese Freising (D-Mu 4 Cod. 157)',value:'<https://gams.uni-graz.at/o:cantus.freising>'},
@@ -182,12 +182,13 @@ gui:{
 
 {label:'Vorau-Salzburg (CRSA) (A-VOR 333)',value:'<https://gams.uni-graz.at/o:cantus.vorau>'}
           ],
-          type: "autocomplete",
+          type: "select",
           id: "tripleform_LO3",
-          placeHolder: "Wählen Sie ein LO",
+          //placeHolder: "Wählen Sie ein LO",
           parameter: "$3|",
-          required:true,
-          small:"... und drittes LO in der Spalte rechts."
+          //required:true,
+          //small:"... und drittes LO in der Spalte rechts."
+          prepend:"LO"
         }
       ]
     },
