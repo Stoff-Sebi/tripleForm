@@ -150,6 +150,7 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
             handleSearch={handleSearch}
             inputIsValid={inputIsValid}
             loading={loading}
+            searchBtns={widgetDef.gui.searchBtns}
           ></ResponsiveForm>
           {/**
            * Display help to construct query via the query builder.

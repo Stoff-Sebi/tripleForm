@@ -56,6 +56,10 @@ export interface TripleForm extends GamsWidgetType {
         queryStart: string;
         parameterDelimiter: string,
         params: RestPathVariableGroup[],
+        searchBtns?: {
+            searchText: string,
+            resetText: string
+        }
     }
 }
 

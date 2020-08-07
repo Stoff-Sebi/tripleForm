@@ -21,6 +21,10 @@ interface Props {
     btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
   loading?: boolean;
+  searchBtns?: {
+    searchText: string,
+    resetText: string
+}
 }
 
 const ResponsiveForm: React.FC<Props> = ({
@@ -28,7 +32,8 @@ const ResponsiveForm: React.FC<Props> = ({
   inputIsValid,
   setInputFields,
   handleSearch,
-  loading = undefined
+  loading = undefined,
+  searchBtns
 }) => {
   const generateTextFormGroup = (
     textInput: TextInput,
@@ -179,9 +184,9 @@ const ResponsiveForm: React.FC<Props> = ({
           className={`btn ${inputIsValid ? "btn-success" : "btn-warning"}`}
           onClick={evt => handleSearch(evt)}
         >
-          Search
+          {searchBtns ? searchBtns.searchText : "Suche"}
         </button>
-        <button className="btn btn-light" onClick={(evt) =>  {evt.preventDefault(); navigationUtils.resetStorageReloadPage()} }>Suche zurücksetzen</button>
+        <button className="btn btn-light" onClick={(evt) =>  {evt.preventDefault(); navigationUtils.resetStorageReloadPage()} }>{searchBtns ? searchBtns.resetText : "Suche zurücksetzen"}</button>
         <div
           className="spinner-border tripleform--spinner"
           style={{ visibility: loading ? "inherit" : "hidden" }}
