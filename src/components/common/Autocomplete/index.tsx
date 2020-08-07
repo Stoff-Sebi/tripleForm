@@ -112,11 +112,11 @@ const AutoComplete: React.FC<Props> = ({
         <input
           className="form-control"
           style={{
-            border: `1px solid ${
+            borderBottom: `${
               autoCompleteOption.value.filter(selObj => selObj.label === value)
                 .length !== 0
-                ? "#28a745"
-                : "#dc3545"
+                ? ""
+                : "2px solid #dc3545"
             }`
           }}
           type="text"
