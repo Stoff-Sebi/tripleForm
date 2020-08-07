@@ -21,12 +21,15 @@ const StorageSelect: React.FC<Props> = ({
   ...properties
 }) => {
 
-  // if no placeholder is given then autoapply the first value of the dropdown.
+  // auto set first value of the dropdown as default.
   React.useEffect(() => {
     // when a placeholder is given do nothing!
     if(placeHolder)return;
+    // when no value is passed from two-way binding also do not assign default.
+    // if there is a local storage value it will be read out later in rendering.
+    if(!value)return; 
+    // call onchange.
     onChange(options[0].value);
-    
   }, [placeHolder]);
 
 
