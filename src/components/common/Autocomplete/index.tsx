@@ -14,7 +14,7 @@ const AutoComplete: React.FC<Props> = ({
   id,
   autoCompleteOption,
   onchange,
-  localStorageKey
+  localStorageKey,
 }) => {
   const [value, setValue] = React.useState<string>(()=>{
     let filtered = autoCompleteOption.value.filter(val=>(val._selected===true));
@@ -106,9 +106,9 @@ const AutoComplete: React.FC<Props> = ({
       {autoCompleteOption.required ? (
         <>
         <div className="input-group mb-3 autocomplete--input-group">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="basic-addon1">@</span>
-          </div>
+          { autoCompleteOption.prepend ? <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">{autoCompleteOption.prepend}</span>
+        </div> : null}
         <input
           className="form-control"
           style={{
@@ -126,9 +126,9 @@ const AutoComplete: React.FC<Props> = ({
         </>
       ) : (<>
       <div className="input-group mb-3 autocomplete--input-group">
-      <div className="input-group-prepend">
-          <span className="input-group-text" id="basic-addon1">@</span>
-        </div>
+        { autoCompleteOption.prepend ? <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">{autoCompleteOption.prepend}</span>
+        </div> : null}
         <input
           className="form-control"
           style={{ border: `1px solid #28a745` }}
