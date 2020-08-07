@@ -20,6 +20,16 @@ const StorageSelect: React.FC<Props> = ({
   prepend,
   ...properties
 }) => {
+
+  // if no placeholder is given then autoapply the first value of the dropdown.
+  React.useEffect(() => {
+    // when a placeholder is given do nothing!
+    if(placeHolder)return;
+    onChange(options[0].value);
+    
+  }, [placeHolder]);
+
+
   return (
     <>
       {
@@ -47,7 +57,7 @@ const StorageSelect: React.FC<Props> = ({
               </option>
             ) : (
               <option key={`SelectFormGroup_option_-1`} value={options[0].value} disabled hidden>
-                {options[0].value}
+                {options[0].label}
               </option>
             )}
 
