@@ -12,7 +12,7 @@ import { copyDeep } from "../../../utils/gamsUtils";
 import { GAMSWidgetProps } from "../../common/GamsWidget";
 // extending the prop-type of the GamsWidgetComponent
 interface GAMSTripleFormProps extends GAMSWidgetProps {
-  widgetDef: TripleForm 
+  widgetDef?: TripleForm 
 }
 
 
@@ -36,12 +36,14 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
 
   // initial useEffect to copy data structure inside the gui.
   React.useEffect(() => {
+    if(!widgetDef)return;
     if(!widgetDef.gui)return;
     setInputs(copyDeep(widgetDef.gui.params));
   }, [widgetDef]);
 
   //Use Effect build the query as url string
   React.useEffect(() => {
+    if(!widgetDef)return;
     if (!queryInputs) return;
     let query = "";
 
@@ -98,6 +100,7 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
   //validates when query changes.
   //sets inputIsValid state to true | false.
   React.useEffect(() => {
+    if(!widgetDef)return;
     if (!queryInputs) return;
     try {
       queryInputs.forEach(restPathGroup => {
@@ -121,6 +124,7 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
   const handleSearch = (
     btnClickEvent: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    if(!widgetDef)return;
     btnClickEvent.preventDefault(); //prevents default submit action on form.
     if (!query)
       return alert("wählen Sie einen gültigen Wert für die Suche aus.");
@@ -142,7 +146,7 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
 
   return (
     <div className="tripleform">
-      {widgetDef.gui && queryInputs ? (
+      {widgetDef && widgetDef.gui && queryInputs ? (
         <>
           <ResponsiveForm
             restPathGroups={queryInputs}
