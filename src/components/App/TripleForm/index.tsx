@@ -140,9 +140,8 @@ const TripleFormReact: React.FC<GAMSTripleFormProps> = ({
 
     //last navigate to page
     let url = widgetDef.gui.queryStart + query;
-    let urlParsed = new URL(url);
     setLoading(true);
-    window.location.href = urlParsed.toString();
+    window.location.href = encodeURI(url);
   };
 
   return (
