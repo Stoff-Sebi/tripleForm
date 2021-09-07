@@ -6,5 +6,6 @@
 ### Usage
 - [Synopsis view for the Cantus Network project](https://gams.uni-graz.at/archive/objects/query:cantus.synopsis2/methods/sdef:Query/get?params=%241%7C%3Chttps://gams.uni-graz.at/o:cantus.brixen%3E;%242%7C%3Chttps://gams.uni-graz.at/o:cantus.brixen%3E;%243%7C%3Chttps://gams.uni-graz.at/o:cantus.brixen%3E&mode=01011000&locale=en)
 
-
+### Specs
+- Node React application using create-react-app
 
