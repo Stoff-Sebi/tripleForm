@@ -8,4 +8,5 @@
 
 ### Specs
 - Node React application using create-react-app
+- based on Typescript
 
